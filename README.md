@@ -11,25 +11,22 @@ This project implements a network simulation environment using reinforcement lea
 
 ## Installation
 
-To run this project, ensure you have Python 3.x installed along with the required libraries. You can install the necessary packages using pip:
-
+To run this project, ensure you have Python 3.x installed along with the required libraries. You can install the necessary packages using pip: 
 bash
 pip install numpy matplotlib networkx gym torch
 
 
 ## Usage
 
-1. Clone the repository:
+1. Clone the repository:  
    ```bash
-   git clone https://github.com/yourusername/network-simulation.git
-   cd network-simulation
+   git clone https://github.com/melihgulbay/PythonNetwork.git  
+   cd PythonNetwork
    ```
-
-2. Run the main script to start the simulation:
+2. Run the main script to start the simulation:  
    ```bash
    python main.py
    ```
-
 3. Use the GUI to enable or disable reinforcement learning, and observe how the network metrics change in response to the agents' actions.
 
 ## Code Structure
@@ -38,5 +35,6 @@ pip install numpy matplotlib networkx gym torch
 - `environment.py`: Contains the `NetworkSimEnvironment` class that defines the network simulation environment.
 - `agents.py`: Implements the DQN and PPO agents used for reinforcement learning.
 - `gui.py`: Contains the `NetworkVisualizerGUI` class that creates the graphical interface for the simulation.
+
 
 
