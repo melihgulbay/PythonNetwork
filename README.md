@@ -87,6 +87,13 @@ The GUI provides comprehensive network monitoring capabilities:
 - Traffic pattern analysis
 - Anomaly detection status
 - Maintenance scheduling interface
+
+## Screenshots
+
+![Ekran Görüntüsü (470)](https://github.com/user-attachments/assets/7a876f3e-8198-4738-930e-537fbf68bba4)
+![Ekran Görüntüsü (469)](https://github.com/user-attachments/assets/7f45c7ff-a599-4188-ac84-9916eeca62e3)
+![Ekran Görüntüsü (468)](https://github.com/user-attachments/assets/7ba4cc31-6f0d-4636-8e5e-bff91bb265bd)
+
   
 ## Note
 -The simulation starts with 24 nodes by default. If you want to change this, modify the num_nodes parameter in main.py:
