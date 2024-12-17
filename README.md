@@ -29,13 +29,7 @@ A sophisticated network simulation environment built with Python, featuring rein
 
 ### Prerequisites
 
-python
-pip install gym
-pip install torch
-pip install networkx
-pip install matplotlib
-pip install numpy
-
+pip install gym numpy networkx torch matplotlib tkinter
 
 
 ### Project Structure
