@@ -87,4 +87,8 @@ The GUI provides comprehensive network monitoring capabilities:
 - Traffic pattern analysis
 - Anomaly detection status
 - Maintenance scheduling interface
+  
+##Note
+-The simulation starts with 24 nodes by default. If you want to change this, modify the num_nodes parameter in main.py:
+env = NetworkSimEnvironment(num_nodes=12)  # Change to desired number
 
