@@ -1,40 +1,96 @@
-# Network Simulation with Reinforcement Learning
+# Python Network Simulation Environment
 
-This project implements a network simulation environment using reinforcement learning techniques, specifically Deep Q-Networks (DQN) and Proximal Policy Optimization (PPO). The simulation allows for the visualization of network metrics and the application of RL algorithms to optimize network performance.
+A sophisticated network simulation environment built with Python, featuring reinforcement learning agents, traffic classification, anomaly detection, and predictive maintenance capabilities.
 
-## Features
+## 🌟 Features
 
-- **Network Simulation Environment**: A customizable environment that simulates a network with nodes and edges, allowing for various routing decisions.
-- **Reinforcement Learning Agents**: Implementations of DQN and PPO agents that learn to optimize network performance based on defined metrics.
-- **Graphical User Interface (GUI)**: A user-friendly interface built with Tkinter that visualizes network statistics and allows users to toggle between different RL strategies.
-- **Real-time Updates**: The GUI updates network statistics and visualizations in real-time, providing immediate feedback on the performance of the RL agents.
+### Core Components
+- **Network Environment**: Customizable network topology with dynamic packet routing
+- **Multiple RL Agents**: DQN and PPO implementations for network optimization
+- **Traffic Classification**: Real-time classification of network traffic (Gaming, Video, Web, etc.)
+- **Anomaly Detection**: Detection and mitigation of network anomalies (DoS, Port Scanning, Data Exfiltration)
+- **Predictive Maintenance**: Proactive network maintenance scheduling based on performance metrics
 
-## Installation
+### Interactive GUI
+- Real-time network visualization
+- Performance metrics monitoring
+- Traffic pattern analysis
+- Anomaly detection status
+- Maintenance scheduling interface
 
-To run this project, ensure you have Python 3.x installed along with the required libraries. You can install the necessary packages using pip: 
-bash
-pip install numpy matplotlib networkx gym torch
+### Network Metrics
+- Bandwidth utilization
+- Latency monitoring
+- Packet loss tracking
+- Network throughput
+- Custom performance thresholds
 
+## 🚀 Getting Started
 
-## Usage
+### Prerequisites
 
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/melihgulbay/PythonNetwork.git  
-   cd PythonNetwork
-   ```
-2. Run the main script to start the simulation:  
-   ```bash
-   python main.py
-   ```
-3. Use the GUI to enable or disable reinforcement learning, and observe how the network metrics change in response to the agents' actions.
-
-## Code Structure
-
-- `main.py`: The entry point of the application that initializes the environment and agents, and starts the GUI.
-- `environment.py`: Contains the `NetworkSimEnvironment` class that defines the network simulation environment.
-- `agents.py`: Implements the DQN and PPO agents used for reinforcement learning.
-- `gui.py`: Contains the `NetworkVisualizerGUI` class that creates the graphical interface for the simulation.
+python
+pip install gym
+pip install torch
+pip install networkx
+pip install matplotlib
+pip install numpy
 
 
+
+### Project Structure
+
+network_sim/
+├── environment.py
+├── agents.py
+├── gui.py
+├── main.py
+└── README.md
+
+### Running the Application
+Save all files in your project directory:
+environment.py - Contains the network simulation environment
+agents.py - Contains the AI agents (DQN, PPO, etc.)
+gui.py - Contains the visualization interface
+main.py - The entry point of the application
+
+Run the application by executing main.py:
+python main.py
+
+
+## 🛠️ Components
+
+### Network Environment
+- Configurable number of nodes
+- Dynamic packet generation and routing
+- Realistic network conditions simulation
+- Support for various traffic types
+
+### RL Agents
+- **DQN Agent**: Deep Q-Network implementation for routing optimization
+- **PPO Agent**: Proximal Policy Optimization for network management
+
+### Traffic Classification
+- Real-time traffic pattern analysis
+- Multiple traffic categories (Gaming, Video, Web, Other)
+- Confidence-based classification
+
+### Anomaly Detection
+- Multiple anomaly types (DoS, Port Scan, Data Exfiltration)
+- Automated mitigation strategies
+- Real-time threat monitoring
+
+### Predictive Maintenance
+- Performance degradation monitoring
+- Scheduled maintenance planning
+- Maintenance impact analysis
+
+## 📊 Visualization
+
+The GUI provides comprehensive network monitoring capabilities:
+- Network topology visualization
+- Real-time performance metrics
+- Traffic pattern analysis
+- Anomaly detection status
+- Maintenance scheduling interface
 
