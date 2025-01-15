@@ -447,17 +447,9 @@ class NetworkVisualizerGUI:
         )
         self.auto_mitigate_toggle.grid(row=0, column=0, padx=5)
         
-        # Add manual mitigation button
-        self.manual_mitigate_btn = ttk.Button(
-            self.mitigation_frame,
-            text="Mitigate Now",
-            command=self.manual_mitigate
-        )
-        self.manual_mitigate_btn.grid(row=0, column=1, padx=5)
-        
         # Add mitigation status labels
         self.mitigation_status = ttk.Label(self.mitigation_frame, text="Status: Idle")
-        self.mitigation_status.grid(row=0, column=2, padx=5)
+        self.mitigation_status.grid(row=0, column=1, padx=5)
         
         self.strategy_label = ttk.Label(self.mitigation_frame, text="Current Strategy: None")
         self.strategy_label.grid(row=1, column=0, columnspan=2, padx=5, pady=2)
@@ -936,7 +928,6 @@ class NetworkVisualizerGUI:
         if not self.env.anomaly_detector_enabled:
             status = "Anomaly detection disabled"
             self.anomaly_text.delete('1.0', tk.END)
-            self.manual_mitigate_btn.state(['disabled'])
         elif self.env.anomaly_active:
             anomaly = self.env.current_anomaly
             status = f"Active anomaly detected!"
@@ -959,25 +950,10 @@ class NetworkVisualizerGUI:
         else:
             status = "Status: No anomalies detected"
             self.anomaly_text.delete('1.0', tk.END)
-            self.manual_mitigate_btn.state(['disabled'])
-            
+        
         self.anomaly_status.config(text=status)
         self.strategy_label.config(text=f"Current Strategy: {self.anomaly_detector.get_current_strategy()}")
         self.success_rate_label.config(text=f"Success Rate: {self.anomaly_detector.get_success_rate():.1%}")
-
-    def manual_mitigate(self):
-        """Handle manual mitigation request"""
-        if self.env.anomaly_active:
-            metrics = {
-                'bandwidth': np.mean(list(self.env.bandwidth_utilization.values())),
-                'latency': np.mean(list(self.env.latency.values())),
-                'packet_loss': np.mean(list(self.env.packet_loss.values())),
-                'throughput': np.mean(list(self.env.throughput.values()))
-            }
-            success = self.anomaly_detector.mitigate(metrics, self.env)
-            status = "Mitigation successful" if success else "Mitigation failed"
-            self.mitigation_status.config(text=f"Status: {status}")
-            self.update_anomaly_status()
 
     def toggle_traffic_classification(self):
         """Toggle traffic classification on/off"""

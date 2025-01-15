@@ -1,0 +1,1675 @@
+2025-01-14 19:12:56,768 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:12:56,768 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:13:05,955 - INFO - Created environment with 20 nodes
+2025-01-14 19:13:11,904 - INFO - DQN agent initialized successfully
+2025-01-14 19:13:11,917 - INFO - PPO agent initialized successfully
+2025-01-14 19:13:11,918 - INFO - A3C agent initialized successfully
+2025-01-14 19:13:11,918 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:13:11,947 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:13:12,705 - INFO - Starting simulation...
+2025-01-14 19:18:25,617 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:18:26,635 - INFO - Switched RL control from none to dqn
+2025-01-14 19:18:48,498 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:18:48,499 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:18:57,598 - INFO - Created environment with 20 nodes
+2025-01-14 19:18:58,483 - INFO - DQN agent initialized successfully
+2025-01-14 19:18:58,502 - INFO - PPO agent initialized successfully
+2025-01-14 19:18:58,508 - INFO - A3C agent initialized successfully
+2025-01-14 19:18:58,511 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:18:58,538 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:18:59,073 - INFO - Starting simulation...
+2025-01-14 19:19:03,411 - INFO - Switched RL control from none to dqn
+2025-01-14 19:19:26,533 - INFO - Switched RL control from dqn to none
+2025-01-14 19:19:29,187 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:19:31,771 - INFO - Switched RL control from none to ppo
+2025-01-14 19:20:07,072 - INFO - Switched RL control from ppo to none
+2025-01-14 19:20:09,047 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:20:14,546 - INFO - Switched RL control from none to a3c
+2025-01-14 19:22:05,988 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:22:05,988 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:22:15,092 - INFO - Created environment with 20 nodes
+2025-01-14 19:22:15,965 - INFO - DQN agent initialized successfully
+2025-01-14 19:22:15,981 - INFO - PPO agent initialized successfully
+2025-01-14 19:22:15,981 - INFO - A3C agent initialized successfully
+2025-01-14 19:22:16,000 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:22:16,026 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:22:16,528 - INFO - Starting simulation...
+2025-01-14 19:22:29,557 - INFO - Switched RL control from none to a3c
+2025-01-14 19:23:23,125 - INFO - Switched RL control from a3c to none
+2025-01-14 19:23:25,528 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:23:30,484 - INFO - Switched RL control from none to reinforce
+2025-01-14 19:25:23,405 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:25:23,405 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:25:32,499 - INFO - Created environment with 20 nodes
+2025-01-14 19:25:33,373 - INFO - DQN agent initialized successfully
+2025-01-14 19:25:33,404 - INFO - PPO agent initialized successfully
+2025-01-14 19:25:33,404 - INFO - A3C agent initialized successfully
+2025-01-14 19:25:33,404 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:25:33,433 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:25:33,940 - INFO - Starting simulation...
+2025-01-14 19:25:42,745 - INFO - Switched RL control from none to reinforce
+2025-01-14 19:25:43,104 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:43,589 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:44,114 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:44,604 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:45,112 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:45,634 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:46,131 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:46,642 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:47,154 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:47,684 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:48,203 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:48,697 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:49,200 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:49,708 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:50,233 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:50,728 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:51,244 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:51,756 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:52,271 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:52,784 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:53,296 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:53,799 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:54,305 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:54,810 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:55,312 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:55,827 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:56,340 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:56,846 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:57,356 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:57,883 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:58,388 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:58,897 - ERROR - RL agent error: 'REINFORCEAgent' object has no attribute 'batch_size'
+2025-01-14 19:25:59,239 - INFO - Switched RL control from reinforce to ppo
+2025-01-14 19:27:00,354 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:27:00,354 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:27:09,441 - INFO - Created environment with 20 nodes
+2025-01-14 19:27:10,287 - INFO - DQN agent initialized successfully
+2025-01-14 19:27:10,303 - INFO - PPO agent initialized successfully
+2025-01-14 19:27:10,303 - INFO - A3C agent initialized successfully
+2025-01-14 19:27:10,319 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:27:10,344 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:27:10,886 - INFO - Starting simulation...
+2025-01-14 19:27:17,223 - INFO - Switched RL control from none to reinforce
+2025-01-14 19:27:38,169 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:27:38,169 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:27:47,253 - INFO - Created environment with 20 nodes
+2025-01-14 19:27:48,141 - INFO - DQN agent initialized successfully
+2025-01-14 19:27:48,157 - INFO - PPO agent initialized successfully
+2025-01-14 19:27:48,173 - INFO - A3C agent initialized successfully
+2025-01-14 19:27:48,173 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:27:48,207 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:27:48,726 - INFO - Starting simulation...
+2025-01-14 19:27:50,956 - INFO - Switched RL control from none to dqn
+2025-01-14 19:27:55,204 - INFO - Switched RL control from dqn to ppo
+2025-01-14 19:27:58,722 - INFO - Switched RL control from ppo to a3c
+2025-01-14 19:28:05,092 - INFO - Switched RL control from a3c to reinforce
+2025-01-14 19:28:57,054 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:28:57,054 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:29:06,150 - INFO - Created environment with 20 nodes
+2025-01-14 19:29:07,025 - INFO - DQN agent initialized successfully
+2025-01-14 19:29:07,041 - INFO - PPO agent initialized successfully
+2025-01-14 19:29:07,056 - INFO - A3C agent initialized successfully
+2025-01-14 19:29:07,056 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:29:07,085 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:29:07,575 - INFO - Starting simulation...
+2025-01-14 19:29:11,110 - INFO - Switched RL control from none to reinforce
+2025-01-14 19:30:03,553 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:30:03,553 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:30:12,632 - INFO - Created environment with 20 nodes
+2025-01-14 19:30:13,501 - INFO - DQN agent initialized successfully
+2025-01-14 19:30:13,516 - INFO - PPO agent initialized successfully
+2025-01-14 19:30:13,516 - INFO - A3C agent initialized successfully
+2025-01-14 19:30:13,532 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:30:13,556 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:30:14,042 - INFO - Starting simulation...
+2025-01-14 19:30:16,736 - INFO - Switched RL control from none to reinforce
+2025-01-14 19:30:59,953 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:30:59,953 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:31:09,031 - INFO - Created environment with 20 nodes
+2025-01-14 19:31:09,827 - INFO - DQN agent initialized successfully
+2025-01-14 19:31:09,858 - INFO - PPO agent initialized successfully
+2025-01-14 19:31:09,858 - INFO - A3C agent initialized successfully
+2025-01-14 19:31:09,858 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:31:09,889 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:31:10,358 - INFO - Starting simulation...
+2025-01-14 19:32:41,352 - INFO - Switched RL control from none to reinforce
+2025-01-14 19:33:38,420 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:33:38,420 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:33:47,524 - INFO - Created environment with 20 nodes
+2025-01-14 19:33:48,367 - INFO - DQN agent initialized successfully
+2025-01-14 19:33:48,382 - INFO - PPO agent initialized successfully
+2025-01-14 19:33:48,382 - INFO - A3C agent initialized successfully
+2025-01-14 19:33:48,382 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:33:48,423 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:33:48,884 - INFO - Starting simulation...
+2025-01-14 19:33:51,653 - INFO - Switched RL control from none to reinforce
+2025-01-14 19:34:01,659 - INFO - Switched RL control from reinforce to ppo
+2025-01-14 19:34:06,510 - INFO - Switched RL control from ppo to a3c
+2025-01-14 19:34:11,352 - INFO - Switched RL control from a3c to dqn
+2025-01-14 19:34:23,362 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:34:23,362 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:34:32,453 - INFO - Created environment with 20 nodes
+2025-01-14 19:34:33,320 - INFO - DQN agent initialized successfully
+2025-01-14 19:34:33,335 - INFO - PPO agent initialized successfully
+2025-01-14 19:34:33,351 - INFO - A3C agent initialized successfully
+2025-01-14 19:34:33,351 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:34:33,385 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:34:33,882 - INFO - Starting simulation...
+2025-01-14 19:34:38,230 - INFO - Switched RL control from none to dqn
+2025-01-14 19:35:40,279 - INFO - Switched RL control from dqn to none
+2025-01-14 19:35:42,171 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:35:44,208 - INFO - Switched RL control from none to ppo
+2025-01-14 19:38:12,518 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:38:12,518 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:38:21,642 - INFO - Created environment with 20 nodes
+2025-01-14 19:38:22,451 - INFO - DQN agent initialized successfully
+2025-01-14 19:38:22,466 - INFO - PPO agent initialized successfully
+2025-01-14 19:38:22,466 - INFO - A3C agent initialized successfully
+2025-01-14 19:38:22,466 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:38:22,505 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:38:22,987 - INFO - Starting simulation...
+2025-01-14 19:38:26,313 - INFO - Switched RL control from none to ppo
+2025-01-14 19:39:58,632 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:39:58,632 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:40:07,714 - INFO - Created environment with 20 nodes
+2025-01-14 19:40:08,498 - INFO - DQN agent initialized successfully
+2025-01-14 19:40:08,513 - INFO - PPO agent initialized successfully
+2025-01-14 19:40:08,513 - INFO - A3C agent initialized successfully
+2025-01-14 19:40:08,513 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:40:08,529 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:40:09,004 - INFO - Starting simulation...
+2025-01-14 19:40:18,457 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:40:19,615 - INFO - Switched RL control from none to dqn
+2025-01-14 19:41:07,556 - INFO - Switched RL control from dqn to none
+2025-01-14 19:41:09,366 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:41:11,059 - INFO - Switched RL control from none to ppo
+2025-01-14 19:43:37,169 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:43:37,169 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:43:46,276 - INFO - Created environment with 20 nodes
+2025-01-14 19:43:46,988 - INFO - DQN agent initialized successfully
+2025-01-14 19:43:46,988 - INFO - PPO agent initialized successfully
+2025-01-14 19:43:46,988 - INFO - A3C agent initialized successfully
+2025-01-14 19:43:47,004 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:43:47,025 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:43:47,519 - INFO - Starting simulation...
+2025-01-14 19:44:26,537 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:44:26,538 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:44:35,631 - INFO - Created environment with 20 nodes
+2025-01-14 19:44:36,353 - INFO - DQN agent initialized successfully
+2025-01-14 19:44:36,368 - INFO - PPO agent initialized successfully
+2025-01-14 19:44:36,368 - INFO - A3C agent initialized successfully
+2025-01-14 19:44:36,368 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:44:36,384 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:44:36,837 - INFO - Starting simulation...
+2025-01-14 19:44:43,966 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:44:45,303 - INFO - Switched RL control from none to ppo
+2025-01-14 19:46:52,363 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 19:46:52,363 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 19:47:01,450 - INFO - Created environment with 20 nodes
+2025-01-14 19:47:02,219 - INFO - DQN agent initialized successfully
+2025-01-14 19:47:02,235 - INFO - PPO agent initialized successfully
+2025-01-14 19:47:02,235 - INFO - A3C agent initialized successfully
+2025-01-14 19:47:02,235 - INFO - REINFORCE agent initialized successfully
+2025-01-14 19:47:02,267 - INFO - Hybrid agent initialized successfully
+2025-01-14 19:47:02,736 - INFO - Starting simulation...
+2025-01-14 19:47:08,804 - INFO - Switched RL control from none to ppo
+2025-01-14 19:47:46,922 - INFO - Switched RL control from ppo to none
+2025-01-14 19:47:48,456 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:47:52,537 - INFO - Switched RL control from none to a3c
+2025-01-14 19:49:15,374 - INFO - Switched RL control from a3c to none
+2025-01-14 19:49:16,924 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:49:21,740 - INFO - Switched RL control from none to reinforce
+2025-01-14 19:50:43,124 - INFO - Switched RL control from reinforce to none
+2025-01-14 19:50:45,082 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 19:50:50,026 - INFO - Switched RL control from none to dqn
+2025-01-14 19:52:12,091 - INFO - Switched RL control from dqn to none
+2025-01-14 20:03:44,884 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 20:03:44,884 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 20:03:53,989 - INFO - Created environment with 20 nodes
+2025-01-14 20:03:54,692 - INFO - DQN agent initialized successfully
+2025-01-14 20:03:54,708 - INFO - PPO agent initialized successfully
+2025-01-14 20:03:54,708 - INFO - A3C agent initialized successfully
+2025-01-14 20:03:54,708 - INFO - REINFORCE agent initialized successfully
+2025-01-14 20:03:54,724 - INFO - Hybrid agent initialized successfully
+2025-01-14 20:03:55,255 - INFO - Starting simulation...
+2025-01-14 20:04:01,176 - INFO - Switched RL control from none to dqn
+2025-01-14 20:21:13,176 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 20:21:13,176 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 20:21:19,828 - INFO - Created environment with 20 nodes
+2025-01-14 20:21:20,653 - INFO - DQN agent initialized successfully
+2025-01-14 20:21:20,662 - INFO - PPO agent initialized successfully
+2025-01-14 20:21:20,667 - INFO - A3C agent initialized successfully
+2025-01-14 20:21:20,669 - INFO - REINFORCE agent initialized successfully
+2025-01-14 20:21:20,683 - INFO - Hybrid agent initialized successfully
+2025-01-14 20:21:45,299 - INFO - Starting simulation with config: {'num_nodes': 10, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 20:21:45,299 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 20:21:54,373 - INFO - Created environment with 10 nodes
+2025-01-14 20:21:55,156 - INFO - DQN agent initialized successfully
+2025-01-14 20:21:55,172 - INFO - PPO agent initialized successfully
+2025-01-14 20:21:55,172 - INFO - A3C agent initialized successfully
+2025-01-14 20:21:55,172 - INFO - REINFORCE agent initialized successfully
+2025-01-14 20:21:55,187 - INFO - Hybrid agent initialized successfully
+2025-01-14 20:21:55,691 - INFO - Starting simulation...
+2025-01-14 20:22:00,275 - INFO - Switched RL control from none to dqn
+2025-01-14 20:23:10,648 - INFO - Switched RL control from dqn to none
+2025-01-14 20:23:12,305 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:23:17,351 - INFO - Switched RL control from none to ppo
+2025-01-14 20:24:47,755 - INFO - Starting simulation with config: {'num_nodes': 10, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 20:24:47,756 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 20:24:56,815 - INFO - Created environment with 10 nodes
+2025-01-14 20:24:57,529 - INFO - DQN agent initialized successfully
+2025-01-14 20:24:57,529 - INFO - PPO agent initialized successfully
+2025-01-14 20:24:57,529 - INFO - A3C agent initialized successfully
+2025-01-14 20:24:57,529 - INFO - REINFORCE agent initialized successfully
+2025-01-14 20:24:57,545 - INFO - Hybrid agent initialized successfully
+2025-01-14 20:24:57,998 - INFO - Starting simulation...
+2025-01-14 20:25:42,487 - INFO - Starting simulation with config: {'num_nodes': 10, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 20:25:42,487 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 20:25:51,559 - INFO - Created environment with 10 nodes
+2025-01-14 20:25:52,297 - INFO - DQN agent initialized successfully
+2025-01-14 20:25:52,313 - INFO - PPO agent initialized successfully
+2025-01-14 20:25:52,313 - INFO - A3C agent initialized successfully
+2025-01-14 20:25:52,313 - INFO - REINFORCE agent initialized successfully
+2025-01-14 20:25:52,328 - INFO - Hybrid agent initialized successfully
+2025-01-14 20:25:52,823 - INFO - Starting simulation...
+2025-01-14 20:25:58,416 - INFO - Switched RL control from none to dqn
+2025-01-14 20:26:39,650 - INFO - Switched RL control from dqn to none
+2025-01-14 20:26:41,560 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:26:45,259 - INFO - Switched RL control from none to ppo
+2025-01-14 20:27:19,768 - INFO - Switched RL control from ppo to none
+2025-01-14 20:27:21,584 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:27:24,226 - INFO - Switched RL control from none to a3c
+2025-01-14 20:28:03,990 - INFO - Switched RL control from a3c to none
+2025-01-14 20:28:05,542 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:28:10,982 - INFO - Switched RL control from none to reinforce
+2025-01-14 20:28:50,322 - INFO - Switched RL control from reinforce to none
+2025-01-14 20:39:25,540 - INFO - Starting simulation with config: {'num_nodes': 30, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 20:39:25,541 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 20:41:13,573 - INFO - Starting simulation with config: {'num_nodes': 25, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 20:41:13,573 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 20:41:22,731 - INFO - Created environment with 25 nodes
+2025-01-14 20:41:23,523 - INFO - DQN agent initialized successfully
+2025-01-14 20:41:23,530 - INFO - PPO agent initialized successfully
+2025-01-14 20:41:23,530 - INFO - A3C agent initialized successfully
+2025-01-14 20:41:23,530 - INFO - REINFORCE agent initialized successfully
+2025-01-14 20:41:23,547 - INFO - Hybrid agent initialized successfully
+2025-01-14 20:41:24,072 - INFO - Starting simulation...
+2025-01-14 20:41:35,668 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:41:37,717 - INFO - Switched RL control from none to dqn
+2025-01-14 20:42:17,130 - INFO - Switched RL control from dqn to none
+2025-01-14 20:42:19,267 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:42:21,337 - INFO - Switched RL control from none to ppo
+2025-01-14 20:43:01,817 - INFO - Switched RL control from ppo to none
+2025-01-14 20:43:03,427 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:43:05,690 - INFO - Switched RL control from none to a3c
+2025-01-14 20:43:52,132 - INFO - Switched RL control from a3c to none
+2025-01-14 20:43:54,371 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:43:57,597 - INFO - Switched RL control from none to reinforce
+2025-01-14 20:44:45,018 - INFO - Switched RL control from reinforce to none
+2025-01-14 20:45:41,377 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 20:45:41,377 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 20:45:50,477 - INFO - Created environment with 20 nodes
+2025-01-14 20:45:51,297 - INFO - DQN agent initialized successfully
+2025-01-14 20:45:51,309 - INFO - PPO agent initialized successfully
+2025-01-14 20:45:51,311 - INFO - A3C agent initialized successfully
+2025-01-14 20:45:51,314 - INFO - REINFORCE agent initialized successfully
+2025-01-14 20:45:51,336 - INFO - Hybrid agent initialized successfully
+2025-01-14 20:45:51,864 - INFO - Starting simulation...
+2025-01-14 20:45:55,092 - INFO - Switched RL control from none to dqn
+2025-01-14 20:46:34,588 - INFO - Switched RL control from dqn to none
+2025-01-14 20:46:36,442 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:46:38,175 - INFO - Switched RL control from none to ppo
+2025-01-14 20:47:21,933 - INFO - Switched RL control from ppo to none
+2025-01-14 20:47:24,175 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:47:26,065 - INFO - Switched RL control from none to a3c
+2025-01-14 20:48:08,098 - INFO - Switched RL control from a3c to none
+2025-01-14 20:48:09,936 - INFO - Network reset to initial state (metrics preserved)
+2025-01-14 20:48:13,110 - INFO - Switched RL control from none to reinforce
+2025-01-14 20:48:50,326 - INFO - Switched RL control from reinforce to none
+2025-01-14 22:57:23,313 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 22:57:23,313 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 22:57:32,432 - INFO - Created environment with 20 nodes
+2025-01-14 22:57:33,171 - INFO - DQN agent initialized successfully
+2025-01-14 22:57:33,171 - INFO - PPO agent initialized successfully
+2025-01-14 22:57:33,187 - INFO - A3C agent initialized successfully
+2025-01-14 22:57:33,187 - INFO - REINFORCE agent initialized successfully
+2025-01-14 22:57:33,202 - INFO - Hybrid agent initialized successfully
+2025-01-14 22:57:33,732 - INFO - Starting simulation...
+2025-01-14 22:58:30,810 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 22:58:30,811 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 22:58:39,901 - INFO - Created environment with 20 nodes
+2025-01-14 22:58:40,593 - INFO - DQN agent initialized successfully
+2025-01-14 22:58:40,593 - INFO - PPO agent initialized successfully
+2025-01-14 22:58:40,609 - INFO - A3C agent initialized successfully
+2025-01-14 22:58:40,609 - INFO - REINFORCE agent initialized successfully
+2025-01-14 22:58:40,630 - INFO - Hybrid agent initialized successfully
+2025-01-14 22:58:41,099 - INFO - Starting simulation...
+2025-01-14 22:59:11,244 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-14 22:59:11,244 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-14 22:59:20,315 - INFO - Created environment with 20 nodes
+2025-01-14 22:59:21,046 - INFO - DQN agent initialized successfully
+2025-01-14 22:59:21,061 - INFO - PPO agent initialized successfully
+2025-01-14 22:59:21,061 - INFO - A3C agent initialized successfully
+2025-01-14 22:59:21,061 - INFO - REINFORCE agent initialized successfully
+2025-01-14 22:59:21,077 - INFO - Hybrid agent initialized successfully
+2025-01-14 22:59:21,540 - INFO - Starting simulation...
+2025-01-14 22:59:33,906 - INFO - Anomaly detection enabled
+2025-01-14 22:59:42,906 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-14 22:59:42,906 - WARNING - Strategy adjust_qos failed to apply
+2025-01-14 22:59:43,416 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 22:59:43,928 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 22:59:44,441 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-14 22:59:44,942 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 22:59:45,447 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 22:59:45,954 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 22:59:46,462 - INFO - Selected mitigation strategy: reduce_load
+2025-01-14 22:59:46,462 - WARNING - Strategy reduce_load failed to apply
+2025-01-14 22:59:46,975 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-14 22:59:47,504 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 22:59:47,966 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 23:00:06,927 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 23:00:07,439 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-14 23:00:07,439 - WARNING - Strategy adjust_qos failed to apply
+2025-01-14 23:00:07,971 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 23:00:08,589 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-14 23:00:08,589 - WARNING - Strategy adjust_qos failed to apply
+2025-01-14 23:00:08,966 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 23:00:09,475 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 23:00:09,984 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 23:00:10,500 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-14 23:00:11,006 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-14 23:00:11,512 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 00:27:09,922 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': True, 'gpu_type': 'DirectML (AMD)'}
+2025-01-15 00:27:09,922 - INFO - GPU info: DirectML (AMD) (Available: True)
+2025-01-15 00:27:19,065 - INFO - Created environment with 20 nodes
+2025-01-15 00:27:24,066 - INFO - DQN agent initialized successfully
+2025-01-15 00:27:24,066 - INFO - PPO agent initialized successfully
+2025-01-15 00:27:24,082 - INFO - A3C agent initialized successfully
+2025-01-15 00:27:24,082 - INFO - REINFORCE agent initialized successfully
+2025-01-15 00:27:24,102 - INFO - Hybrid agent initialized successfully
+2025-01-15 00:27:24,773 - INFO - Starting simulation...
+2025-01-15 17:52:48,111 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 17:52:48,111 - INFO - GPU info: CPU (Available: False)
+2025-01-15 17:52:57,290 - INFO - Created environment with 20 nodes
+2025-01-15 17:53:02,517 - INFO - DQN agent initialized successfully
+2025-01-15 17:53:02,524 - INFO - PPO agent initialized successfully
+2025-01-15 17:53:02,524 - INFO - A3C agent initialized successfully
+2025-01-15 17:53:02,524 - INFO - REINFORCE agent initialized successfully
+2025-01-15 17:53:02,541 - INFO - Hybrid agent initialized successfully
+2025-01-15 17:53:03,224 - INFO - Starting simulation...
+2025-01-15 17:53:20,702 - INFO - Switched RL control from none to dqn
+2025-01-15 17:53:25,165 - INFO - Switched RL control from dqn to ppo
+2025-01-15 17:53:28,831 - INFO - Switched RL control from ppo to a3c
+2025-01-15 17:53:33,062 - INFO - Switched RL control from a3c to reinforce
+2025-01-15 17:53:39,472 - INFO - Updated hybrid agent: bandwidth -> dqn
+2025-01-15 17:53:39,472 - INFO - Updated hybrid agent: latency -> dqn
+2025-01-15 17:53:39,472 - INFO - Updated hybrid agent: packet_loss -> dqn
+2025-01-15 17:53:39,472 - INFO - Updated hybrid agent: throughput -> dqn
+2025-01-15 17:53:39,522 - INFO - Switched RL control from reinforce to hybrid
+2025-01-15 17:53:41,847 - INFO - Updated hybrid agent: latency -> ppo
+2025-01-15 17:53:43,050 - INFO - Updated hybrid agent: packet_loss -> a3c
+2025-01-15 17:53:44,396 - INFO - Updated hybrid agent: throughput -> reinforce
+2025-01-15 19:03:59,828 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 19:03:59,829 - INFO - GPU info: CPU (Available: False)
+2025-01-15 19:04:08,906 - INFO - Created environment with 20 nodes
+2025-01-15 19:04:09,671 - INFO - DQN agent initialized successfully
+2025-01-15 19:04:09,671 - INFO - PPO agent initialized successfully
+2025-01-15 19:04:09,688 - INFO - A3C agent initialized successfully
+2025-01-15 19:04:09,688 - INFO - REINFORCE agent initialized successfully
+2025-01-15 19:04:09,688 - INFO - Hybrid agent initialized successfully
+2025-01-15 19:04:10,224 - INFO - Starting simulation...
+2025-01-15 19:04:46,739 - INFO - Switched RL control from none to dqn
+2025-01-15 19:04:46,739 - INFO - Started profiling dqn agent
+2025-01-15 19:05:39,236 - INFO - Switched RL control from dqn to none
+2025-01-15 19:05:39,236 - INFO - Stopped profiling dqn agent
+2025-01-15 19:06:40,436 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 19:06:40,436 - INFO - GPU info: CPU (Available: False)
+2025-01-15 19:06:49,517 - INFO - Created environment with 20 nodes
+2025-01-15 19:06:50,262 - INFO - DQN agent initialized successfully
+2025-01-15 19:06:50,277 - INFO - PPO agent initialized successfully
+2025-01-15 19:06:50,277 - INFO - A3C agent initialized successfully
+2025-01-15 19:06:50,282 - INFO - REINFORCE agent initialized successfully
+2025-01-15 19:06:50,292 - INFO - Hybrid agent initialized successfully
+2025-01-15 19:06:50,752 - INFO - Starting simulation...
+2025-01-15 19:06:54,013 - INFO - Switched RL control from none to dqn
+2025-01-15 19:06:54,013 - INFO - Started profiling dqn agent
+2025-01-15 19:06:54,312 - INFO - Metrics - CPU: 0.0%, Memory: 491.2MB, Execution Time: 0.299s
+2025-01-15 19:06:54,819 - INFO - Metrics - CPU: 0.0%, Memory: 492.0MB, Execution Time: 0.806s
+2025-01-15 19:06:55,329 - INFO - Metrics - CPU: 0.0%, Memory: 492.6MB, Execution Time: 1.316s
+2025-01-15 19:06:55,840 - INFO - Metrics - CPU: 0.0%, Memory: 493.6MB, Execution Time: 1.826s
+2025-01-15 19:06:56,343 - INFO - Metrics - CPU: 0.0%, Memory: 493.8MB, Execution Time: 2.330s
+2025-01-15 19:06:56,847 - INFO - Metrics - CPU: 0.0%, Memory: 493.9MB, Execution Time: 2.834s
+2025-01-15 19:06:57,353 - INFO - Metrics - CPU: 0.0%, Memory: 493.9MB, Execution Time: 3.340s
+2025-01-15 19:06:57,866 - INFO - Metrics - CPU: 0.0%, Memory: 493.9MB, Execution Time: 3.852s
+2025-01-15 19:06:58,378 - INFO - Metrics - CPU: 0.0%, Memory: 494.1MB, Execution Time: 4.365s
+2025-01-15 19:06:58,889 - INFO - Metrics - CPU: 0.0%, Memory: 494.5MB, Execution Time: 4.876s
+2025-01-15 19:06:59,400 - INFO - Metrics - CPU: 0.0%, Memory: 494.6MB, Execution Time: 5.386s
+2025-01-15 19:06:59,902 - INFO - Metrics - CPU: 0.0%, Memory: 494.6MB, Execution Time: 5.888s
+2025-01-15 19:07:00,411 - INFO - Metrics - CPU: 0.0%, Memory: 494.6MB, Execution Time: 6.398s
+2025-01-15 19:07:00,913 - INFO - Metrics - CPU: 0.0%, Memory: 494.8MB, Execution Time: 6.900s
+2025-01-15 19:07:01,422 - INFO - Metrics - CPU: 0.0%, Memory: 495.3MB, Execution Time: 7.409s
+2025-01-15 19:07:01,931 - INFO - Metrics - CPU: 0.0%, Memory: 495.5MB, Execution Time: 7.918s
+2025-01-15 19:07:02,445 - INFO - Metrics - CPU: 0.0%, Memory: 495.5MB, Execution Time: 8.432s
+2025-01-15 19:07:02,957 - INFO - Metrics - CPU: 0.0%, Memory: 495.6MB, Execution Time: 8.943s
+2025-01-15 19:07:03,455 - INFO - Metrics - CPU: 0.0%, Memory: 495.7MB, Execution Time: 9.441s
+2025-01-15 19:07:03,965 - INFO - Metrics - CPU: 0.0%, Memory: 496.1MB, Execution Time: 9.951s
+2025-01-15 19:07:04,479 - INFO - Metrics - CPU: 0.0%, Memory: 496.8MB, Execution Time: 10.466s
+2025-01-15 19:07:04,987 - INFO - Metrics - CPU: 0.0%, Memory: 496.8MB, Execution Time: 10.974s
+2025-01-15 19:07:05,497 - INFO - Metrics - CPU: 0.0%, Memory: 496.8MB, Execution Time: 11.484s
+2025-01-15 19:07:06,010 - INFO - Metrics - CPU: 0.0%, Memory: 496.9MB, Execution Time: 11.997s
+2025-01-15 19:07:06,511 - INFO - Metrics - CPU: 0.0%, Memory: 497.2MB, Execution Time: 12.498s
+2025-01-15 19:07:07,023 - INFO - Metrics - CPU: 0.0%, Memory: 497.4MB, Execution Time: 13.010s
+2025-01-15 19:07:07,537 - INFO - Metrics - CPU: 0.0%, Memory: 497.4MB, Execution Time: 13.524s
+2025-01-15 19:07:08,050 - INFO - Metrics - CPU: 0.0%, Memory: 497.5MB, Execution Time: 14.037s
+2025-01-15 19:07:08,561 - INFO - Metrics - CPU: 0.0%, Memory: 497.8MB, Execution Time: 14.548s
+2025-01-15 19:07:09,071 - INFO - Metrics - CPU: 0.0%, Memory: 498.2MB, Execution Time: 15.058s
+2025-01-15 19:07:09,574 - INFO - Metrics - CPU: 0.0%, Memory: 498.5MB, Execution Time: 15.561s
+2025-01-15 19:07:10,084 - INFO - Metrics - CPU: 0.0%, Memory: 498.5MB, Execution Time: 16.071s
+2025-01-15 19:07:10,592 - INFO - Metrics - CPU: 0.0%, Memory: 498.6MB, Execution Time: 16.579s
+2025-01-15 19:07:11,100 - INFO - Metrics - CPU: 0.0%, Memory: 498.9MB, Execution Time: 17.086s
+2025-01-15 19:07:11,604 - INFO - Metrics - CPU: 0.0%, Memory: 499.4MB, Execution Time: 17.591s
+2025-01-15 19:07:12,105 - INFO - Metrics - CPU: 0.0%, Memory: 499.7MB, Execution Time: 18.092s
+2025-01-15 19:07:12,606 - INFO - Metrics - CPU: 0.0%, Memory: 499.7MB, Execution Time: 18.592s
+2025-01-15 19:07:13,120 - INFO - Metrics - CPU: 0.0%, Memory: 499.8MB, Execution Time: 19.107s
+2025-01-15 19:07:13,624 - INFO - Metrics - CPU: 0.0%, Memory: 500.0MB, Execution Time: 19.611s
+2025-01-15 19:07:14,126 - INFO - Metrics - CPU: 0.0%, Memory: 500.5MB, Execution Time: 20.112s
+2025-01-15 19:07:14,636 - INFO - Metrics - CPU: 0.0%, Memory: 500.9MB, Execution Time: 20.623s
+2025-01-15 19:07:14,958 - INFO - Switched RL control from dqn to none
+2025-01-15 19:07:14,973 - INFO - Stopped profiling dqn agent
+2025-01-15 19:08:16,874 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 19:08:16,886 - INFO - GPU info: CPU (Available: False)
+2025-01-15 19:08:25,975 - INFO - Created environment with 20 nodes
+2025-01-15 19:08:26,655 - INFO - DQN agent initialized successfully
+2025-01-15 19:08:26,655 - INFO - PPO agent initialized successfully
+2025-01-15 19:08:26,655 - INFO - A3C agent initialized successfully
+2025-01-15 19:08:26,671 - INFO - REINFORCE agent initialized successfully
+2025-01-15 19:08:26,687 - INFO - Hybrid agent initialized successfully
+2025-01-15 19:08:27,153 - INFO - Starting simulation...
+2025-01-15 19:08:30,830 - INFO - Switched RL control from none to dqn
+2025-01-15 19:08:30,830 - INFO - Started profiling dqn agent
+2025-01-15 19:08:31,280 - INFO - Metrics - CPU: 0.0%, Memory: 491.8MB, Execution Time: 0.449s
+2025-01-15 19:08:31,799 - INFO - Metrics - CPU: 0.0%, Memory: 492.8MB, Execution Time: 0.969s
+2025-01-15 19:08:32,312 - INFO - Metrics - CPU: 0.0%, Memory: 493.7MB, Execution Time: 1.482s
+2025-01-15 19:08:32,825 - INFO - Metrics - CPU: 0.0%, Memory: 494.0MB, Execution Time: 1.994s
+2025-01-15 19:08:33,325 - INFO - Metrics - CPU: 0.0%, Memory: 494.0MB, Execution Time: 2.495s
+2025-01-15 19:08:33,829 - INFO - Metrics - CPU: 0.0%, Memory: 494.0MB, Execution Time: 2.998s
+2025-01-15 19:08:34,339 - INFO - Metrics - CPU: 0.0%, Memory: 494.0MB, Execution Time: 3.509s
+2025-01-15 19:08:34,843 - INFO - Metrics - CPU: 0.0%, Memory: 494.1MB, Execution Time: 4.012s
+2025-01-15 19:08:35,355 - INFO - Metrics - CPU: 0.0%, Memory: 495.0MB, Execution Time: 4.525s
+2025-01-15 19:08:35,865 - INFO - Metrics - CPU: 0.0%, Memory: 495.0MB, Execution Time: 5.035s
+2025-01-15 19:08:36,375 - INFO - Metrics - CPU: 0.0%, Memory: 495.0MB, Execution Time: 5.544s
+2025-01-15 19:08:36,876 - INFO - Metrics - CPU: 0.0%, Memory: 495.0MB, Execution Time: 6.046s
+2025-01-15 19:08:37,387 - INFO - Metrics - CPU: 0.0%, Memory: 495.1MB, Execution Time: 6.557s
+2025-01-15 19:08:37,902 - INFO - Metrics - CPU: 0.0%, Memory: 495.4MB, Execution Time: 7.072s
+2025-01-15 19:08:38,414 - INFO - Metrics - CPU: 0.0%, Memory: 495.7MB, Execution Time: 7.584s
+2025-01-15 19:08:38,922 - INFO - Metrics - CPU: 0.0%, Memory: 495.7MB, Execution Time: 8.091s
+2025-01-15 19:08:39,422 - INFO - Metrics - CPU: 0.0%, Memory: 495.7MB, Execution Time: 8.592s
+2025-01-15 19:08:39,928 - INFO - Metrics - CPU: 0.0%, Memory: 496.1MB, Execution Time: 9.098s
+2025-01-15 19:08:40,431 - INFO - Metrics - CPU: 0.0%, Memory: 496.4MB, Execution Time: 9.600s
+2025-01-15 19:08:40,938 - INFO - Metrics - CPU: 0.0%, Memory: 496.8MB, Execution Time: 10.108s
+2025-01-15 19:08:41,437 - INFO - Metrics - CPU: 0.0%, Memory: 496.9MB, Execution Time: 10.607s
+2025-01-15 19:08:41,951 - INFO - Metrics - CPU: 0.0%, Memory: 496.9MB, Execution Time: 11.121s
+2025-01-15 19:08:42,455 - INFO - Metrics - CPU: 0.0%, Memory: 497.0MB, Execution Time: 11.624s
+2025-01-15 19:08:42,959 - INFO - Metrics - CPU: 0.0%, Memory: 497.4MB, Execution Time: 12.128s
+2025-01-15 19:08:43,473 - INFO - Metrics - CPU: 0.0%, Memory: 497.6MB, Execution Time: 12.643s
+2025-01-15 19:08:43,975 - INFO - Metrics - CPU: 0.0%, Memory: 497.6MB, Execution Time: 13.144s
+2025-01-15 19:08:44,490 - INFO - Metrics - CPU: 0.0%, Memory: 497.7MB, Execution Time: 13.660s
+2025-01-15 19:08:44,992 - INFO - Metrics - CPU: 0.0%, Memory: 498.0MB, Execution Time: 14.162s
+2025-01-15 19:08:45,494 - INFO - Metrics - CPU: 0.0%, Memory: 498.5MB, Execution Time: 14.663s
+2025-01-15 19:08:46,009 - INFO - Metrics - CPU: 0.0%, Memory: 498.8MB, Execution Time: 15.178s
+2025-01-15 19:08:46,512 - INFO - Metrics - CPU: 0.0%, Memory: 498.8MB, Execution Time: 15.682s
+2025-01-15 19:08:47,026 - INFO - Metrics - CPU: 0.0%, Memory: 498.9MB, Execution Time: 16.196s
+2025-01-15 19:08:47,528 - INFO - Metrics - CPU: 0.0%, Memory: 499.2MB, Execution Time: 16.698s
+2025-01-15 19:08:48,034 - INFO - Metrics - CPU: 0.0%, Memory: 499.6MB, Execution Time: 17.203s
+2025-01-15 19:08:48,545 - INFO - Metrics - CPU: 0.0%, Memory: 500.2MB, Execution Time: 17.714s
+2025-01-15 19:08:49,047 - INFO - Metrics - CPU: 0.0%, Memory: 500.2MB, Execution Time: 18.217s
+2025-01-15 19:08:49,563 - INFO - Metrics - CPU: 0.0%, Memory: 500.3MB, Execution Time: 18.733s
+2025-01-15 19:08:50,057 - INFO - Metrics - CPU: 0.0%, Memory: 500.5MB, Execution Time: 19.227s
+2025-01-15 19:08:50,406 - INFO - Switched RL control from dqn to none
+2025-01-15 19:08:50,406 - INFO - Stopped profiling dqn agent
+2025-01-15 19:09:54,380 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 19:09:54,380 - INFO - GPU info: CPU (Available: False)
+2025-01-15 19:10:03,475 - INFO - Created environment with 20 nodes
+2025-01-15 19:10:04,221 - INFO - DQN agent initialized successfully
+2025-01-15 19:10:04,233 - INFO - PPO agent initialized successfully
+2025-01-15 19:10:04,235 - INFO - A3C agent initialized successfully
+2025-01-15 19:10:04,236 - INFO - REINFORCE agent initialized successfully
+2025-01-15 19:10:04,255 - INFO - Hybrid agent initialized successfully
+2025-01-15 19:10:04,707 - INFO - Starting simulation...
+2025-01-15 19:10:09,876 - INFO - Switched RL control from none to dqn
+2025-01-15 19:10:09,877 - INFO - Started profiling dqn agent
+2025-01-15 19:10:51,962 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 19:10:51,962 - INFO - GPU info: CPU (Available: False)
+2025-01-15 19:11:01,051 - INFO - Created environment with 20 nodes
+2025-01-15 19:11:01,741 - INFO - DQN agent initialized successfully
+2025-01-15 19:11:01,741 - INFO - PPO agent initialized successfully
+2025-01-15 19:11:01,741 - INFO - A3C agent initialized successfully
+2025-01-15 19:11:01,741 - INFO - REINFORCE agent initialized successfully
+2025-01-15 19:11:01,774 - INFO - Hybrid agent initialized successfully
+2025-01-15 19:11:02,243 - INFO - Starting simulation...
+2025-01-15 19:11:05,182 - INFO - Switched RL control from none to dqn
+2025-01-15 19:11:05,182 - INFO - Started profiling dqn agent
+2025-01-15 19:11:05,302 - INFO - Metrics - CPU: 0.0%, Memory: 491.6MB, Execution Time: 0.121s
+2025-01-15 19:11:05,812 - INFO - Metrics - CPU: 0.0%, Memory: 492.4MB, Execution Time: 0.631s
+2025-01-15 19:11:06,320 - INFO - Metrics - CPU: 0.0%, Memory: 492.9MB, Execution Time: 1.138s
+2025-01-15 19:11:06,824 - INFO - Metrics - CPU: 0.0%, Memory: 494.0MB, Execution Time: 1.643s
+2025-01-15 19:11:07,355 - INFO - Metrics - CPU: 0.0%, Memory: 494.2MB, Execution Time: 2.174s
+2025-01-15 19:11:07,855 - INFO - Metrics - CPU: 0.0%, Memory: 494.3MB, Execution Time: 2.674s
+2025-01-15 19:11:08,372 - INFO - Metrics - CPU: 0.0%, Memory: 494.3MB, Execution Time: 3.190s
+2025-01-15 19:11:08,888 - INFO - Metrics - CPU: 0.0%, Memory: 494.3MB, Execution Time: 3.706s
+2025-01-15 19:11:09,399 - INFO - Metrics - CPU: 0.0%, Memory: 494.4MB, Execution Time: 4.218s
+2025-01-15 19:11:09,908 - INFO - Metrics - CPU: 0.0%, Memory: 494.8MB, Execution Time: 4.726s
+2025-01-15 19:11:10,410 - INFO - Metrics - CPU: 0.0%, Memory: 494.9MB, Execution Time: 5.228s
+2025-01-15 19:11:10,917 - INFO - Metrics - CPU: 0.0%, Memory: 494.9MB, Execution Time: 5.736s
+2025-01-15 19:11:11,433 - INFO - Metrics - CPU: 0.0%, Memory: 494.9MB, Execution Time: 6.252s
+2025-01-15 19:11:11,943 - INFO - Metrics - CPU: 0.0%, Memory: 494.9MB, Execution Time: 6.761s
+2025-01-15 19:11:12,444 - INFO - Metrics - CPU: 0.0%, Memory: 495.4MB, Execution Time: 7.262s
+2025-01-15 19:11:12,954 - INFO - Metrics - CPU: 0.0%, Memory: 495.7MB, Execution Time: 7.772s
+2025-01-15 19:11:13,460 - INFO - Metrics - CPU: 0.0%, Memory: 495.7MB, Execution Time: 8.279s
+2025-01-15 19:11:13,759 - INFO - Switched RL control from dqn to none
+2025-01-15 19:11:13,759 - INFO - Stopped profiling dqn agent
+2025-01-15 19:11:15,170 - INFO - Switched RL control from none to ppo
+2025-01-15 19:11:15,186 - INFO - Started profiling ppo agent
+2025-01-15 19:11:15,498 - INFO - Metrics - CPU: 0.0%, Memory: 496.5MB, Execution Time: 0.312s
+2025-01-15 19:11:16,008 - INFO - Metrics - CPU: 0.0%, Memory: 499.8MB, Execution Time: 0.822s
+2025-01-15 19:11:16,513 - INFO - Metrics - CPU: 0.0%, Memory: 499.9MB, Execution Time: 1.327s
+2025-01-15 19:11:17,055 - INFO - Metrics - CPU: 0.0%, Memory: 500.2MB, Execution Time: 1.869s
+2025-01-15 19:11:17,703 - INFO - Metrics - CPU: 0.0%, Memory: 500.9MB, Execution Time: 2.517s
+2025-01-15 19:11:18,212 - INFO - Metrics - CPU: 0.0%, Memory: 501.0MB, Execution Time: 3.026s
+2025-01-15 19:11:18,711 - INFO - Metrics - CPU: 0.0%, Memory: 501.1MB, Execution Time: 3.525s
+2025-01-15 19:11:19,214 - INFO - Metrics - CPU: 0.0%, Memory: 501.3MB, Execution Time: 4.028s
+2025-01-15 19:11:19,728 - INFO - Metrics - CPU: 0.0%, Memory: 502.0MB, Execution Time: 4.542s
+2025-01-15 19:11:20,246 - INFO - Metrics - CPU: 0.0%, Memory: 502.4MB, Execution Time: 5.060s
+2025-01-15 19:11:20,633 - INFO - Switched RL control from ppo to a3c
+2025-01-15 19:11:20,633 - INFO - Started profiling a3c agent
+2025-01-15 19:11:20,753 - INFO - Metrics - CPU: 0.0%, Memory: 502.4MB, Execution Time: 0.120s
+2025-01-15 19:11:21,275 - INFO - Metrics - CPU: 0.0%, Memory: 502.6MB, Execution Time: 0.642s
+2025-01-15 19:11:21,770 - INFO - Metrics - CPU: 0.0%, Memory: 502.9MB, Execution Time: 1.137s
+2025-01-15 19:11:22,274 - INFO - Metrics - CPU: 0.0%, Memory: 503.5MB, Execution Time: 1.641s
+2025-01-15 19:11:22,878 - INFO - Metrics - CPU: 0.0%, Memory: 503.6MB, Execution Time: 2.245s
+2025-01-15 19:11:23,375 - INFO - Metrics - CPU: 0.0%, Memory: 503.6MB, Execution Time: 2.742s
+2025-01-15 19:11:23,889 - INFO - Metrics - CPU: 0.0%, Memory: 503.7MB, Execution Time: 3.256s
+2025-01-15 19:11:24,398 - INFO - Metrics - CPU: 0.0%, Memory: 504.2MB, Execution Time: 3.765s
+2025-01-15 19:11:24,914 - INFO - Metrics - CPU: 0.0%, Memory: 504.4MB, Execution Time: 4.281s
+2025-01-15 19:11:25,192 - INFO - Switched RL control from a3c to reinforce
+2025-01-15 19:11:25,208 - INFO - Started profiling reinforce agent
+2025-01-15 19:11:25,426 - INFO - Metrics - CPU: 0.0%, Memory: 504.5MB, Execution Time: 0.218s
+2025-01-15 19:11:25,943 - INFO - Metrics - CPU: 0.0%, Memory: 508.2MB, Execution Time: 0.735s
+2025-01-15 19:12:33,686 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 19:12:33,686 - INFO - GPU info: CPU (Available: False)
+2025-01-15 19:12:42,793 - INFO - Created environment with 20 nodes
+2025-01-15 19:12:43,508 - INFO - DQN agent initialized successfully
+2025-01-15 19:12:43,514 - INFO - PPO agent initialized successfully
+2025-01-15 19:12:43,514 - INFO - A3C agent initialized successfully
+2025-01-15 19:12:43,514 - INFO - REINFORCE agent initialized successfully
+2025-01-15 19:12:43,537 - INFO - Hybrid agent initialized successfully
+2025-01-15 19:12:44,007 - INFO - Starting simulation...
+2025-01-15 19:12:47,155 - INFO - Switched RL control from none to dqn
+2025-01-15 19:12:47,155 - INFO - Started profiling dqn agent
+2025-01-15 19:12:47,539 - INFO - Metrics - CPU: 0.0%, Memory: 491.7MB, Execution Time: 0.384s
+2025-01-15 19:12:48,050 - INFO - Metrics - CPU: 30.6%, Memory: 492.4MB, Execution Time: 0.895s
+2025-01-15 19:12:48,550 - INFO - Metrics - CPU: 31.2%, Memory: 493.0MB, Execution Time: 1.396s
+2025-01-15 19:12:49,058 - INFO - Metrics - CPU: 30.8%, Memory: 494.0MB, Execution Time: 1.903s
+2025-01-15 19:12:49,563 - INFO - Metrics - CPU: 55.9%, Memory: 494.6MB, Execution Time: 2.408s
+2025-01-15 19:12:50,061 - INFO - Metrics - CPU: 25.0%, Memory: 494.6MB, Execution Time: 2.906s
+2025-01-15 19:12:50,566 - INFO - Metrics - CPU: 30.9%, Memory: 494.6MB, Execution Time: 3.411s
+2025-01-15 19:12:51,075 - INFO - Metrics - CPU: 24.6%, Memory: 494.6MB, Execution Time: 3.920s
+2025-01-15 19:12:51,575 - INFO - Metrics - CPU: 3.1%, Memory: 494.7MB, Execution Time: 4.421s
+2025-01-15 19:12:52,076 - INFO - Metrics - CPU: 40.5%, Memory: 494.8MB, Execution Time: 4.921s
+2025-01-15 19:12:52,587 - INFO - Metrics - CPU: 6.1%, Memory: 494.9MB, Execution Time: 5.432s
+2025-01-15 19:12:53,089 - INFO - Metrics - CPU: 12.4%, Memory: 494.9MB, Execution Time: 5.935s
+2025-01-15 19:12:53,604 - INFO - Metrics - CPU: 12.1%, Memory: 495.0MB, Execution Time: 6.449s
+2025-01-15 19:12:54,118 - INFO - Metrics - CPU: 12.2%, Memory: 495.1MB, Execution Time: 6.963s
+2025-01-15 19:12:54,630 - INFO - Metrics - CPU: 18.3%, Memory: 495.6MB, Execution Time: 7.475s
+2025-01-15 19:12:55,144 - INFO - Metrics - CPU: 24.3%, Memory: 495.9MB, Execution Time: 7.989s
+2025-01-15 19:12:55,655 - INFO - Metrics - CPU: 24.5%, Memory: 496.0MB, Execution Time: 8.500s
+2025-01-15 19:12:56,167 - INFO - Metrics - CPU: 15.3%, Memory: 496.0MB, Execution Time: 9.012s
+2025-01-15 19:12:56,668 - INFO - Metrics - CPU: 15.6%, Memory: 496.3MB, Execution Time: 9.514s
+2025-01-15 19:12:57,172 - INFO - Metrics - CPU: 12.4%, Memory: 496.6MB, Execution Time: 10.017s
+2025-01-15 19:12:57,686 - INFO - Metrics - CPU: 30.4%, Memory: 497.0MB, Execution Time: 10.531s
+2025-01-15 19:12:58,197 - INFO - Metrics - CPU: 21.4%, Memory: 497.0MB, Execution Time: 11.042s
+2025-01-15 19:12:58,698 - INFO - Metrics - CPU: 15.6%, Memory: 497.0MB, Execution Time: 11.543s
+2025-01-15 19:12:59,207 - INFO - Metrics - CPU: 12.3%, Memory: 497.1MB, Execution Time: 12.053s
+2025-01-15 19:12:59,708 - INFO - Metrics - CPU: 21.8%, Memory: 497.5MB, Execution Time: 12.553s
+2025-01-15 19:13:00,312 - INFO - Metrics - CPU: 18.1%, Memory: 498.0MB, Execution Time: 13.157s
+2025-01-15 19:13:00,724 - INFO - Metrics - CPU: 22.8%, Memory: 498.0MB, Execution Time: 13.569s
+2025-01-15 19:13:01,229 - INFO - Metrics - CPU: 18.6%, Memory: 498.1MB, Execution Time: 14.074s
+2025-01-15 19:13:01,733 - INFO - Metrics - CPU: 15.5%, Memory: 498.3MB, Execution Time: 14.578s
+2025-01-15 19:13:02,244 - INFO - Metrics - CPU: 9.2%, Memory: 498.6MB, Execution Time: 15.089s
+2025-01-15 19:13:02,745 - INFO - Metrics - CPU: 9.4%, Memory: 499.1MB, Execution Time: 15.590s
+2025-01-15 19:13:03,248 - INFO - Metrics - CPU: 34.2%, Memory: 499.4MB, Execution Time: 16.094s
+2025-01-15 19:13:03,753 - INFO - Metrics - CPU: 21.7%, Memory: 499.4MB, Execution Time: 16.598s
+2025-01-15 19:13:04,256 - INFO - Metrics - CPU: 12.4%, Memory: 499.5MB, Execution Time: 17.101s
+2025-01-15 19:13:04,757 - INFO - Metrics - CPU: 21.8%, Memory: 499.6MB, Execution Time: 17.602s
+2025-01-15 19:13:05,259 - INFO - Metrics - CPU: 15.6%, Memory: 500.1MB, Execution Time: 18.104s
+2025-01-15 19:13:05,764 - INFO - Metrics - CPU: 34.0%, Memory: 500.3MB, Execution Time: 18.610s
+2025-01-15 19:13:06,266 - INFO - Metrics - CPU: 15.6%, Memory: 500.3MB, Execution Time: 19.111s
+2025-01-15 19:13:06,771 - INFO - Metrics - CPU: 24.7%, Memory: 500.4MB, Execution Time: 19.616s
+2025-01-15 19:13:07,273 - INFO - Metrics - CPU: 6.2%, Memory: 500.8MB, Execution Time: 20.118s
+2025-01-15 19:13:07,775 - INFO - Metrics - CPU: 18.7%, Memory: 501.3MB, Execution Time: 20.620s
+2025-01-15 19:13:08,278 - INFO - Metrics - CPU: 15.5%, Memory: 501.6MB, Execution Time: 21.123s
+2025-01-15 19:13:08,780 - INFO - Metrics - CPU: 21.8%, Memory: 501.6MB, Execution Time: 21.626s
+2025-01-15 19:13:09,285 - INFO - Metrics - CPU: 18.6%, Memory: 501.7MB, Execution Time: 22.130s
+2025-01-15 19:13:09,789 - INFO - Metrics - CPU: 18.6%, Memory: 502.0MB, Execution Time: 22.635s
+2025-01-15 19:13:10,290 - INFO - Metrics - CPU: 18.7%, Memory: 502.5MB, Execution Time: 23.135s
+2025-01-15 19:13:10,794 - INFO - Metrics - CPU: 31.0%, Memory: 502.8MB, Execution Time: 23.639s
+2025-01-15 19:13:11,302 - INFO - Metrics - CPU: 9.2%, Memory: 502.8MB, Execution Time: 24.147s
+2025-01-15 19:13:11,816 - INFO - Metrics - CPU: 21.3%, Memory: 503.0MB, Execution Time: 24.661s
+2025-01-15 19:13:12,320 - INFO - Metrics - CPU: 12.4%, Memory: 503.3MB, Execution Time: 25.165s
+2025-01-15 19:13:12,824 - INFO - Metrics - CPU: 12.4%, Memory: 503.9MB, Execution Time: 25.670s
+2025-01-15 19:13:13,330 - INFO - Metrics - CPU: 12.4%, Memory: 504.5MB, Execution Time: 26.175s
+2025-01-15 19:13:13,833 - INFO - Metrics - CPU: 18.6%, Memory: 504.5MB, Execution Time: 26.678s
+2025-01-15 19:13:14,338 - INFO - Metrics - CPU: 18.6%, Memory: 504.7MB, Execution Time: 27.183s
+2025-01-15 19:13:14,843 - INFO - Metrics - CPU: 21.7%, Memory: 504.9MB, Execution Time: 27.688s
+2025-01-15 19:13:15,348 - INFO - Metrics - CPU: 9.3%, Memory: 505.4MB, Execution Time: 28.193s
+2025-01-15 19:13:15,853 - INFO - Metrics - CPU: 18.6%, Memory: 506.0MB, Execution Time: 28.698s
+2025-01-15 19:13:16,356 - INFO - Metrics - CPU: 28.0%, Memory: 506.1MB, Execution Time: 29.201s
+2025-01-15 19:13:16,862 - INFO - Metrics - CPU: 21.6%, Memory: 506.3MB, Execution Time: 29.707s
+2025-01-15 19:13:17,374 - INFO - Metrics - CPU: 9.2%, Memory: 506.6MB, Execution Time: 30.219s
+2025-01-15 19:13:17,886 - INFO - Metrics - CPU: 15.3%, Memory: 507.0MB, Execution Time: 30.731s
+2025-01-15 19:13:18,392 - INFO - Metrics - CPU: 18.5%, Memory: 507.7MB, Execution Time: 31.237s
+2025-01-15 19:13:18,895 - INFO - Metrics - CPU: 18.6%, Memory: 507.8MB, Execution Time: 31.741s
+2025-01-15 19:13:19,402 - INFO - Metrics - CPU: 9.3%, Memory: 507.9MB, Execution Time: 32.247s
+2025-01-15 19:13:19,906 - INFO - Metrics - CPU: 92.9%, Memory: 518.3MB, Execution Time: 32.752s
+2025-01-15 19:13:20,411 - INFO - Metrics - CPU: 86.8%, Memory: 519.6MB, Execution Time: 33.256s
+2025-01-15 19:13:20,915 - INFO - Metrics - CPU: 96.0%, Memory: 520.3MB, Execution Time: 33.760s
+2025-01-15 19:13:21,427 - INFO - Metrics - CPU: 91.6%, Memory: 520.4MB, Execution Time: 34.272s
+2025-01-15 19:13:21,957 - INFO - Metrics - CPU: 103.2%, Memory: 520.2MB, Execution Time: 34.802s
+2025-01-15 19:13:22,462 - INFO - Metrics - CPU: 92.7%, Memory: 520.9MB, Execution Time: 35.308s
+2025-01-15 19:13:22,966 - INFO - Metrics - CPU: 68.2%, Memory: 521.5MB, Execution Time: 35.812s
+2025-01-15 19:13:23,473 - INFO - Metrics - CPU: 111.0%, Memory: 521.8MB, Execution Time: 36.318s
+2025-01-15 19:13:23,984 - INFO - Metrics - CPU: 97.8%, Memory: 521.6MB, Execution Time: 36.829s
+2025-01-15 19:13:24,497 - INFO - Metrics - CPU: 76.1%, Memory: 522.3MB, Execution Time: 37.343s
+2025-01-15 19:13:25,009 - INFO - Metrics - CPU: 88.5%, Memory: 522.9MB, Execution Time: 37.854s
+2025-01-15 19:13:25,514 - INFO - Metrics - CPU: 95.9%, Memory: 523.6MB, Execution Time: 38.359s
+2025-01-15 19:13:26,018 - INFO - Metrics - CPU: 105.4%, Memory: 523.7MB, Execution Time: 38.863s
+2025-01-15 19:13:26,533 - INFO - Metrics - CPU: 121.4%, Memory: 524.3MB, Execution Time: 39.378s
+2025-01-15 19:13:27,037 - INFO - Metrics - CPU: 105.4%, Memory: 524.6MB, Execution Time: 39.882s
+2025-01-15 19:13:27,541 - INFO - Metrics - CPU: 89.9%, Memory: 525.3MB, Execution Time: 40.386s
+2025-01-15 19:13:28,046 - INFO - Metrics - CPU: 89.7%, Memory: 525.5MB, Execution Time: 40.891s
+2025-01-15 19:13:28,548 - INFO - Metrics - CPU: 105.7%, Memory: 526.0MB, Execution Time: 41.394s
+2025-01-15 19:13:29,056 - INFO - Metrics - CPU: 64.6%, Memory: 526.2MB, Execution Time: 41.901s
+2025-01-15 19:13:29,563 - INFO - Metrics - CPU: 114.0%, Memory: 526.6MB, Execution Time: 42.408s
+2025-01-15 19:13:30,074 - INFO - Metrics - CPU: 70.4%, Memory: 526.8MB, Execution Time: 42.919s
+2025-01-15 19:13:30,578 - INFO - Metrics - CPU: 83.7%, Memory: 528.0MB, Execution Time: 43.423s
+2025-01-15 19:13:31,080 - INFO - Metrics - CPU: 127.5%, Memory: 528.3MB, Execution Time: 43.926s
+2025-01-15 19:13:31,585 - INFO - Metrics - CPU: 96.1%, Memory: 528.5MB, Execution Time: 44.430s
+2025-01-15 19:13:32,086 - INFO - Metrics - CPU: 59.2%, Memory: 528.5MB, Execution Time: 44.931s
+2025-01-15 19:13:32,601 - INFO - Metrics - CPU: 72.7%, Memory: 529.5MB, Execution Time: 45.447s
+2025-01-15 19:13:33,117 - INFO - Metrics - CPU: 100.0%, Memory: 530.2MB, Execution Time: 45.962s
+2025-01-15 19:13:33,633 - INFO - Metrics - CPU: 121.2%, Memory: 530.5MB, Execution Time: 46.478s
+2025-01-15 19:13:34,148 - INFO - Metrics - CPU: 87.9%, Memory: 530.3MB, Execution Time: 46.993s
+2025-01-15 19:13:34,664 - INFO - Metrics - CPU: 100.0%, Memory: 531.2MB, Execution Time: 47.509s
+2025-01-15 19:13:35,179 - INFO - Metrics - CPU: 94.0%, Memory: 531.8MB, Execution Time: 48.025s
+2025-01-15 19:13:35,695 - INFO - Metrics - CPU: 81.8%, Memory: 532.5MB, Execution Time: 48.540s
+2025-01-15 19:13:36,210 - INFO - Metrics - CPU: 84.8%, Memory: 532.4MB, Execution Time: 49.056s
+2025-01-15 19:13:36,726 - INFO - Metrics - CPU: 100.0%, Memory: 533.0MB, Execution Time: 49.571s
+2025-01-15 19:13:37,226 - INFO - Metrics - CPU: 68.7%, Memory: 533.6MB, Execution Time: 50.071s
+2025-01-15 19:13:37,742 - INFO - Metrics - CPU: 93.9%, Memory: 534.3MB, Execution Time: 50.587s
+2025-01-15 19:15:40,560 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 19:15:40,560 - INFO - GPU info: CPU (Available: False)
+2025-01-15 19:15:49,646 - INFO - Created environment with 20 nodes
+2025-01-15 19:15:50,475 - INFO - DQN agent initialized successfully
+2025-01-15 19:15:50,483 - INFO - PPO agent initialized successfully
+2025-01-15 19:15:50,484 - INFO - A3C agent initialized successfully
+2025-01-15 19:15:50,485 - INFO - REINFORCE agent initialized successfully
+2025-01-15 19:15:50,500 - INFO - Hybrid agent initialized successfully
+2025-01-15 19:15:51,005 - INFO - Starting simulation...
+2025-01-15 19:17:27,998 - INFO - Switched RL control from none to dqn
+2025-01-15 19:17:27,999 - INFO - Started profiling dqn agent
+2025-01-15 19:17:28,320 - INFO - Metrics - Overall CPU: 4.9%, Memory: 561.2MB, Execution Time: 0.320s
+2025-01-15 19:17:28,320 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 5.6%, Core 2: 100.0%, Core 3: 11.3%, Core 4: 1.8%, Core 5: 1.7%, Core 6: 1.4%, Core 7: 1.8%
+2025-01-15 19:17:28,825 - INFO - Metrics - Overall CPU: 37.0%, Memory: 561.9MB, Execution Time: 0.826s
+2025-01-15 19:17:28,826 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 9.4%, Core 2: 100.0%, Core 3: 18.8%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:29,340 - INFO - Metrics - Overall CPU: 42.6%, Memory: 562.8MB, Execution Time: 1.341s
+2025-01-15 19:17:29,340 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 15.2%, Core 2: 100.0%, Core 3: 15.2%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:30,021 - INFO - Metrics - Overall CPU: 32.1%, Memory: 563.9MB, Execution Time: 2.022s
+2025-01-15 19:17:30,021 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 2.3%, Core 2: 100.0%, Core 3: 29.5%, Core 4: 4.4%, Core 5: 0.0%, Core 6: 2.2%, Core 7: 0.0%
+2025-01-15 19:17:30,351 - INFO - Metrics - Overall CPU: 33.2%, Memory: 564.1MB, Execution Time: 2.352s
+2025-01-15 19:17:30,351 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 0.0%, Core 2: 100.0%, Core 3: 27.3%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:30,863 - INFO - Metrics - Overall CPU: 39.8%, Memory: 564.4MB, Execution Time: 2.862s
+2025-01-15 19:17:30,863 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 6.1%, Core 2: 100.0%, Core 3: 27.3%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:31,375 - INFO - Metrics - Overall CPU: 48.6%, Memory: 564.8MB, Execution Time: 3.376s
+2025-01-15 19:17:31,375 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 3.0%, Core 2: 100.0%, Core 3: 45.5%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:31,891 - INFO - Metrics - Overall CPU: 45.8%, Memory: 565.3MB, Execution Time: 3.888s
+2025-01-15 19:17:31,891 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 6.2%, Core 2: 100.0%, Core 3: 37.5%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:32,399 - INFO - Metrics - Overall CPU: 24.4%, Memory: 566.0MB, Execution Time: 4.400s
+2025-01-15 19:17:32,401 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 6.1%, Core 2: 100.0%, Core 3: 18.2%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:32,916 - INFO - Metrics - Overall CPU: 30.2%, Memory: 566.6MB, Execution Time: 4.917s
+2025-01-15 19:17:32,916 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 6.1%, Core 2: 100.0%, Core 3: 24.2%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:33,422 - INFO - Metrics - Overall CPU: 27.8%, Memory: 566.6MB, Execution Time: 5.423s
+2025-01-15 19:17:33,422 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 0.0%, Core 2: 100.0%, Core 3: 30.3%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:33,933 - INFO - Metrics - Overall CPU: 30.6%, Memory: 566.9MB, Execution Time: 5.934s
+2025-01-15 19:17:33,933 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 15.6%, Core 2: 100.0%, Core 3: 21.9%, Core 4: 9.1%, Core 5: 9.1%, Core 6: 8.6%, Core 7: 8.8%
+2025-01-15 19:17:34,428 - INFO - Metrics - Overall CPU: 31.5%, Memory: 567.5MB, Execution Time: 6.429s
+2025-01-15 19:17:34,428 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 0.0%, Core 2: 100.0%, Core 3: 21.9%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 3.3%, Core 7: 3.2%
+2025-01-15 19:17:34,947 - INFO - Metrics - Overall CPU: 24.1%, Memory: 568.2MB, Execution Time: 6.948s
+2025-01-15 19:17:34,947 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 9.1%, Core 2: 100.0%, Core 3: 3.0%, Core 4: 5.9%, Core 5: 5.9%, Core 6: 8.8%, Core 7: 5.9%
+2025-01-15 19:17:35,452 - INFO - Metrics - Overall CPU: 18.6%, Memory: 568.8MB, Execution Time: 7.452s
+2025-01-15 19:17:35,452 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 9.1%, Core 2: 100.0%, Core 3: 15.2%, Core 4: 3.0%, Core 5: 3.0%, Core 6: 3.0%, Core 7: 3.0%
+2025-01-15 19:17:35,966 - INFO - Metrics - Overall CPU: 33.4%, Memory: 569.1MB, Execution Time: 7.967s
+2025-01-15 19:17:35,966 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 3.1%, Core 2: 100.0%, Core 3: 21.9%, Core 4: 12.1%, Core 5: 8.8%, Core 6: 9.1%, Core 7: 0.0%
+2025-01-15 19:17:36,482 - INFO - Metrics - Overall CPU: 36.4%, Memory: 568.7MB, Execution Time: 8.482s
+2025-01-15 19:17:36,482 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 9.1%, Core 2: 100.0%, Core 3: 27.3%, Core 4: 5.9%, Core 5: 3.1%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:36,982 - INFO - Metrics - Overall CPU: 34.3%, Memory: 569.0MB, Execution Time: 8.983s
+2025-01-15 19:17:36,982 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 6.2%, Core 2: 100.0%, Core 3: 21.9%, Core 4: 3.2%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:37,485 - INFO - Metrics - Overall CPU: 21.7%, Memory: 569.9MB, Execution Time: 9.486s
+2025-01-15 19:17:37,485 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 3.0%, Core 2: 100.0%, Core 3: 3.0%, Core 4: 17.6%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 3.0%
+2025-01-15 19:17:38,007 - INFO - Metrics - Overall CPU: 24.0%, Memory: 570.5MB, Execution Time: 10.007s
+2025-01-15 19:17:38,008 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 0.0%, Core 2: 100.0%, Core 3: 6.1%, Core 4: 0.0%, Core 5: 20.6%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:38,493 - INFO - Metrics - Overall CPU: 32.1%, Memory: 571.2MB, Execution Time: 10.494s
+2025-01-15 19:17:38,493 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 0.0%, Core 2: 100.0%, Core 3: 29.0%, Core 4: 0.0%, Core 5: 3.3%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:39,014 - INFO - Metrics - Overall CPU: 54.0%, Memory: 571.8MB, Execution Time: 11.015s
+2025-01-15 19:17:39,014 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 14.7%, Core 2: 100.0%, Core 3: 42.9%, Core 4: 16.2%, Core 5: 0.0%, Core 6: 2.9%, Core 7: 0.0%
+2025-01-15 19:17:39,536 - INFO - Metrics - Overall CPU: 21.0%, Memory: 571.9MB, Execution Time: 11.537s
+2025-01-15 19:17:39,536 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 9.1%, Core 2: 100.0%, Core 3: 20.0%, Core 4: 3.0%, Core 5: 3.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:40,051 - INFO - Metrics - Overall CPU: 36.5%, Memory: 572.1MB, Execution Time: 12.051s
+2025-01-15 19:17:40,051 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 3.0%, Core 2: 100.0%, Core 3: 24.2%, Core 4: 9.4%, Core 5: 6.2%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:40,557 - INFO - Metrics - Overall CPU: 27.8%, Memory: 572.7MB, Execution Time: 12.558s
+2025-01-15 19:17:40,557 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 12.5%, Core 2: 100.0%, Core 3: 18.2%, Core 4: 3.1%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:41,071 - INFO - Metrics - Overall CPU: 21.3%, Memory: 573.4MB, Execution Time: 13.072s
+2025-01-15 19:17:41,071 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 9.1%, Core 2: 100.0%, Core 3: 12.1%, Core 4: 14.7%, Core 5: 8.8%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:41,580 - INFO - Metrics - Overall CPU: 52.2%, Memory: 574.1MB, Execution Time: 13.581s
+2025-01-15 19:17:41,580 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 6.1%, Core 2: 100.0%, Core 3: 36.4%, Core 4: 6.1%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:42,095 - INFO - Metrics - Overall CPU: 42.4%, Memory: 574.3MB, Execution Time: 14.096s
+2025-01-15 19:17:42,095 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 9.1%, Core 2: 100.0%, Core 3: 21.9%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 21.2%, Core 7: 14.3%
+2025-01-15 19:17:42,599 - INFO - Metrics - Overall CPU: 46.5%, Memory: 574.5MB, Execution Time: 14.600s
+2025-01-15 19:17:42,599 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 0.0%, Core 2: 100.0%, Core 3: 45.5%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:43,110 - INFO - Metrics - Overall CPU: 39.8%, Memory: 574.8MB, Execution Time: 15.111s
+2025-01-15 19:17:43,110 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 3.0%, Core 2: 100.0%, Core 3: 21.2%, Core 4: 16.1%, Core 5: 3.2%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:43,614 - INFO - Metrics - Overall CPU: 31.0%, Memory: 575.5MB, Execution Time: 15.615s
+2025-01-15 19:17:43,614 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 12.5%, Core 2: 100.0%, Core 3: 12.5%, Core 4: 12.1%, Core 5: 11.4%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:44,112 - INFO - Metrics - Overall CPU: 37.6%, Memory: 576.2MB, Execution Time: 16.113s
+2025-01-15 19:17:44,112 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 9.4%, Core 2: 100.0%, Core 3: 42.9%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:44,643 - INFO - Metrics - Overall CPU: 47.1%, Memory: 576.9MB, Execution Time: 16.644s
+2025-01-15 19:17:44,643 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 2.9%, Core 2: 100.0%, Core 3: 41.2%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:45,142 - INFO - Metrics - Overall CPU: 72.0%, Memory: 577.2MB, Execution Time: 17.143s
+2025-01-15 19:17:45,142 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 0.0%, Core 2: 100.0%, Core 3: 45.5%, Core 4: 25.0%, Core 5: 0.0%, Core 6: 3.1%, Core 7: 3.1%
+2025-01-15 19:17:45,673 - INFO - Metrics - Overall CPU: 44.2%, Memory: 577.3MB, Execution Time: 17.674s
+2025-01-15 19:17:45,673 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 9.1%, Core 2: 100.0%, Core 3: 35.3%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:46,188 - INFO - Metrics - Overall CPU: 18.2%, Memory: 577.6MB, Execution Time: 18.188s
+2025-01-15 19:17:46,188 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 8.8%, Core 2: 100.0%, Core 3: 9.1%, Core 4: 6.1%, Core 5: 3.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:46,687 - INFO - Metrics - Overall CPU: 34.4%, Memory: 578.2MB, Execution Time: 18.688s
+2025-01-15 19:17:46,687 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 6.2%, Core 2: 100.0%, Core 3: 27.3%, Core 4: 6.2%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:47,197 - INFO - Metrics - Overall CPU: 42.9%, Memory: 578.9MB, Execution Time: 19.198s
+2025-01-15 19:17:47,197 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 3.1%, Core 2: 100.0%, Core 3: 34.4%, Core 4: 3.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 3.0%
+2025-01-15 19:17:47,706 - INFO - Metrics - Overall CPU: 21.5%, Memory: 579.6MB, Execution Time: 19.707s
+2025-01-15 19:17:47,706 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 0.0%, Core 2: 100.0%, Core 3: 21.2%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 3.0%
+2025-01-15 19:17:48,216 - INFO - Metrics - Overall CPU: 33.7%, Memory: 579.9MB, Execution Time: 20.217s
+2025-01-15 19:17:48,216 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 3.1%, Core 2: 100.0%, Core 3: 31.2%, Core 4: 3.1%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 19:17:48,711 - INFO - Metrics - Overall CPU: 22.1%, Memory: 580.1MB, Execution Time: 20.712s
+2025-01-15 19:17:48,711 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 0.0%, Core 2: 100.0%, Core 3: 15.6%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 6.5%
+2025-01-15 20:44:02,099 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 20:44:02,099 - INFO - GPU info: CPU (Available: False)
+2025-01-15 20:44:11,197 - INFO - Created environment with 20 nodes
+2025-01-15 20:44:11,970 - INFO - DQN agent initialized successfully
+2025-01-15 20:44:11,986 - INFO - PPO agent initialized successfully
+2025-01-15 20:44:11,986 - INFO - A3C agent initialized successfully
+2025-01-15 20:44:11,986 - INFO - REINFORCE agent initialized successfully
+2025-01-15 20:44:12,013 - INFO - Hybrid agent initialized successfully
+2025-01-15 20:44:12,533 - INFO - Starting simulation...
+2025-01-15 20:44:24,600 - INFO - Anomaly detection enabled
+2025-01-15 20:44:43,675 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:43,675 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:44,173 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:44,173 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:44,676 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:44,676 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:44:45,179 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:45,179 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:44:45,690 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:46,219 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:44:46,219 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:44:46,734 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:44:46,734 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:44:47,233 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:47,843 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:47,859 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:48,245 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:44:48,245 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:44:48,757 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:44:48,757 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:44:49,263 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:49,263 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:49,753 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:44:50,277 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:50,773 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:50,773 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:51,295 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:51,810 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:52,319 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:52,319 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:52,810 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:52,810 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:53,338 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:53,338 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:53,969 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:54,348 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:54,871 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:54,871 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:55,356 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:55,884 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:55,884 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:56,371 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:44:56,371 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:44:56,877 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:56,877 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:57,384 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:44:57,890 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:58,393 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:44:58,887 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:44:58,887 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:44:59,394 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:00,009 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:00,408 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:00,917 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:01,422 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:01,923 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:45:02,433 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:02,945 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:03,448 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:03,448 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:03,951 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:04,485 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:04,485 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:05,011 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:05,496 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:06,126 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:06,528 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:07,022 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:07,535 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:07,535 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:08,536 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:08,536 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:09,069 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:09,578 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:10,082 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:10,570 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:45:10,570 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:45:11,076 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:11,568 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:12,078 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:12,718 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:13,128 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:13,128 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:13,630 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:45:13,630 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:45:14,121 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:14,121 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:14,649 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:14,649 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:15,153 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:45:15,153 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:45:15,655 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:15,655 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:16,130 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:45:16,130 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:45:16,659 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:16,659 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:17,165 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:17,165 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:17,652 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:17,652 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:18,192 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:18,680 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:19,205 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:45:19,205 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:45:19,719 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:19,719 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:20,198 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:20,198 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:20,703 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:20,703 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:21,250 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:21,250 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:21,750 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:21,750 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:22,244 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:22,244 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:22,761 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:22,761 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:23,232 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:23,232 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:23,779 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:45:23,779 - INFO - Load reduction applied to 2 edges
+2025-01-15 20:45:23,779 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:45:24,279 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:24,279 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:24,760 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:45:24,760 - INFO - Load reduction applied to 2 edges
+2025-01-15 20:45:24,760 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:45:25,306 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:25,306 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:25,822 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:25,822 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:26,337 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:26,337 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:26,826 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:27,336 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:27,867 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:45:28,371 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:28,371 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:28,871 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:28,871 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:29,371 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:29,371 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:29,847 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:30,390 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:30,390 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:30,898 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:31,384 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:31,384 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:31,913 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:32,425 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:32,425 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:32,934 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:32,934 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:33,441 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:33,441 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:33,951 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:34,556 - INFO - Anomaly detector trained successfully
+2025-01-15 20:45:34,556 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:34,556 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:34,974 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:34,974 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:36,995 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:36,995 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:37,654 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:37,654 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:38,005 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:38,527 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:38,527 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:39,024 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:39,024 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:39,537 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:39,547 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:40,051 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:40,051 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:40,552 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:40,552 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:41,063 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:41,572 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:41,572 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:42,090 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:42,092 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:42,595 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:43,111 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:45:43,111 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:45:43,621 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:43,621 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:44,262 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:44,262 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:44,643 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:44,643 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:45:45,139 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:45:45,139 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:46:57,945 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 20:46:57,945 - INFO - GPU info: CPU (Available: False)
+2025-01-15 20:47:07,030 - INFO - Created environment with 20 nodes
+2025-01-15 20:47:07,734 - INFO - DQN agent initialized successfully
+2025-01-15 20:47:07,749 - INFO - PPO agent initialized successfully
+2025-01-15 20:47:07,749 - INFO - A3C agent initialized successfully
+2025-01-15 20:47:07,749 - INFO - REINFORCE agent initialized successfully
+2025-01-15 20:47:07,765 - INFO - Hybrid agent initialized successfully
+2025-01-15 20:47:08,281 - INFO - Starting simulation...
+2025-01-15 20:47:12,265 - INFO - Anomaly detection enabled
+2025-01-15 20:47:18,125 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:18,125 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:18,640 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:18,640 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:19,140 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:19,140 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:19,656 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:20,172 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:47:20,172 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:47:20,672 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:20,672 - INFO - Load reduction applied to 2 edges
+2025-01-15 20:47:21,172 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:21,187 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:21,688 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:21,688 - INFO - Load reduction applied to 2 edges
+2025-01-15 20:47:22,188 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:22,188 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:22,704 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:22,704 - INFO - Load reduction applied to 2 edges
+2025-01-15 20:47:22,704 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:47:23,219 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:23,219 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:23,735 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:47:24,344 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:24,751 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:25,220 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:25,220 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:25,767 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:25,767 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:26,267 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:26,267 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:26,783 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:26,783 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:27,267 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:27,267 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:27,814 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:27,814 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:28,298 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:28,298 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:28,830 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:28,830 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:29,330 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:29,330 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:29,814 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:29,814 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:30,346 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:30,346 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:30,831 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:30,831 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:31,455 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:47:31,455 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:47:31,862 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:31,862 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:32,362 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:32,362 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:32,847 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:32,847 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:33,394 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:33,394 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:33,893 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:33,893 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:34,425 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:34,425 - INFO - Load reduction applied to 3 edges
+2025-01-15 20:47:34,940 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:34,940 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:35,456 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:35,456 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:35,971 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:35,971 - INFO - Load reduction applied to 1 edges
+2025-01-15 20:47:35,971 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:47:36,487 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:36,487 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:37,003 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:37,003 - INFO - Load reduction applied to 1 edges
+2025-01-15 20:47:37,003 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:47:37,518 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:37,518 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:38,034 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:38,034 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:38,675 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:38,675 - INFO - Load reduction applied to 1 edges
+2025-01-15 20:47:38,675 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:47:39,065 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:39,065 - INFO - Load reduction applied to 1 edges
+2025-01-15 20:47:39,065 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:47:39,582 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:39,582 - INFO - Load reduction applied to 1 edges
+2025-01-15 20:47:39,582 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:47:40,089 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:40,089 - INFO - Load reduction applied to 1 edges
+2025-01-15 20:47:40,089 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:47:40,590 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:40,590 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:41,100 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:41,100 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:41,620 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:41,620 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:42,131 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:42,131 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:42,638 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:42,638 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:43,157 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:47:43,662 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:43,662 - INFO - Load reduction applied to 1 edges
+2025-01-15 20:47:43,662 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:47:44,172 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:44,172 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:44,663 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:44,663 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:45,196 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:45,197 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:45,822 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:45,822 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:46,211 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:46,211 - INFO - Load reduction applied to 1 edges
+2025-01-15 20:47:46,717 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:47:47,216 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:47,216 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:47,727 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:47,727 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:48,227 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:48,227 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:48,745 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:48,745 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:49,260 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:49,260 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:49,776 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:49,776 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:50,279 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:50,279 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:50,800 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:50,800 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:51,294 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:51,309 - INFO - Load reduction applied to 1 edges
+2025-01-15 20:47:51,811 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:51,811 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:52,449 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:52,449 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:52,823 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:52,823 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:53,348 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:53,348 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:53,847 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:53,847 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:54,334 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:54,334 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:54,843 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:54,843 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:55,359 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:47:55,359 - INFO - Load reduction applied to 1 edges
+2025-01-15 20:47:55,873 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:55,873 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:56,374 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:56,374 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:56,881 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:56,881 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:57,385 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:57,385 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:57,899 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:57,899 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:58,532 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:58,532 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:58,912 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:58,912 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:47:59,422 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:47:59,422 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:47:59,917 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:47:59,917 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:00,442 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:00,442 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:48:00,930 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:00,930 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:01,449 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:01,449 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:01,956 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:48:02,458 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:02,458 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:29,427 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:48:29,427 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:48:29,973 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:30,481 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:30,988 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:48:30,988 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:48:31,459 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:32,006 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:32,517 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:32,998 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:32,998 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:33,541 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:34,047 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:34,047 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:34,555 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:35,194 - INFO - Anomaly detector trained successfully
+2025-01-15 20:48:35,194 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:35,579 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:35,579 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:36,097 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:36,097 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:36,593 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:37,097 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:37,613 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:38,120 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:38,644 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:39,118 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:48:39,118 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:48:39,607 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:48:39,607 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:48:40,132 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:40,132 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:40,647 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:41,131 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:41,131 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:41,659 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 20:48:41,659 - WARNING - Strategy reduce_load failed to apply
+2025-01-15 20:48:42,172 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:42,839 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:43,154 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:43,679 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:44,166 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:44,700 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:45,202 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:45,712 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:46,224 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:46,224 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:46,707 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:47,228 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:47,720 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:48,235 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:48,235 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:48,734 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:48,734 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:49,422 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:48:49,422 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:48:49,751 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:50,264 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:50,786 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:51,290 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:51,290 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:51,780 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:51,780 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:52,307 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:52,307 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:52,820 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:52,820 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:53,320 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:53,320 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:53,834 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:53,834 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:54,348 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:54,348 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:54,863 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:54,863 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:55,371 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:48:55,371 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:48:55,885 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:55,885 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:56,393 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 20:48:56,394 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 20:48:56,883 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:56,883 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:57,405 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:57,405 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 20:48:57,895 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 20:48:57,895 - WARNING - Strategy isolate_affected_area failed to apply
+2025-01-15 20:48:58,400 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 20:48:58,400 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 21:08:34,389 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 21:08:34,389 - INFO - GPU info: CPU (Available: False)
+2025-01-15 21:08:43,482 - INFO - Created environment with 20 nodes
+2025-01-15 21:08:44,188 - INFO - DQN agent initialized successfully
+2025-01-15 21:08:44,204 - INFO - PPO agent initialized successfully
+2025-01-15 21:08:44,204 - INFO - A3C agent initialized successfully
+2025-01-15 21:08:44,204 - INFO - REINFORCE agent initialized successfully
+2025-01-15 21:08:44,219 - INFO - Hybrid agent initialized successfully
+2025-01-15 21:08:44,738 - INFO - Starting simulation...
+2025-01-15 21:08:49,207 - INFO - Anomaly detection enabled
+2025-01-15 21:08:57,476 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:08:57,476 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:08:57,969 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:08:57,969 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:08:58,485 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:08:58,485 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:08:58,969 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:08:58,969 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:08:59,507 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:08:59,508 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:00,010 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:00,010 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:00,504 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:00,504 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:01,021 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:01,021 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:01,544 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:01,544 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:02,024 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:02,024 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:02,563 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:09:03,064 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:03,064 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:03,553 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:03,553 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:04,085 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:04,085 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:04,599 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:04,600 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:05,099 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:05,099 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:05,608 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:05,608 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:06,113 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:06,113 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:06,595 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:06,595 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:07,125 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:09:07,624 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:07,624 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:08,126 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:08,126 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:08,670 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:08,682 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:09,181 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:09,182 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:09,678 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:09:09,678 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:09:27,569 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 21:09:27,569 - INFO - GPU info: CPU (Available: False)
+2025-01-15 21:09:36,631 - INFO - Created environment with 20 nodes
+2025-01-15 21:09:37,443 - INFO - DQN agent initialized successfully
+2025-01-15 21:09:37,459 - INFO - PPO agent initialized successfully
+2025-01-15 21:09:37,459 - INFO - A3C agent initialized successfully
+2025-01-15 21:09:37,459 - INFO - REINFORCE agent initialized successfully
+2025-01-15 21:09:37,475 - INFO - Hybrid agent initialized successfully
+2025-01-15 21:09:37,951 - INFO - Starting simulation...
+2025-01-15 21:09:43,127 - INFO - Anomaly detection enabled
+2025-01-15 21:10:16,735 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:16,735 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:17,278 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:17,278 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:17,773 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:17,773 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:18,275 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:18,275 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:18,796 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:18,796 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:19,281 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 21:10:19,281 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 21:10:19,766 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:19,766 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:20,315 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:20,315 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:20,830 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:20,830 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:21,332 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 21:10:21,332 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 21:10:21,847 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:10:21,847 - WARNING - Strategy reroute_traffic failed to apply
+2025-01-15 21:10:22,348 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:22,348 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:22,848 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:22,848 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:23,365 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:23,365 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:23,873 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:23,873 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:24,396 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 21:10:24,396 - WARNING - Strategy adjust_qos failed to apply
+2025-01-15 21:10:24,882 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:24,882 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:25,516 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:25,516 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:25,897 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:25,897 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:26,423 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:26,423 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:10:26,910 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:10:26,910 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:11:34,698 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 21:11:34,698 - INFO - GPU info: CPU (Available: False)
+2025-01-15 21:11:43,773 - INFO - Created environment with 20 nodes
+2025-01-15 21:11:44,504 - INFO - DQN agent initialized successfully
+2025-01-15 21:11:44,519 - INFO - PPO agent initialized successfully
+2025-01-15 21:11:44,519 - INFO - A3C agent initialized successfully
+2025-01-15 21:11:44,519 - INFO - REINFORCE agent initialized successfully
+2025-01-15 21:11:44,535 - INFO - Hybrid agent initialized successfully
+2025-01-15 21:11:45,052 - INFO - Starting simulation...
+2025-01-15 21:11:47,961 - INFO - Anomaly detection enabled
+2025-01-15 21:11:48,729 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:49,247 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:49,753 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:11:50,238 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:50,770 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:51,279 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:51,794 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:52,305 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:52,807 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:53,307 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:11:53,935 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:54,329 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:54,839 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:55,342 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 21:11:55,857 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:56,363 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:11:56,839 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:57,380 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:57,866 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:58,393 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:58,894 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:59,394 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:11:59,919 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:00,433 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:00,943 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 21:12:01,446 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:01,960 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:12:02,469 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:02,977 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:03,471 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:03,962 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:04,503 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:05,028 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:12:05,522 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:06,029 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:06,544 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:07,061 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:07,571 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:08,081 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:08,588 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:12:08,588 - INFO - Load reduction applied to 1 edges
+2025-01-15 21:12:09,066 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:09,700 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:10,119 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:10,633 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:11,148 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:11,663 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:12,142 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:12,676 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:13,189 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:13,694 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:14,168 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:14,703 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:15,235 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:15,712 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:16,247 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:16,751 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:17,238 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:17,747 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:18,270 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:18,801 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:19,323 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:19,825 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:20,328 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:20,838 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:21,356 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:21,854 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:22,356 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:22,861 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:12:23,357 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:23,881 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:24,497 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:24,896 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:25,415 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:25,919 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:26,435 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:26,957 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:27,454 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:27,954 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:28,458 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:28,970 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:29,496 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:29,997 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:30,649 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:32,532 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:33,026 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:12:33,559 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:34,073 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:34,574 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:35,101 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 21:12:35,601 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:36,104 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:36,755 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 21:12:37,112 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:37,649 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:38,148 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:12:38,633 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:39,145 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:39,670 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:40,169 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:40,744 - INFO - Anomaly detector trained successfully
+2025-01-15 21:12:40,744 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 21:12:41,194 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:41,688 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:42,196 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:42,699 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:43,222 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:43,723 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:44,243 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:44,730 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:45,264 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:45,768 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:46,278 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 21:12:46,798 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:47,301 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:47,807 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:48,318 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:48,866 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:49,370 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:49,875 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:50,371 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:50,879 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:51,378 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:51,881 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:52,413 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:52,902 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:53,443 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:53,947 - INFO - Selected mitigation strategy: reroute_traffic
+2025-01-15 21:12:54,449 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:54,960 - INFO - Selected mitigation strategy: reduce_load
+2025-01-15 21:12:55,455 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:55,979 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:56,489 - INFO - Selected mitigation strategy: adjust_qos
+2025-01-15 21:12:56,980 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:57,480 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:57,993 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:58,496 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:59,002 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:12:59,508 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:13:00,016 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:13:00,506 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:13:01,015 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:13:01,512 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:13:02,027 - INFO - Selected mitigation strategy: isolate_affected_area
+2025-01-15 21:15:36,016 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 21:15:36,016 - INFO - GPU info: CPU (Available: False)
+2025-01-15 21:15:45,085 - INFO - Created environment with 20 nodes
+2025-01-15 21:15:45,850 - INFO - DQN agent initialized successfully
+2025-01-15 21:15:45,856 - INFO - PPO agent initialized successfully
+2025-01-15 21:15:45,861 - INFO - A3C agent initialized successfully
+2025-01-15 21:15:45,861 - INFO - REINFORCE agent initialized successfully
+2025-01-15 21:15:45,875 - INFO - Hybrid agent initialized successfully
+2025-01-15 21:15:46,360 - INFO - Starting simulation...
+2025-01-15 21:16:00,501 - INFO - Anomaly detection enabled
+2025-01-15 21:16:14,570 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:16:19,690 - INFO - Load reduction applied to 1 edges
+2025-01-15 21:16:26,340 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:16:45,271 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:16:46,300 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:16:51,960 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:17:06,790 - INFO - Load reduction applied to 2 edges
+2025-01-15 21:17:07,309 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:17:11,910 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:17:13,028 - INFO - Anomaly detector trained successfully
+2025-01-15 21:17:14,446 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:17:21,592 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:17:36,019 - INFO - Anomaly detection disabled
+2025-01-15 21:24:08,321 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 21:24:08,321 - INFO - GPU info: CPU (Available: False)
+2025-01-15 21:24:17,390 - INFO - Created environment with 20 nodes
+2025-01-15 21:24:18,129 - INFO - DQN agent initialized successfully
+2025-01-15 21:24:18,145 - INFO - PPO agent initialized successfully
+2025-01-15 21:24:18,145 - INFO - A3C agent initialized successfully
+2025-01-15 21:24:18,145 - INFO - REINFORCE agent initialized successfully
+2025-01-15 21:24:18,177 - INFO - Hybrid agent initialized successfully
+2025-01-15 21:24:18,672 - INFO - Starting simulation...
+2025-01-15 21:24:21,430 - INFO - Switched RL control from none to dqn
+2025-01-15 21:24:21,430 - INFO - Started profiling dqn agent
+2025-01-15 21:24:21,787 - INFO - Metrics - Overall CPU: 0.0%, Memory: 491.7MB, Execution Time: 0.357s
+2025-01-15 21:24:21,787 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 5.5%, Core 2: 99.9%, Core 3: 10.4%, Core 4: 0.8%, Core 5: 0.5%, Core 6: 0.5%, Core 7: 1.6%
+2025-01-15 21:24:22,299 - INFO - Metrics - Overall CPU: 48.8%, Memory: 492.5MB, Execution Time: 0.869s
+2025-01-15 21:24:22,299 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 36.4%, Core 2: 100.0%, Core 3: 6.1%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 21:24:22,810 - INFO - Metrics - Overall CPU: 52.0%, Memory: 493.1MB, Execution Time: 1.380s
+2025-01-15 21:24:22,810 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 18.8%, Core 2: 100.0%, Core 3: 31.2%, Core 4: 0.0%, Core 5: 3.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 21:24:23,225 - INFO - Switched RL control from dqn to ppo
+2025-01-15 21:24:23,225 - INFO - Started profiling ppo agent
+2025-01-15 21:24:23,311 - INFO - Metrics - Overall CPU: 18.1%, Memory: 494.2MB, Execution Time: 0.086s
+2025-01-15 21:24:23,311 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 33.3%, Core 2: 100.0%, Core 3: 15.2%, Core 4: 0.0%, Core 5: 0.0%, Core 6: 0.0%, Core 7: 0.0%
+2025-01-15 21:24:23,825 - INFO - Metrics - Overall CPU: 82.2%, Memory: 497.6MB, Execution Time: 0.600s
+2025-01-15 21:24:23,825 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 28.1%, Core 2: 100.0%, Core 3: 25.0%, Core 4: 3.0%, Core 5: 6.1%, Core 6: 6.1%, Core 7: 15.2%
+2025-01-15 21:24:24,333 - INFO - Metrics - Overall CPU: 92.3%, Memory: 497.7MB, Execution Time: 1.108s
+2025-01-15 21:24:24,333 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 30.3%, Core 2: 100.0%, Core 3: 18.2%, Core 4: 0.0%, Core 5: 6.1%, Core 6: 15.2%, Core 7: 31.4%
+2025-01-15 21:24:24,846 - INFO - Metrics - Overall CPU: 112.6%, Memory: 497.8MB, Execution Time: 1.621s
+2025-01-15 21:24:24,846 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 24.2%, Core 2: 100.0%, Core 3: 39.4%, Core 4: 9.1%, Core 5: 3.0%, Core 6: 6.1%, Core 7: 30.3%
+2025-01-15 21:24:25,359 - INFO - Metrics - Overall CPU: 109.5%, Memory: 498.4MB, Execution Time: 2.135s
+2025-01-15 21:24:25,359 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 27.3%, Core 2: 100.0%, Core 3: 28.6%, Core 4: 21.2%, Core 5: 28.1%, Core 6: 12.5%, Core 7: 12.5%
+2025-01-15 21:24:25,542 - INFO - Switched RL control from ppo to a3c
+2025-01-15 21:24:25,542 - INFO - Started profiling a3c agent
+2025-01-15 21:24:25,869 - INFO - Metrics - Overall CPU: 81.0%, Memory: 498.9MB, Execution Time: 0.328s
+2025-01-15 21:24:25,869 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 46.9%, Core 2: 100.0%, Core 3: 40.6%, Core 4: 6.1%, Core 5: 6.1%, Core 6: 17.6%, Core 7: 33.3%
+2025-01-15 21:24:26,380 - INFO - Metrics - Overall CPU: 88.7%, Memory: 499.1MB, Execution Time: 0.839s
+2025-01-15 21:24:26,380 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 21.9%, Core 2: 100.0%, Core 3: 20.6%, Core 4: 5.9%, Core 5: 5.9%, Core 6: 11.8%, Core 7: 34.3%
+2025-01-15 21:24:26,891 - INFO - Metrics - Overall CPU: 98.0%, Memory: 499.1MB, Execution Time: 1.349s
+2025-01-15 21:24:26,891 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 23.5%, Core 2: 100.0%, Core 3: 18.2%, Core 4: 21.9%, Core 5: 25.0%, Core 6: 40.6%, Core 7: 9.4%
+2025-01-15 21:24:27,401 - INFO - Metrics - Overall CPU: 94.9%, Memory: 499.2MB, Execution Time: 1.860s
+2025-01-15 21:24:27,401 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 25.0%, Core 2: 100.0%, Core 3: 25.0%, Core 4: 6.2%, Core 5: 12.5%, Core 6: 18.2%, Core 7: 31.2%
+2025-01-15 21:24:27,913 - INFO - Metrics - Overall CPU: 119.1%, Memory: 500.1MB, Execution Time: 2.372s
+2025-01-15 21:24:27,913 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 21.2%, Core 2: 100.0%, Core 3: 18.2%, Core 4: 12.1%, Core 5: 21.2%, Core 6: 42.4%, Core 7: 15.2%
+2025-01-15 21:24:28,155 - INFO - Switched RL control from a3c to reinforce
+2025-01-15 21:24:28,155 - INFO - Started profiling reinforce agent
+2025-01-15 21:24:28,425 - INFO - Metrics - Overall CPU: 46.4%, Memory: 500.4MB, Execution Time: 0.269s
+2025-01-15 21:24:28,425 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 39.4%, Core 2: 100.0%, Core 3: 38.2%, Core 4: 0.0%, Core 5: 32.4%, Core 6: 27.0%, Core 7: 17.1%
+2025-01-15 21:24:28,931 - INFO - Metrics - Overall CPU: 123.5%, Memory: 504.0MB, Execution Time: 0.776s
+2025-01-15 21:24:28,931 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 68.8%, Core 2: 100.0%, Core 3: 18.8%, Core 4: 25.8%, Core 5: 9.7%, Core 6: 16.1%, Core 7: 9.7%
+2025-01-15 21:24:29,445 - INFO - Metrics - Overall CPU: 97.3%, Memory: 504.1MB, Execution Time: 1.290s
+2025-01-15 21:24:29,445 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 33.3%, Core 2: 100.0%, Core 3: 24.2%, Core 4: 25.0%, Core 5: 12.1%, Core 6: 15.6%, Core 7: 15.6%
+2025-01-15 21:24:29,953 - INFO - Metrics - Overall CPU: 110.8%, Memory: 504.3MB, Execution Time: 1.797s
+2025-01-15 21:24:29,953 - INFO - Per-Core CPU Usage: Core 0: 100.0%, Core 1: 18.2%, Core 2: 100.0%, Core 3: 30.3%, Core 4: 17.1%, Core 5: 11.8%, Core 6: 17.6%, Core 7: 29.4%
+2025-01-15 21:24:30,403 - INFO - Switched RL control from reinforce to none
+2025-01-15 21:24:30,403 - INFO - Stopped profiling reinforce agent
+2025-01-15 21:24:31,446 - INFO - Network reset to initial state (metrics preserved)
+2025-01-15 21:32:24,944 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 21:32:24,944 - INFO - GPU info: CPU (Available: False)
+2025-01-15 21:32:34,037 - INFO - Created environment with 20 nodes
+2025-01-15 21:32:34,805 - INFO - DQN agent initialized successfully
+2025-01-15 21:32:34,817 - INFO - PPO agent initialized successfully
+2025-01-15 21:32:34,819 - INFO - A3C agent initialized successfully
+2025-01-15 21:32:34,821 - INFO - REINFORCE agent initialized successfully
+2025-01-15 21:32:34,838 - INFO - Hybrid agent initialized successfully
+2025-01-15 21:32:35,331 - INFO - Starting simulation...
+2025-01-15 21:34:51,523 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 21:34:51,523 - INFO - GPU info: CPU (Available: False)
+2025-01-15 21:35:00,621 - INFO - Created environment with 20 nodes
+2025-01-15 21:35:01,380 - INFO - DQN agent initialized successfully
+2025-01-15 21:35:01,389 - INFO - PPO agent initialized successfully
+2025-01-15 21:35:01,389 - INFO - A3C agent initialized successfully
+2025-01-15 21:35:01,389 - INFO - REINFORCE agent initialized successfully
+2025-01-15 21:35:01,413 - INFO - Hybrid agent initialized successfully
+2025-01-15 21:35:01,945 - INFO - Starting simulation...
+2025-01-15 21:35:12,883 - INFO - Anomaly detection enabled
+2025-01-15 21:35:21,885 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:35:22,389 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:35:24,392 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:35:29,487 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:35:30,001 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:35:31,539 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:35:33,570 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:35:34,083 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:35:35,093 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:35:57,827 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 21:35:57,828 - INFO - GPU info: CPU (Available: False)
+2025-01-15 21:36:06,917 - INFO - Created environment with 20 nodes
+2025-01-15 21:36:07,634 - INFO - DQN agent initialized successfully
+2025-01-15 21:36:07,646 - INFO - PPO agent initialized successfully
+2025-01-15 21:36:07,648 - INFO - A3C agent initialized successfully
+2025-01-15 21:36:07,651 - INFO - REINFORCE agent initialized successfully
+2025-01-15 21:36:07,665 - INFO - Hybrid agent initialized successfully
+2025-01-15 21:36:08,177 - INFO - Starting simulation...
+2025-01-15 21:36:53,693 - INFO - Anomaly detection enabled
+2025-01-15 21:37:47,252 - INFO - Starting simulation with config: {'num_nodes': 20, 'seed': None, 'gpu_enabled': False, 'gpu_type': 'CPU'}
+2025-01-15 21:37:47,252 - INFO - GPU info: CPU (Available: False)
+2025-01-15 21:37:56,348 - INFO - Created environment with 20 nodes
+2025-01-15 21:37:57,122 - INFO - DQN agent initialized successfully
+2025-01-15 21:37:57,128 - INFO - PPO agent initialized successfully
+2025-01-15 21:37:57,128 - INFO - A3C agent initialized successfully
+2025-01-15 21:37:57,128 - INFO - REINFORCE agent initialized successfully
+2025-01-15 21:37:57,148 - INFO - Hybrid agent initialized successfully
+2025-01-15 21:37:57,660 - INFO - Starting simulation...
+2025-01-15 21:38:01,647 - INFO - Anomaly detection enabled
+2025-01-15 21:38:10,510 - INFO - Load reduction applied to 1 edges
+2025-01-15 21:38:19,153 - INFO - Load reduction applied to 1 edges
+2025-01-15 21:38:21,690 - INFO - Load reduction applied to 3 edges
+2025-01-15 21:38:22,837 - INFO - Load reduction applied to 3 edges

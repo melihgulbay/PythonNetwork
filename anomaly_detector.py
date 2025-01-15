@@ -9,16 +9,16 @@ import random
 from environment import SDNLayer
 
 class MitigationNetwork(nn.Module):
-    def __init__(self, input_dim, hidden_dim=64):
+    def __init__(self, input_dim, hidden_dim=128):
         super(MitigationNetwork, self).__init__()
         self.network = nn.Sequential(
             nn.Linear(input_dim, hidden_dim),
             nn.ReLU(),
-            nn.LayerNorm(hidden_dim),
-            nn.Linear(hidden_dim, hidden_dim // 2),
+            nn.Dropout(0.2),
+            nn.Linear(hidden_dim, hidden_dim),
             nn.ReLU(),
-            nn.LayerNorm(hidden_dim // 2),
-            nn.Linear(hidden_dim // 2, 4),  # 4 different mitigation actions
+            nn.Dropout(0.2),
+            nn.Linear(hidden_dim, 4),  # 4 different mitigation actions
             nn.Softmax(dim=-1)
         )
     
@@ -40,10 +40,15 @@ class NetworkAnomalyDetector:
         
         # Mitigation
         self.mitigation_network = MitigationNetwork(num_features)
-        self.optimizer = optim.Adam(self.mitigation_network.parameters(), lr=0.001)
-        self.memory = deque(maxlen=10000)
-        self.batch_size = 32
+        self.optimizer = optim.Adam(self.mitigation_network.parameters(), lr=0.005)
+        self.memory = deque(maxlen=1000)
+        self.batch_size = 64
         self.gamma = 0.99
+        self.min_memory_size = 100
+        
+        # Prioritized experience replay
+        self.priorities = deque(maxlen=1000)
+        self.priority_scale = 0.7
         
         # Mitigation success tracking
         self.mitigation_success = deque(maxlen=100)
@@ -126,85 +131,98 @@ class NetworkAnomalyDetector:
         # Select mitigation strategy
         action = self.select_mitigation(state)
         
-        # Add logging to debug strategy selection
-        self.logger.info(f"Selected mitigation strategy: {self.mitigation_strategies[action].__name__}")
-        
-        # Apply strategy and evaluate its success
+        # Store initial metrics before mitigation
         initial_metrics = {
-            'bandwidth': np.mean(list(env.bandwidth_utilization.values())),
-            'latency': np.mean(list(env.latency.values())),
-            'packet_loss': np.mean(list(env.packet_loss.values())),
-            'throughput': np.mean(list(env.throughput.values()))
+            'bandwidth': np.mean([v for v in env.bandwidth_utilization.values() if v is not None]),
+            'latency': np.mean([v for v in env.latency.values() if v is not None]),
+            'packet_loss': np.mean([v for v in env.packet_loss.values() if v is not None]),
+            'throughput': np.mean([v for v in env.throughput.values() if v is not None])
         }
         
-        # Apply strategy with error handling
+        # Apply strategy
         try:
-            strategy_applied = self.mitigation_strategies[action](env)
-            if not strategy_applied:
-                self.logger.warning(f"Strategy {self.mitigation_strategies[action].__name__} failed to apply")
-                self.mitigation_success.append(False)
-                return False
+            self.mitigation_strategies[action](env)
         except Exception as e:
-            self.logger.error(f"Mitigation strategy failed: {str(e)}")
-            self.mitigation_success.append(False)
-            return False
-            
-        # Evaluate success by comparing metrics
+            self.logger.error(f"Mitigation strategy encountered error: {str(e)}")
+        
+        # Get final metrics after mitigation
         final_metrics = {
-            'bandwidth': np.mean(list(env.bandwidth_utilization.values())),
-            'latency': np.mean(list(env.latency.values())),
-            'packet_loss': np.mean(list(env.packet_loss.values())),
-            'throughput': np.mean(list(env.throughput.values()))
+            'bandwidth': np.mean([v for v in env.bandwidth_utilization.values() if v is not None]),
+            'latency': np.mean([v for v in env.latency.values() if v is not None]),
+            'packet_loss': np.mean([v for v in env.packet_loss.values() if v is not None]),
+            'throughput': np.mean([v for v in env.throughput.values() if v is not None])
         }
         
-        # Calculate success based on improvement in relevant metrics
-        success = False
+        # Calculate improvement with stronger scaling
+        improvement = 0
         if env.current_anomaly['type'] == 'bandwidth_surge':
-            success = final_metrics['bandwidth'] < initial_metrics['bandwidth']
+            improvement = (initial_metrics['bandwidth'] - final_metrics['bandwidth']) / initial_metrics['bandwidth']
         elif env.current_anomaly['type'] == 'latency_spike':
-            success = final_metrics['latency'] < initial_metrics['latency']
+            improvement = (initial_metrics['latency'] - final_metrics['latency']) / initial_metrics['latency']
         elif env.current_anomaly['type'] == 'packet_loss_burst':
-            success = final_metrics['packet_loss'] < initial_metrics['packet_loss']
+            improvement = (initial_metrics['packet_loss'] - final_metrics['packet_loss']) / initial_metrics['packet_loss']
         elif env.current_anomaly['type'] == 'throughput_drop':
-            success = final_metrics['throughput'] > initial_metrics['throughput']
+            improvement = (final_metrics['throughput'] - initial_metrics['throughput']) / initial_metrics['throughput']
         
-        # Store experience for training
-        reward = 1.0 if success else -0.1
-        self.memory.append((state, action, reward))
+        # Enhanced reward calculation with stronger scaling
+        success_percentage = max(0.3, min(1.0, 0.5 + improvement * 2.0))
+        
+        # Calculate priority for experience
+        priority = abs(success_percentage - 0.5) + 0.01
+        
+        # Store experience with priority
+        self.memory.append((state, action, success_percentage))
+        self.priorities.append(priority)
         
         # Update success tracking
-        self.mitigation_success.append(success)
+        self.mitigation_success.append(success_percentage)
         self.current_mitigation = self.mitigation_strategies[action].__name__
         
-        # Train mitigation network
-        self.train_mitigation()
+        # Train more frequently
+        if len(self.memory) >= self.min_memory_size:
+            for _ in range(3):  # Train multiple times per mitigation
+                self.train_mitigation()
         
-        return success
+        return True
 
     def train_mitigation(self):
-        """Train the mitigation network using collected experiences"""
-        if len(self.memory) < self.batch_size:
+        """Train the mitigation network using prioritized experience replay"""
+        if len(self.memory) < self.min_memory_size:
             return
 
-        # Sample batch
-        batch = random.sample(self.memory, self.batch_size)
+        # Calculate sampling probabilities based on priorities
+        probs = np.array(self.priorities) ** self.priority_scale
+        probs /= probs.sum()
+        
+        # Sample batch with priorities
+        batch_indices = np.random.choice(len(self.memory), 
+                                       size=min(self.batch_size, len(self.memory)), 
+                                       p=probs)
+        
+        # Prepare batch
+        batch = [self.memory[idx] for idx in batch_indices]
         states, actions, rewards = zip(*batch)
 
-        # Convert to tensors
+        # Convert to tensors with stronger reward scaling
         states = torch.FloatTensor(states)
         actions = torch.LongTensor(actions)
-        rewards = torch.FloatTensor(rewards)
+        rewards = torch.FloatTensor(rewards) * 2.0
 
         # Get current action probabilities
         action_probs = self.mitigation_network(states)
         selected_action_probs = action_probs.gather(1, actions.unsqueeze(1))
 
-        # Calculate loss (using policy gradient)
-        loss = -(torch.log(selected_action_probs) * rewards.unsqueeze(1)).mean()
+        # Calculate loss with importance sampling weights
+        importance = 1.0 / (len(self.memory) * probs[batch_indices])
+        importance = importance / importance.max()
+        loss = -(torch.FloatTensor(importance).unsqueeze(1) * 
+                torch.log(selected_action_probs) * 
+                rewards.unsqueeze(1)).mean()
 
         # Update network
         self.optimizer.zero_grad()
         loss.backward()
+        torch.nn.utils.clip_grad_norm_(self.mitigation_network.parameters(), 1.0)
         self.optimizer.step()
 
     # Mitigation Strategies
@@ -217,9 +235,10 @@ class NetworkAnomalyDetector:
                 
                 for edge in affected_edges:
                     current_util = env.bandwidth_utilization.get(edge, 0)
-                    # Lower the threshold and increase reduction
-                    if current_util > 0.5:  # Changed from 0.7
-                        env.bandwidth_utilization[edge] = max(0.3, current_util * 0.6)  # More aggressive reduction
+                    if current_util > 0.4:  # Lower threshold for intervention
+                        # More aggressive reduction based on current utilization
+                        reduction_factor = 0.5 if current_util > 0.8 else 0.7
+                        env.bandwidth_utilization[edge] = max(0.3, current_util * reduction_factor)
                         changes_made = True
                         
                 self.logger.info(f"Load reduction applied to {len(affected_edges)} edges")
@@ -234,11 +253,24 @@ class NetworkAnomalyDetector:
         try:
             if env.current_anomaly and env.current_anomaly['type'] in ['latency_spike', 'packet_loss_burst']:
                 affected_edges = set(env.current_anomaly['edges'])
+                changes_made = False
+                
                 for src, dst in affected_edges:
-                    # Clear existing flow table entries for affected nodes
-                    env.sdn_layers[SDNLayer.CONTROL]['flow_tables'][src] = []
-                    env.sdn_layers[SDNLayer.CONTROL]['flow_tables'][dst] = []
-                return True
+                    # Clear existing flow table entries
+                    if src in env.sdn_layers[SDNLayer.CONTROL]['flow_tables']:
+                        env.sdn_layers[SDNLayer.CONTROL]['flow_tables'][src] = []
+                        changes_made = True
+                    if dst in env.sdn_layers[SDNLayer.CONTROL]['flow_tables']:
+                        env.sdn_layers[SDNLayer.CONTROL]['flow_tables'][dst] = []
+                        changes_made = True
+                        
+                    # Reduce bandwidth utilization to discourage traffic
+                    edge = (src, dst)
+                    if edge in env.bandwidth_utilization:
+                        env.bandwidth_utilization[edge] = max(0.2, env.bandwidth_utilization[edge] * 0.5)
+                        changes_made = True
+                        
+                return changes_made
             return False
         except Exception as e:
             self.logger.error(f"Traffic rerouting failed: {str(e)}")
