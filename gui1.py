@@ -1,18 +1,22 @@
 import tkinter as tk
 from tkinter import ttk
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import numpy as np
 import random
-import networkx as nx
 from collections import deque
 import time
 import logging
 import tkinter.messagebox as messagebox
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
 from environment import SDNLayer
 from anomaly_detector import NetworkAnomalyDetector
 from agents import DQNAgent, PPOAgent, A3CAgent, REINFORCEAgent, HybridAgent
 from traffic_classification import TrafficClassifier
+from gui1_visualizations import NetworkVisualizer, PerformanceVisualizer, TrafficVisualizer
+from network_editor import NetworkEditor
+from tutorial import TutorialWindow
+from agent_profiler import AgentProfiler
 
 class NetworkVisualizerGUI:
     def __init__(self, env, dqn_agent, ppo_agent, a3c_agent, reinforce_agent, hybrid_agent):
@@ -41,10 +45,10 @@ class NetworkVisualizerGUI:
         # Set window size and position
         self.root.geometry(f"{window_width}x{window_height}+{position_x}+{position_y}")
         
-        # Create main frame with scrollbar
+        # Create main frame first
         self.main_frame = ttk.Frame(self.root)
         self.main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
-        
+
         # Configure root grid
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
@@ -70,9 +74,75 @@ class NetworkVisualizerGUI:
         self.main_frame.columnconfigure(0, weight=1)
         self.main_frame.rowconfigure(0, weight=1)
         
-        # Add control panel to scrollable frame
+        # Create simulation control frame at the top of scrollable frame
+        self.sim_control_frame = ttk.Frame(self.scrollable_frame)
+        self.sim_control_frame.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
+        
+        # Add simulation control button
+        self.sim_running = True
+        self.sim_button = ttk.Button(
+            self.sim_control_frame,
+            text="Stop Simulation",
+            command=self.toggle_simulation
+        )
+        self.sim_button.grid(row=0, column=0, padx=5)
+        
+        # Add tutorial button
+        self.tutorial_button = ttk.Button(
+            self.sim_control_frame,
+            text="Tutorial",
+            command=self.open_tutorial
+        )
+        self.tutorial_button.grid(row=0, column=2, padx=5)
+        
+        # Update grid configuration to maintain layout
+        self.sim_control_frame.columnconfigure(2, weight=0)  # Don't expand tutorial button
+        self.sim_control_frame.columnconfigure(3, weight=1)  # Make the space after buttons expand
+        
+        # Add step slider
+        self.step_frame = ttk.Frame(self.sim_control_frame)
+        self.step_frame.grid(row=0, column=1, sticky=(tk.W, tk.E), padx=5)
+        
+        ttk.Label(self.step_frame, text="Revert Steps:").grid(row=0, column=0, padx=5)
+        
+        self.step_var = tk.IntVar(value=0)
+        self.step_slider = ttk.Scale(
+            self.step_frame,
+            from_=0,
+            to=100,  # Maximum steps to revert
+            orient='horizontal',
+            variable=self.step_var,
+            command=self.update_step_display,
+            state='disabled'
+        )
+        self.step_slider.grid(row=0, column=1, padx=5)
+        
+        self.step_label = ttk.Label(self.step_frame, text="0")
+        self.step_label.grid(row=0, column=2, padx=5)
+        
+        self.revert_button = ttk.Button(
+            self.step_frame,
+            text="Revert",
+            command=self.revert_steps,
+            state='disabled'
+        )
+        self.revert_button.grid(row=0, column=3, padx=5)
+        
+        # Make step frame expandable
+        self.sim_control_frame.columnconfigure(1, weight=1)
+        self.step_frame.columnconfigure(1, weight=1)
+        
+        # Store simulation history
+        self.history_buffer_size = 100
+        self.sim_history = deque(maxlen=self.history_buffer_size)
+        
+        # Adjust main_frame grid position to row=1 (instead of 0)
+        self.main_frame = ttk.Frame(self.root)
+        self.main_frame.grid(row=1, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
+        
+        # Add control panel to scrollable frame (now after sim controls)
         self.control_panel = ttk.Frame(self.scrollable_frame)
-        self.control_panel.grid(row=0, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
+        self.control_panel.grid(row=1, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
         
         # Add RL controls
         self.rl_control_var = tk.StringVar(value="none")
@@ -147,7 +217,7 @@ class NetworkVisualizerGUI:
         
         # Add traffic control slider after the control panel
         self.traffic_frame = ttk.LabelFrame(self.scrollable_frame, text="Traffic Control", padding="5")
-        self.traffic_frame.grid(row=1, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
+        self.traffic_frame.grid(row=2, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
         
         # Traffic multiplier slider
         self.traffic_multiplier = tk.DoubleVar(value=1.0)
@@ -177,7 +247,7 @@ class NetworkVisualizerGUI:
 
         # Create statistics display
         self.stats_frame = ttk.LabelFrame(self.scrollable_frame, text="Network Statistics", padding="5")
-        self.stats_frame.grid(row=2, column=0, sticky=(tk.W, tk.E), pady=10)
+        self.stats_frame.grid(row=6, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), pady=10, padx=10)
         
         self.stats_labels = {}
         stats = [
@@ -196,23 +266,34 @@ class NetworkVisualizerGUI:
             "Queue Length (P3)"
         ]
         
+        # Create a frame inside stats_frame to hold the labels
+        stats_content = ttk.Frame(self.stats_frame)
+        stats_content.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S), padx=5, pady=5)
+        
+        # Configure grid weights for stats_frame
+        self.stats_frame.columnconfigure(0, weight=1)
+        
+        # Add labels with better spacing and alignment
         for i, stat in enumerate(stats):
-            ttk.Label(self.stats_frame, text=f"{stat}:").grid(row=i, column=0, sticky=tk.W)
-            self.stats_labels[stat] = ttk.Label(self.stats_frame, text="0.0")
-            self.stats_labels[stat].grid(row=i, column=1, padx=5)
-        
+            ttk.Label(stats_content, text=f"{stat}:", anchor="w").grid(
+                row=i, column=0, sticky=tk.W, padx=(5,10), pady=2
+            )
+            self.stats_labels[stat] = ttk.Label(stats_content, text="0.0", anchor="e")
+            self.stats_labels[stat].grid(
+                row=i, column=1, sticky=tk.E, padx=5, pady=2
+            )
+            
+        # Configure grid weights for stats_content
+        stats_content.columnconfigure(1, weight=1)
+
         # Create network visualization
-        self.figure, self.ax = plt.subplots(figsize=(12, 8))
-        self.plot_canvas = FigureCanvasTkAgg(self.figure, master=self.scrollable_frame)
-        self.plot_canvas.get_tk_widget().grid(row=3, column=0, pady=10, padx=10)
-        
-        # Initialize colorbar
-        self.sm = plt.cm.ScalarMappable(cmap=plt.cm.RdYlGn_r, norm=plt.Normalize(0, 1))
-        self.colorbar = plt.colorbar(self.sm, ax=self.ax, label='Bandwidth Utilization')
+        self.network_viz = NetworkVisualizer(self.scrollable_frame)
+        # The plot_canvas is already created in NetworkVisualizer
+        # No need to call grid() on network_viz itself
         
         # Add packet information frame
         self.packet_frame = ttk.LabelFrame(self.scrollable_frame, text="Packet Information", padding="5")
-        self.packet_frame.grid(row=4, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
+        self.packet_frame.grid(row=8, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
         
         # Add text widget for packet information
         self.packet_text = tk.Text(self.packet_frame, height=8, width=80)
@@ -226,7 +307,7 @@ class NetworkVisualizerGUI:
 
         # Add performance comparison frame
         self.performance_frame = ttk.LabelFrame(self.scrollable_frame, text="Agent Performance Comparison", padding="5")
-        self.performance_frame.grid(row=5, column=0, sticky=(tk.W, tk.E), pady=10)
+        self.performance_frame.grid(row=9, column=0, sticky=(tk.W, tk.E), pady=10)
 
         # Create performance plot with 4 subplots
         self.perf_figure, ((self.reward_ax, self.delivery_ax), 
@@ -320,7 +401,7 @@ class NetworkVisualizerGUI:
 
         # Add anomaly detection frame with more detailed information
         self.anomaly_frame = ttk.LabelFrame(self.scrollable_frame, text="Anomaly Detection", padding="5")
-        self.anomaly_frame.grid(row=6, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
+        self.anomaly_frame.grid(row=10, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
         
         # Create a frame for anomaly controls and basic status
         self.anomaly_controls = ttk.Frame(self.anomaly_frame)
@@ -355,7 +436,7 @@ class NetworkVisualizerGUI:
 
         # Add mitigation controls to anomaly frame
         self.mitigation_frame = ttk.LabelFrame(self.anomaly_frame, text="Anomaly Mitigation", padding="5")
-        self.mitigation_frame.grid(row=2, column=0, sticky=(tk.W, tk.E), pady=5)
+        self.mitigation_frame.grid(row=11, column=0, sticky=(tk.W, tk.E), pady=5)
         
         # Add auto-mitigation toggle
         self.auto_mitigate_var = tk.BooleanVar(value=False)
@@ -387,29 +468,123 @@ class NetworkVisualizerGUI:
         # Initialize traffic classifier
         self.traffic_classifier = TrafficClassifier()
         
-        # Add traffic classification frame
+        # Add traffic classification frame with pie charts
         self.traffic_frame = ttk.LabelFrame(self.scrollable_frame, text="Traffic Classification", padding="5")
-        self.traffic_frame.grid(row=7, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
+        self.traffic_frame.grid(row=12, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
+        
+        # Create frame for controls and pie charts
+        self.traffic_controls = ttk.Frame(self.traffic_frame)
+        self.traffic_controls.grid(row=0, column=0, sticky=(tk.W, tk.E))
         
         # Add traffic classification toggle
         self.traffic_var = tk.BooleanVar(value=False)
         self.traffic_toggle = ttk.Checkbutton(
-            self.traffic_frame,
+            self.traffic_controls,
             text="Enable Traffic Classification",
             variable=self.traffic_var,
             command=self.toggle_traffic_classification
         )
         self.traffic_toggle.grid(row=0, column=0, padx=5)
         
-        # Add traffic information text widget
+        # Add edge selection combobox
+        self.edge_var = tk.StringVar()
+        self.edge_selector = ttk.Combobox(
+            self.traffic_controls,
+            textvariable=self.edge_var,
+            state='readonly',
+            width=30
+        )
+        self.edge_selector.grid(row=0, column=1, padx=5)
+        self.edge_selector.bind('<<ComboboxSelected>>', self.update_traffic_charts)
+        
+        # Create figures for pie charts
+        self.traffic_figure = Figure(figsize=(12, 4))
+        self.overall_ax = self.traffic_figure.add_subplot(121)
+        self.edge_ax = self.traffic_figure.add_subplot(122)
+        
+        # Add canvas for pie charts
+        self.traffic_canvas = FigureCanvasTkAgg(self.traffic_figure, master=self.traffic_frame)
+        self.traffic_canvas.get_tk_widget().grid(row=1, column=0, pady=5)
+        
+        # Add text widget for detailed stats
         self.traffic_text = tk.Text(self.traffic_frame, height=6, width=80)
-        self.traffic_text.grid(row=1, column=0, sticky=(tk.W, tk.E), padx=5, pady=5)
+        self.traffic_text.grid(row=2, column=0, sticky=(tk.W, tk.E), padx=5, pady=5)
         
         # Add scrollbar for traffic text
         traffic_scrollbar = ttk.Scrollbar(self.traffic_frame, orient="vertical", 
                                         command=self.traffic_text.yview)
-        traffic_scrollbar.grid(row=1, column=1, sticky=(tk.N, tk.S))
+        traffic_scrollbar.grid(row=2, column=1, sticky=(tk.N, tk.S))
         self.traffic_text.configure(yscrollcommand=traffic_scrollbar.set)
+
+        # Replace the matplotlib/visualization setup with:
+        self.network_viz = NetworkVisualizer(self.scrollable_frame)
+        self.performance_viz = PerformanceVisualizer(self.performance_frame)
+        self.traffic_viz = TrafficVisualizer(self.traffic_frame)
+        
+        # Add Node History frame after traffic frame
+        self.node_history_frame = ttk.LabelFrame(self.scrollable_frame, text="Node History", padding="5")
+        self.node_history_frame.grid(row=13, column=0, sticky=(tk.W, tk.E), pady=5, padx=10)
+        
+        # Add node selection controls
+        self.node_controls = ttk.Frame(self.node_history_frame)
+        self.node_controls.grid(row=0, column=0, sticky=(tk.W, tk.E))
+        
+        # Add node selector
+        ttk.Label(self.node_controls, text="Select Node:").grid(row=0, column=0, padx=5)
+        self.node_var = tk.StringVar()
+        self.node_selector = ttk.Combobox(
+            self.node_controls,
+            textvariable=self.node_var,
+            state='readonly',
+            width=10
+        )
+        self.node_selector.grid(row=0, column=1, padx=5)
+        self.node_selector['values'] = list(range(self.env.num_nodes))
+        self.node_selector.bind('<<ComboboxSelected>>', self.update_node_history)
+        
+        # Add history length control
+        ttk.Label(self.node_controls, text="History Length:").grid(row=0, column=2, padx=5)
+        self.history_length_var = tk.StringVar(value="100")
+        history_length = ttk.Entry(
+            self.node_controls,
+            textvariable=self.history_length_var,
+            width=10
+        )
+        history_length.grid(row=0, column=3, padx=5)
+        
+        # Create figure for node history
+        self.node_figure = Figure(figsize=(12, 6))
+        self.node_figure.subplots_adjust(hspace=0.3)
+        
+        # Create subplots for different metrics
+        self.bandwidth_ax = self.node_figure.add_subplot(221)
+        self.latency_ax = self.node_figure.add_subplot(222)
+        self.packet_loss_ax = self.node_figure.add_subplot(223)
+        self.throughput_ax = self.node_figure.add_subplot(224)
+        
+        # Add canvas for node history plots
+        self.node_canvas = FigureCanvasTkAgg(self.node_figure, master=self.node_history_frame)
+        self.node_canvas.get_tk_widget().grid(row=1, column=0, pady=5)
+        
+        # Initialize node history storage
+        self.node_history = {
+            node: {
+                'bandwidth': deque(maxlen=1000),
+                'latency': deque(maxlen=1000),
+                'packet_loss': deque(maxlen=1000),
+                'throughput': deque(maxlen=1000),
+                'timestamp': deque(maxlen=1000)
+            } for node in range(self.env.num_nodes)
+        }
+        
+        # Initialize timestamp counter
+        self.history_timestamp = 0
+
+        # Add network editor after node history frame
+        self.network_editor = NetworkEditor(self)
+
+        # Add agent profiler
+        self.agent_profiler = AgentProfiler()
 
         self.update()
 
@@ -442,6 +617,12 @@ class NetworkVisualizerGUI:
         if previous_rl_type != self.rl_type:
             logging.info(f"Switched RL control from {previous_rl_type} to {self.rl_type}")
 
+        # Start/stop profiling based on RL state
+        if self.rl_type != "none":
+            self.agent_profiler.start_profiling(self.rl_type)
+        else:
+            self.agent_profiler.stop_profiling()
+
     def update_hybrid_agent(self, metric):
         """Update hybrid agent's metric assignment"""
         if hasattr(self, 'hybrid_controller'):
@@ -456,88 +637,103 @@ class NetworkVisualizerGUI:
         if current_time - self.last_update_time < self.update_interval:
             self.root.after(10, self.update)
             return
+        
+        if self.sim_running:
+            # Store current state in history before updating
+            self.sim_history.append(self.env.save_state())  # Use save_state instead of _get_state
             
-        # Get current state and take action if RL is enabled
-        state = self.env._get_state()  # Always get state for metrics
-        
-        if self.rl_enabled:
-            if self.rl_type == "hybrid":
-                action = self.hybrid_controller.select_action(state)
-                next_state, reward, done, info = self.env.step(action)
-                self.hybrid_controller.store_transition(state, action, reward, next_state, done)
-                self.hybrid_controller.train()
-                self.update_performance_metrics(info, reward)
-            elif self.rl_type == "dqn":
-                action = self.dqn_controller.select_action(state)
-                next_state, reward, done, info = self.env.step(action)
-                self.dqn_controller.store_transition(state, action, reward, next_state, done)
-                self.dqn_controller.train()
-                self.update_performance_metrics(info, reward)
-            elif self.rl_type == "ppo":
-                action, log_prob = self.ppo_controller.select_action(state)
-                next_state, reward, done, info = self.env.step(action)
-                self.ppo_controller.store_transition(state, action, reward, next_state, done, log_prob)
-                self.ppo_controller.train()
-                self.update_performance_metrics(info, reward)
-            elif self.rl_type == "a3c":
-                action = self.a3c_controller.select_action(state)
-                next_state, reward, done, info = self.env.step(action)
-                self.a3c_controller.store_transition(state, action, reward, next_state, done)
-                self.a3c_controller.train()
-                self.update_performance_metrics(info, reward)
-            elif self.rl_type == "reinforce":
-                action = self.reinforce_controller.select_action(state)
-                next_state, reward, done, info = self.env.step(action)
-                self.reinforce_controller.store_transition(state, action, reward, next_state, done)
-                self.reinforce_controller.train()
-                self.update_performance_metrics(info, reward)
-        else:
-            # Even when RL is disabled, we should still step the environment
-            _, _, _, info = self.env.step(0)  # Use default action or random action
-            self.update_performance_metrics(info, 0)  # Update metrics with 0 reward
-        
-        # Always update visualizations regardless of RL state
-        self.update_network_visualization()
-        self.update_stats()
-        self.update_packet_info()
-        self.plot_performance_comparison()
-        
-        # Update anomaly status
-        self.update_anomaly_status()
-        
-        # Spawn and apply anomalies
-        if self.env.anomaly_detector_enabled:
-            self.env._spawn_anomaly()
-            if self.env.anomaly_active:
-                self.env._apply_anomaly_effects()
-        
-        # Handle auto-mitigation
-        if self.env.anomaly_active and self.auto_mitigate_var.get():
-            metrics = {
-                'bandwidth': np.mean(list(self.env.bandwidth_utilization.values())),
-                'latency': np.mean(list(self.env.latency.values())),
-                'packet_loss': np.mean(list(self.env.packet_loss.values())),
-                'throughput': np.mean(list(self.env.throughput.values()))
-            }
-            success = self.anomaly_detector.mitigate(metrics, self.env)
-            status = "Auto-mitigation active" if success else "Auto-mitigation failed"
-            self.mitigation_status.config(text=f"Status: {status}")
-        
-        # Add traffic classification update
-        if self.traffic_var.get():
-            for packet in self.env.packets:
-                if len(packet.path) >= 2:
-                    edge = (packet.path[-2], packet.path[-1])
-                    if edge not in self.env.network.edges():
-                        edge = (edge[1], edge[0])
-                    if edge in self.env.network.edges():
-                        self.traffic_classifier.update_edge_traffic(edge, packet)
+            # Get observation state for RL
+            state = self.env._get_state()
             
-            # Update traffic info periodically
-            current_time = time.time()
-            if current_time - getattr(self, '_last_traffic_update', 0) > 1.0:
-                self.update_traffic_info()
-                self._last_traffic_update = current_time
+            if self.rl_enabled:
+                # Record metrics before processing RL actions
+                self.agent_profiler.record_metrics()
+                
+                if self.rl_type == "hybrid":
+                    action = self.hybrid_controller.select_action(state)
+                    next_state, reward, done, info = self.env.step(action)
+                    self.hybrid_controller.store_transition(state, action, reward, next_state, done)
+                    self.hybrid_controller.train()
+                    self.update_performance_metrics(info, reward)
+                elif self.rl_type == "dqn":
+                    action = self.dqn_controller.select_action(state)
+                    next_state, reward, done, info = self.env.step(action)
+                    self.dqn_controller.store_transition(state, action, reward, next_state, done)
+                    self.dqn_controller.train()
+                    self.update_performance_metrics(info, reward)
+                elif self.rl_type == "ppo":
+                    action, log_prob = self.ppo_controller.select_action(state)
+                    next_state, reward, done, info = self.env.step(action)
+                    self.ppo_controller.store_transition(state, action, reward, next_state, done, log_prob)
+                    self.ppo_controller.train()
+                    self.update_performance_metrics(info, reward)
+                elif self.rl_type == "a3c":
+                    action = self.a3c_controller.select_action(state)
+                    next_state, reward, done, info = self.env.step(action)
+                    self.a3c_controller.store_transition(state, action, reward, next_state, done)
+                    self.a3c_controller.train()
+                    self.update_performance_metrics(info, reward)
+                elif self.rl_type == "reinforce":
+                    action = self.reinforce_controller.select_action(state)
+                    next_state, reward, done, info = self.env.step(action)
+                    self.reinforce_controller.store_transition(state, action, reward, next_state, done)
+                    self.reinforce_controller.train()
+                    self.update_performance_metrics(info, reward)
+            else:
+                # Even when RL is disabled, we should still step the environment
+                _, _, _, info = self.env.step(0)  # Use default action or random action
+                self.update_performance_metrics(info, 0)  # Update metrics with 0 reward
+            
+            # Always update visualizations regardless of RL state
+            self.update_network_visualization()
+            self.update_stats()
+            self.update_packet_info()
+            self.plot_performance_comparison()
+            
+            # Update anomaly status
+            self.update_anomaly_status()
+            
+            # Spawn and apply anomalies
+            if self.env.anomaly_detector_enabled:
+                self.env._spawn_anomaly()
+                if self.env.anomaly_active:
+                    self.env._apply_anomaly_effects()
+            
+            # Handle auto-mitigation
+            if self.env.anomaly_active and self.auto_mitigate_var.get():
+                metrics = {
+                    'bandwidth': np.mean(list(self.env.bandwidth_utilization.values())),
+                    'latency': np.mean(list(self.env.latency.values())),
+                    'packet_loss': np.mean(list(self.env.packet_loss.values())),
+                    'throughput': np.mean(list(self.env.throughput.values()))
+                }
+                success = self.anomaly_detector.mitigate(metrics, self.env)
+                status = "Auto-mitigation active" if success else "Auto-mitigation failed"
+                self.mitigation_status.config(text=f"Status: {status}")
+            
+            # Add traffic classification update
+            if self.traffic_var.get():
+                for packet in self.env.packets:
+                    if len(packet.path) >= 2:
+                        edge = (packet.path[-2], packet.path[-1])
+                        if edge not in self.env.network.edges():
+                            edge = (edge[1], edge[0])
+                        if edge in self.env.network.edges():
+                            self.traffic_classifier.update_edge_traffic(edge, packet)
+            
+            # Update traffic visualization directly without requiring edge reselection
+            selected_edge = None
+            if self.edge_var.get():
+                edge_str = self.edge_var.get()
+                u, v = map(int, edge_str.split('->'))
+                selected_edge = (u, v)
+            self.traffic_viz.update_visualization(self.traffic_classifier, self.env, selected_edge)
+            self.update_traffic_info()
+            
+            # Update node history
+            self.update_node_metrics()
+            if self.node_var.get():
+                self.update_node_history()
         
         self.last_update_time = current_time
         self.root.after(10, self.update)
@@ -605,101 +801,29 @@ class NetworkVisualizerGUI:
         # Display active packets
         self.packet_text.insert(tk.END, "Active Packets:\n")
         for packet in self.env.packets[:10]:  # Show first 10 packets
+            # Get protocol name (remove 'Protocol.' prefix)
+            protocol_name = packet.protocol.value.upper()
+            
+            # Add protocol info and format with more details
             self.packet_text.insert(tk.END, 
                 f"Packet {packet.creation_time}: {packet.source}->{packet.destination} "
-                f"({packet.packet_type}, Size: {packet.size} bytes, Priority: {packet.priority})\n")
+                f"({packet.packet_type}, {protocol_name}, Size: {packet.size} bytes, Priority: {packet.priority})\n"
+                f"    Protocol State: Window={packet.protocol_state['window_size']}, "
+                f"Retries={packet.protocol_state['retransmission_count']}, "
+                f"Connected={packet.protocol_state['connection_established']}\n"
+            )
         
         # Display statistics
         self.packet_text.insert(tk.END, "\nStatistics:\n")
         self.packet_text.insert(tk.END, 
             f"Total Active: {len(self.env.packets)}\n"
             f"Delivered: {len(self.env.delivered_packets)}\n"
-            f"Dropped: {len(self.env.dropped_packets)}\n")
+            f"Dropped: {len(self.env.dropped_packets)}\n"
+        )
 
     def update_network_visualization(self):
-        """Update network visualization with anomaly highlighting"""
-        self.ax.clear()
-        
-        # Get node positions
-        pos = nx.get_node_attributes(self.env.network, 'pos')
-        if not pos:
-            pos = nx.spring_layout(self.env.network)
-        
-        # Draw normal edges first
-        normal_edges = []
-        anomaly_edges = []
-        
-        if self.env.anomaly_active and self.env.current_anomaly:
-            anomaly_edges = self.env.current_anomaly['edges']
-            normal_edges = [e for e in self.env.network.edges() if e not in anomaly_edges]
-        else:
-            normal_edges = list(self.env.network.edges())
-        
-        # Draw normal edges
-        edge_colors = []
-        for edge in normal_edges:
-            utilization = self.env.bandwidth_utilization.get(edge, 0.5)
-            edge_colors.append(utilization)
-        
-        nx.draw_networkx_edges(self.env.network, pos, ax=self.ax,
-                             edgelist=normal_edges,
-                             edge_color=edge_colors,
-                             edge_cmap=plt.cm.RdYlGn_r,
-                             width=2)
-        
-        # Draw anomaly edges with red color and dashed style
-        if anomaly_edges:
-            nx.draw_networkx_edges(self.env.network, pos, ax=self.ax,
-                                 edgelist=anomaly_edges,
-                                 edge_color='red',
-                                 style='dashed',
-                                 width=3)
-        
-        # Draw active paths
-        active_edges = set()
-        for packet in self.env.packets:
-            if len(packet.path) > 1:
-                for i in range(len(packet.path) - 1):
-                    active_edges.add((packet.path[i], packet.path[i + 1]))
-                    active_edges.add((packet.path[i + 1], packet.path[i]))
-        
-        # Draw active paths with blue color
-        active_path_edges = [(u, v) for (u, v) in self.env.network.edges() 
-                           if (u, v) in active_edges or (v, u) in active_edges]
-        if active_path_edges:
-            nx.draw_networkx_edges(self.env.network, pos, ax=self.ax,
-                                 edgelist=active_path_edges,
-                                 edge_color='blue',
-                                 width=2,
-                                 alpha=0.7)
-        
-        # Draw nodes and labels
-        nx.draw_networkx_nodes(self.env.network, pos, ax=self.ax,
-                             node_color='lightblue',
-                             node_size=500,
-                             edgecolors='black',
-                             linewidths=1)
-        
-        nx.draw_networkx_labels(self.env.network, pos, ax=self.ax,
-                              font_size=10,
-                              font_weight='bold')
-        
-        # Update title with anomaly information
-        title = "Network Topology\n"
-        if self.env.anomaly_active and self.env.current_anomaly:
-            title += f"Anomaly detected: {self.env.current_anomaly['type']}\n"
-            title += "Red dashed lines indicate affected edges"
-        else:
-            title += "Blue lines indicate active packet transfers"
-        
-        self.ax.set_title(title, pad=20, fontsize=12)
-        self.ax.set_axis_off()
-        
-        # Update colorbar
-        self.sm.set_array([])
-        self.colorbar.update_normal(self.sm)
-        
-        self.plot_canvas.draw()
+        """Update network visualization"""
+        self.network_viz.update_visualization(self.env)
 
     def update_performance_metrics(self, info, reward):
         """Update performance metrics based on the agent type"""
@@ -725,146 +849,25 @@ class NetworkVisualizerGUI:
     def plot_performance_comparison(self):
         """Plot performance comparison between all agents"""
         # Skip if no new data
-        if not self.dqn_performance['rewards'] and not self.ppo_performance['rewards'] and not self.a3c_performance['rewards'] and not self.reinforce_performance['rewards']:
+        if not self.dqn_performance['rewards'] and not self.ppo_performance['rewards'] and \
+           not self.a3c_performance['rewards'] and not self.reinforce_performance['rewards']:
             return
         
-        # Clear all axes
-        self.reward_ax.clear()
-        self.delivery_ax.clear()
-        self.latency_ax.clear()
-        self.throughput_ax.clear()
+        performance_data = {
+            'DQN': self.dqn_performance,
+            'PPO': self.ppo_performance,
+            'A3C': self.a3c_performance,
+            'REINFORCE': self.reinforce_performance
+        }
         
-        # Track if we have data to show legends
-        has_dqn_data = len(self.dqn_performance['rewards']) > 0
-        has_ppo_data = len(self.ppo_performance['rewards']) > 0
-        has_a3c_data = len(self.a3c_performance['rewards']) > 0
-        has_reinforce_data = len(self.reinforce_performance['rewards']) > 0
-        
-        # Plot data with reduced number of points for performance
-        def downsample(data, target_size=100):
-            if len(data) == 0:
-                return []
-            data_list = list(data)
-            if len(data_list) > target_size:
-                indices = np.linspace(0, len(data_list) - 1, target_size, dtype=int)
-                return [data_list[i] for i in indices]
-            return data_list
-        
-        # Create dynamic x-axis range based on data length
         max_length = max(
             len(self.dqn_performance['rewards']),
             len(self.ppo_performance['rewards']),
             len(self.a3c_performance['rewards']),
             len(self.reinforce_performance['rewards'])
         )
-        if max_length == 0:
-            return
         
-        # Create x range that matches the actual data points
-        x_range = np.arange(max_length)
-        
-        # Plot rewards for each agent with different colors
-        if has_dqn_data:
-            dqn_rewards = downsample(self.dqn_performance['rewards'])
-            dqn_x = np.linspace(0, max_length-1, len(dqn_rewards))
-            self.reward_ax.plot(dqn_x, dqn_rewards, label='DQN', color='blue')
-        if has_ppo_data:
-            ppo_rewards = downsample(self.ppo_performance['rewards'])
-            ppo_x = np.linspace(0, max_length-1, len(ppo_rewards))
-            self.reward_ax.plot(ppo_x, ppo_rewards, label='PPO', color='red')
-        if has_a3c_data:
-            a3c_rewards = downsample(self.a3c_performance['rewards'])
-            a3c_x = np.linspace(0, max_length-1, len(a3c_rewards))
-            self.reward_ax.plot(a3c_x, a3c_rewards, label='A3C', color='green')
-        if has_reinforce_data:
-            reinforce_rewards = downsample(self.reinforce_performance['rewards'])
-            reinforce_x = np.linspace(0, max_length-1, len(reinforce_rewards))
-            self.reward_ax.plot(reinforce_x, reinforce_rewards, label='REINFORCE', color='purple')
-        self.reward_ax.set_title('Cumulative Rewards', fontsize=8)
-        self.reward_ax.set_xlabel('Steps', fontsize=8)
-        self.reward_ax.set_ylabel('Reward', fontsize=8)
-        self.reward_ax.tick_params(labelsize=8)
-        if has_dqn_data or has_ppo_data or has_a3c_data or has_reinforce_data:
-            self.reward_ax.legend(fontsize=8)
-        
-        # Plot delivery rates
-        if has_dqn_data:
-            dqn_delivery = downsample(self.dqn_performance['packet_delivery_rate'])
-            dqn_x = np.linspace(0, max_length-1, len(dqn_delivery))
-            self.delivery_ax.plot(dqn_x, dqn_delivery, label='DQN', color='blue')
-        if has_ppo_data:
-            ppo_delivery = downsample(self.ppo_performance['packet_delivery_rate'])
-            ppo_x = np.linspace(0, max_length-1, len(ppo_delivery))
-            self.delivery_ax.plot(ppo_x, ppo_delivery, label='PPO', color='red')
-        if has_a3c_data:
-            a3c_delivery = downsample(self.a3c_performance['packet_delivery_rate'])
-            a3c_x = np.linspace(0, max_length-1, len(a3c_delivery))
-            self.delivery_ax.plot(a3c_x, a3c_delivery, label='A3C', color='green')
-        if has_reinforce_data:
-            reinforce_delivery = downsample(self.reinforce_performance['packet_delivery_rate'])
-            reinforce_x = np.linspace(0, max_length-1, len(reinforce_delivery))
-            self.delivery_ax.plot(reinforce_x, reinforce_delivery, label='REINFORCE', color='purple')
-        self.delivery_ax.set_title('Packet Delivery Rate', fontsize=8)
-        self.delivery_ax.set_xlabel('Steps', fontsize=8)
-        self.delivery_ax.set_ylabel('Delivery Rate', fontsize=8)
-        self.delivery_ax.tick_params(labelsize=8)
-        if has_dqn_data or has_ppo_data or has_a3c_data or has_reinforce_data:
-            self.delivery_ax.legend(fontsize=8)
-        
-        # Plot latency
-        if has_dqn_data:
-            dqn_latency = downsample(self.dqn_performance['average_latency'])
-            dqn_x = np.linspace(0, max_length-1, len(dqn_latency))
-            self.latency_ax.plot(dqn_x, dqn_latency, label='DQN', color='blue')
-        if has_ppo_data:
-            ppo_latency = downsample(self.ppo_performance['average_latency'])
-            ppo_x = np.linspace(0, max_length-1, len(ppo_latency))
-            self.latency_ax.plot(ppo_x, ppo_latency, label='PPO', color='red')
-        if has_a3c_data:
-            a3c_latency = downsample(self.a3c_performance['average_latency'])
-            a3c_x = np.linspace(0, max_length-1, len(a3c_latency))
-            self.latency_ax.plot(a3c_x, a3c_latency, label='A3C', color='green')
-        if has_reinforce_data:
-            reinforce_latency = downsample(self.reinforce_performance['average_latency'])
-            reinforce_x = np.linspace(0, max_length-1, len(reinforce_latency))
-            self.latency_ax.plot(reinforce_x, reinforce_latency, label='REINFORCE', color='purple')
-        self.latency_ax.set_title('Average Latency', fontsize=8)
-        self.latency_ax.set_xlabel('Steps', fontsize=8)
-        self.latency_ax.set_ylabel('Latency', fontsize=8)
-        self.latency_ax.tick_params(labelsize=8)
-        if has_dqn_data or has_ppo_data or has_a3c_data or has_reinforce_data:
-            self.latency_ax.legend(fontsize=8)
-        
-        # Plot throughput
-        if has_dqn_data:
-            dqn_throughput = downsample(self.dqn_performance['throughput'])
-            dqn_x = np.linspace(0, max_length-1, len(dqn_throughput))
-            self.throughput_ax.plot(dqn_x, dqn_throughput, label='DQN', color='blue')
-        if has_ppo_data:
-            ppo_throughput = downsample(self.ppo_performance['throughput'])
-            ppo_x = np.linspace(0, max_length-1, len(ppo_throughput))
-            self.throughput_ax.plot(ppo_x, ppo_throughput, label='PPO', color='red')
-        if has_a3c_data:
-            a3c_throughput = downsample(self.a3c_performance['throughput'])
-            a3c_x = np.linspace(0, max_length-1, len(a3c_throughput))
-            self.throughput_ax.plot(a3c_x, a3c_throughput, label='A3C', color='green')
-        if has_reinforce_data:
-            reinforce_throughput = downsample(self.reinforce_performance['throughput'])
-            reinforce_x = np.linspace(0, max_length-1, len(reinforce_throughput))
-            self.throughput_ax.plot(reinforce_x, reinforce_throughput, label='REINFORCE', color='purple')
-        self.throughput_ax.set_title('Throughput', fontsize=8)
-        self.throughput_ax.set_xlabel('Steps', fontsize=8)
-        self.throughput_ax.set_ylabel('Packets Delivered', fontsize=8)
-        self.throughput_ax.tick_params(labelsize=8)
-        if has_dqn_data or has_ppo_data or has_a3c_data or has_reinforce_data:
-            self.throughput_ax.legend(fontsize=8)
-        
-        # Adjust layout
-        if time.time() - self.last_plot_update >= self.plot_update_interval:
-            self.perf_figure.tight_layout()
-        
-        # Update canvas
-        self.perf_canvas.draw_idle()
+        self.performance_viz.update_visualization(performance_data, max_length)
 
     def reset_network_keep_metrics(self):
         """Reset the network to initial state while preserving performance metrics"""
@@ -899,6 +902,10 @@ class NetworkVisualizerGUI:
             # Optional: Add visual feedback that reset was successful
             self.reset_button.state(['disabled'])  # Temporarily disable button
             self.root.after(500, lambda: self.reset_button.state(['!disabled']))  # Re-enable after 500ms
+            
+            # Log summary stats before resetting
+            if self.rl_enabled:
+                self.agent_profiler.log_summary_stats()
             
         except Exception as e:
             logging.error(f"Error resetting network: {str(e)}")
@@ -977,12 +984,14 @@ class NetworkVisualizerGUI:
         if self.traffic_var.get():
             if not self.traffic_classifier.trained:
                 self.traffic_classifier.train()
+            self.update_edge_selector()
         else:
             self.traffic_classifier.reset_stats()
+        self.update_traffic_charts()
         self.update_traffic_info()
 
     def update_traffic_info(self):
-        """Update traffic classification information display"""
+        """Update traffic classification information display with confidence levels"""
         if not self.traffic_var.get():
             self.traffic_text.delete(1.0, tk.END)
             self.traffic_text.insert(tk.END, "Traffic classification disabled")
@@ -996,9 +1005,177 @@ class NetworkVisualizerGUI:
             stats = self.traffic_classifier.get_edge_traffic_stats(edge)
             if stats:
                 self.traffic_text.insert(tk.END, f"Edge {edge}:\n")
-                for traffic_type, percentage in sorted(stats.items(), key=lambda x: x[1], reverse=True):
-                    self.traffic_text.insert(tk.END, f"  {traffic_type}: {percentage:.1%}\n")
+                for traffic_type, data in sorted(
+                    stats.items(), 
+                    key=lambda x: x[1]['percentage'], 
+                    reverse=True
+                ):
+                    self.traffic_text.insert(
+                        tk.END, 
+                        f"  {traffic_type}: {data['percentage']:.1%} "
+                        f"(confidence: {data['confidence']:.2f})\n"
+                    )
                 self.traffic_text.insert(tk.END, "\n")
+
+    def update_edge_selector(self):
+        """Update the edge selector combobox with current edges"""
+        edges = list(self.env.network.edges())
+        edge_strings = [f"{u}->{v}" for u, v in edges]
+        self.edge_selector['values'] = edge_strings
+        if edge_strings and not self.edge_var.get():
+            self.edge_selector.set(edge_strings[0])
+
+    def update_traffic_charts(self, *args):
+        """Update traffic classification charts"""
+        if not self.traffic_var.get():
+            self.traffic_viz.update_visualization(self.traffic_classifier, self.env)
+            return
+
+        if self.edge_var.get():
+            edge_str = self.edge_var.get()
+            u, v = map(int, edge_str.split('->'))
+            selected_edge = (u, v)
+        else:
+            selected_edge = None
+
+        self.traffic_viz.update_visualization(self.traffic_classifier, self.env, selected_edge)
+
+    def update_node_history(self, *args):
+        """Update node history plots"""
+        if not self.node_var.get():
+            return
+            
+        node = int(self.node_var.get())
+        history_length = min(1000, max(10, int(self.history_length_var.get())))
+        
+        # Clear all axes
+        self.bandwidth_ax.clear()
+        self.latency_ax.clear()
+        self.packet_loss_ax.clear()
+        self.throughput_ax.clear()
+        
+        # Get node history data
+        history = self.node_history[node]
+        timestamps = list(history['timestamp'])[-history_length:]
+        
+        # Plot each metric
+        self.bandwidth_ax.plot(timestamps, 
+                             list(history['bandwidth'])[-history_length:], 
+                             'b-', label='Bandwidth Utilization')
+        self.latency_ax.plot(timestamps, 
+                            list(history['latency'])[-history_length:], 
+                            'r-', label='Latency')
+        self.packet_loss_ax.plot(timestamps, 
+                                list(history['packet_loss'])[-history_length:], 
+                                'g-', label='Packet Loss')
+        self.throughput_ax.plot(timestamps, 
+                               list(history['throughput'])[-history_length:], 
+                               'y-', label='Throughput')
+        
+        # Set titles and labels
+        self.bandwidth_ax.set_title('Bandwidth Utilization')
+        self.latency_ax.set_title('Latency')
+        self.packet_loss_ax.set_title('Packet Loss')
+        self.throughput_ax.set_title('Throughput')
+        
+        # Add legends
+        self.bandwidth_ax.legend()
+        self.latency_ax.legend()
+        self.packet_loss_ax.legend()
+        self.throughput_ax.legend()
+        
+        # Update canvas
+        self.node_figure.tight_layout()
+        self.node_canvas.draw()
+
+    def update_node_metrics(self):
+        """Update stored metrics for each node"""
+        self.history_timestamp += 1
+        
+        for node in range(self.env.num_nodes):
+            # Calculate average metrics for all edges connected to this node
+            connected_edges = [
+                (u, v) for (u, v) in self.env.network.edges()
+                if u == node or v == node
+            ]
+            
+            if connected_edges:
+                # Calculate averages for all connected edges
+                avg_bandwidth = np.mean([
+                    self.env.bandwidth_utilization.get((u, v), 0)
+                    for (u, v) in connected_edges
+                ])
+                avg_latency = np.mean([
+                    self.env.latency.get((u, v), 0)
+                    for (u, v) in connected_edges
+                ])
+                avg_packet_loss = np.mean([
+                    self.env.packet_loss.get((u, v), 0)
+                    for (u, v) in connected_edges
+                ])
+                avg_throughput = np.mean([
+                    self.env.throughput.get((u, v), 0)
+                    for (u, v) in connected_edges
+                ])
+                
+                # Store metrics in history
+                self.node_history[node]['bandwidth'].append(avg_bandwidth)
+                self.node_history[node]['latency'].append(avg_latency)
+                self.node_history[node]['packet_loss'].append(avg_packet_loss)
+                self.node_history[node]['throughput'].append(avg_throughput)
+                self.node_history[node]['timestamp'].append(self.history_timestamp)
+
+    def toggle_simulation(self):
+        """Toggle simulation running state"""
+        self.sim_running = not self.sim_running
+        
+        if self.sim_running:
+            self.sim_button.config(text="Stop Simulation")
+            self.step_slider.state(['disabled'])
+            self.revert_button.state(['disabled'])
+            self.network_editor.disable_controls()  # Disable network editing
+        else:
+            self.sim_button.config(text="Start Simulation")
+            self.step_slider.state(['!disabled'])
+            self.revert_button.state(['!disabled'])
+            self.network_editor.enable_controls()  # Enable network editing
+            # Update slider maximum based on available history
+            self.step_slider.configure(to=len(self.sim_history))
+            self.step_var.set(0)
+            self.update_step_display()
+
+    def update_step_display(self, *args):
+        """Update the step display label"""
+        self.step_label.config(text=str(self.step_var.get()))
+
+    def revert_steps(self):
+        """Revert the simulation by the specified number of steps"""
+        if not self.sim_running and self.sim_history:
+            steps = self.step_var.get()
+            if steps > 0 and steps <= len(self.sim_history):
+                # Restore state from history
+                state = self.sim_history[-steps]
+                self.env.restore_state(state)
+                
+                # Update visualizations
+                self.update_network_visualization()
+                self.update_stats()
+                self.update_packet_info()
+                self.plot_performance_comparison()
+                
+                # Remove reverted states from history
+                for _ in range(steps):
+                    self.sim_history.pop()
+                
+                # Update slider maximum
+                self.step_slider.configure(to=len(self.sim_history))
+                self.step_var.set(0)
+                self.update_step_display()
+
+    def open_tutorial(self):
+        """Open the tutorial window"""
+        tutorial_window = TutorialWindow(self.root)
+        tutorial_window.grab_set()  # Make the tutorial window modal
 
     def run(self):
         """Start the GUI main loop"""

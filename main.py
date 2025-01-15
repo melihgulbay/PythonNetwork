@@ -7,6 +7,8 @@ import numpy as np
 from environment import NetworkSimEnvironment
 from agents import DQNAgent, PPOAgent, A3CAgent, REINFORCEAgent, HybridAgent
 from gui1 import NetworkVisualizerGUI as GUI1
+from intro_gui1 import IntroGUI
+from gpu_utils import get_device_info
 
 # Configure logging
 logging.basicConfig(
@@ -128,16 +130,24 @@ class NetworkSimulation:
 def main():
     """Main entry point with configuration options"""
     try:
+        # Get GPU information
+        gpu_info = get_device_info()
+        
         # Configuration parameters
         CONFIG = {
             'num_nodes': 20,
             'seed': None,  # Set to None for random behavior
-            'gpu_enabled': torch.cuda.is_available()
+            'gpu_enabled': gpu_info['available'],
+            'gpu_type': gpu_info['type']
         }
         
         # Log system information
         logging.info(f"Starting simulation with config: {CONFIG}")
-        logging.info(f"GPU available: {CONFIG['gpu_enabled']}")
+        logging.info(f"GPU info: {gpu_info['type']} (Available: {gpu_info['available']})")
+        
+        # Show intro GUI
+        intro = IntroGUI(CONFIG['num_nodes'], CONFIG['seed'])
+        intro.run()
         
         # Create and run simulation
         sim = NetworkSimulation(

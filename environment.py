@@ -5,14 +5,47 @@ import numpy as np
 import networkx as nx
 import random
 from enum import Enum
+import copy
 
 class SDNLayer(Enum):
     APPLICATION = "application"
     CONTROL = "control"
     INFRASTRUCTURE = "infrastructure"
+    def get_state(self):
+        """Return a copy of the current environment state"""
+        return {
+            'packets': copy.deepcopy(self.packets),
+            'delivered_packets': copy.deepcopy(self.delivered_packets),
+            'dropped_packets': copy.deepcopy(self.dropped_packets),
+            'bandwidth_utilization': copy.deepcopy(self.bandwidth_utilization),
+            'latency': copy.deepcopy(self.latency),
+            'packet_loss': copy.deepcopy(self.packet_loss),
+            'throughput': copy.deepcopy(self.throughput),
+            'anomaly_active': self.anomaly_active,
+            'current_anomaly': copy.deepcopy(self.current_anomaly)
+        }
+
+    def restore_state(self, state):
+        """Restore environment to a previous state"""
+        self.packets = state['packets']
+        self.delivered_packets = state['delivered_packets']
+        self.dropped_packets = state['dropped_packets']
+        self.bandwidth_utilization = state['bandwidth_utilization']
+        self.latency = state['latency']
+        self.packet_loss = state['packet_loss']
+        self.throughput = state['throughput']
+        self.anomaly_active = state['anomaly_active']
+        self.current_anomaly = state['current_anomaly']
+
+class Protocol(Enum):
+    TCP = "tcp"
+    UDP = "udp"
+    HTTP = "http"
+    HTTPS = "https"
+    ICMP = "icmp"
 
 class Packet:
-    def __init__(self, source, destination, packet_type="data", size=1024, priority=0):
+    def __init__(self, source, destination, packet_type="data", size=1024, priority=0, protocol=Protocol.TCP):
         self.source = source
         self.destination = destination
         self.packet_type = packet_type  # data, control, or priority
@@ -28,9 +61,43 @@ class Packet:
         self.latency = 0
         self.hops = 0
 
+        self.protocol = protocol
+        
+        # Protocol-specific attributes
+        self.protocol_state = {
+            'sequence_number': 0,
+            'ack_number': 0,
+            'window_size': 65535,
+            'retransmission_count': 0,
+            'timeout': False,
+            'connection_established': False
+        }
+        
+        # Protocol-specific configurations
+        self.protocol_config = {
+            Protocol.TCP: {
+                'requires_ack': True,
+                'window_size': 65535,
+                'congestion_control': True,
+                'max_retransmissions': 3,
+                'timeout_ms': 1000
+            },
+            Protocol.UDP: {
+                'requires_ack': False,
+                'reliable': False,
+                'max_datagram_size': 65507
+            },
+            Protocol.HTTP: {
+                'method': 'GET',
+                'response_code': 200,
+                'headers': {},
+                'requires_tcp': True
+            }
+        }
+
 class SDNPacket(Packet):
-    def __init__(self, source, destination, packet_type="data", size=1024, priority=0, sdn_layer=SDNLayer.INFRASTRUCTURE):
-        super().__init__(source, destination, packet_type, size, priority)
+    def __init__(self, source, destination, packet_type="data", size=1024, priority=0, sdn_layer=SDNLayer.INFRASTRUCTURE, protocol=Protocol.TCP):
+        super().__init__(source, destination, packet_type, size, priority, protocol)
         self.sdn_layer = sdn_layer
         self.flow_id = None  # For flow table matching
         self.qos_requirements = {
@@ -220,6 +287,24 @@ class NetworkSimEnvironment(gym.Env):
             'throughput_drop'
         ]
 
+        # Add protocol-specific configurations
+        self.protocol_configs = {
+            Protocol.TCP: {
+                'retry_timeout': 5,
+                'max_window_size': 65535,
+                'min_window_size': 1024,
+                'congestion_threshold': 0.8
+            },
+            Protocol.UDP: {
+                'max_packet_loss': 0.3,
+                'datagram_timeout': 2
+            },
+            Protocol.HTTP: {
+                'request_timeout': 10,
+                'max_redirects': 3
+            }
+        }
+
     def _initialize_sdn_infrastructure(self):
         """Initialize SDN infrastructure layer"""
         # Create SDN switches for each node
@@ -312,25 +397,60 @@ class NetworkSimEnvironment(gym.Env):
         return np.array(state, dtype=np.float32)
     
     def generate_packet(self):
-        """Generate multiple new packets with random source and destination"""
-        # Determine number of packets to generate this step
-        num_packets = random.randint(self.min_packets_per_step, self.max_packets_per_step)
+        """Generate new packets with guaranteed minimum spawning"""
+        # Track packets generated this step
+        packets_generated = 0
         
-        for _ in range(num_packets):
-            if len(self.packets) < self.max_packets and random.random() < self.packet_generation_rate:
+        # First pass: Generate minimum required packets
+        while packets_generated < self.min_packets_per_step:
+            # Randomly select source and destination
+            source = random.randint(0, self.num_nodes - 1)
+            destination = random.randint(0, self.num_nodes - 1)
+            while destination == source:
+                destination = random.randint(0, self.num_nodes - 1)
+            
+            # Randomly select protocol and priority
+            protocol = random.choice(list(Protocol))
+            priority = random.randint(0, 3)
+            
+            # Create packet
+            packet = SDNPacket(
+                source=source,
+                destination=destination,
+                packet_type="data",
+                size=random.randint(*self.packet_size_range),
+                priority=priority,
+                protocol=protocol
+            )
+            
+            self.packets.append(packet)
+            self.packet_counter += 1
+            packets_generated += 1
+        
+        # Second pass: Additional probabilistic packet generation
+        remaining_slots = self.max_packets_per_step - packets_generated
+        for _ in range(remaining_slots):
+            if random.random() < self.packet_generation_rate:
                 source = random.randint(0, self.num_nodes - 1)
                 destination = random.randint(0, self.num_nodes - 1)
                 while destination == source:
                     destination = random.randint(0, self.num_nodes - 1)
                 
-                packet_type = random.choice(self.packet_types)
-                size = random.randint(*self.packet_size_range)
+                protocol = random.choice(list(Protocol))
                 priority = random.randint(0, 3)
                 
-                packet = SDNPacket(source, destination, packet_type, size, priority)
-                packet.creation_time = self.packet_counter
+                packet = SDNPacket(
+                    source=source,
+                    destination=destination,
+                    packet_type="data",
+                    size=random.randint(*self.packet_size_range),
+                    priority=priority,
+                    protocol=protocol
+                )
+                
                 self.packets.append(packet)
                 self.packet_counter += 1
+                packets_generated += 1
 
     def process_packets(self):
         """Enhanced packet processing with SDN layers"""
@@ -420,7 +540,7 @@ class NetworkSimEnvironment(gym.Env):
             packet.hops += 1
 
     def _update_packet_status(self, packet):
-        """Enhanced packet status update with possibility for zero drops"""
+        """Enhanced packet status update with protocol handling"""
         if packet.current_node == packet.destination:
             packet.delivered = True
             packet.latency = self.packet_counter - packet.creation_time
@@ -498,6 +618,13 @@ class NetworkSimEnvironment(gym.Env):
             utilization < self.congestion_levels['moderate']):  # Low congestion
             final_drop_prob = 0.0
 
+        # Handle protocol-specific behaviors
+        if not self._handle_protocol_behavior(packet):
+            packet.dropped = True
+            self.dropped_packets.append(packet)
+            self.packets.remove(packet)
+            return
+
         # Apply drop decision
         if random.random() < final_drop_prob:
             packet.dropped = True
@@ -572,7 +699,7 @@ class NetworkSimEnvironment(gym.Env):
     def step(self, action):
         """Execute one step in the environment"""
         # Gradually increase difficulty over time
-        if self.packet_counter > 1000:  # After some initial learning period
+        if self.packet_counter > 100:  # After some initial learning period
             # Gradually increase packet generation rate
             self.packet_generation_rate = min(0.4, 0.2 + (self.packet_counter - 1000) * 0.0001)
             
@@ -757,3 +884,120 @@ class NetworkSimEnvironment(gym.Env):
         if self.current_anomaly['duration'] <= 0:
             self.anomaly_active = False
             self.current_anomaly = None
+
+    def _handle_protocol_behavior(self, packet):
+        """Handle protocol-specific behaviors and requirements"""
+        if packet.protocol == Protocol.TCP:
+            return self._handle_tcp_behavior(packet)
+        elif packet.protocol == Protocol.UDP:
+            return self._handle_udp_behavior(packet)
+        elif packet.protocol == Protocol.HTTP:
+            return self._handle_http_behavior(packet)
+        return True
+
+    def _handle_tcp_behavior(self, packet):
+        """Simulate TCP protocol behavior"""
+        # Get link congestion
+        current_node = packet.current_node
+        next_hop = self._get_next_hop(current_node, packet.destination)
+        if not next_hop:
+            return False
+
+        link = (current_node, next_hop)
+        congestion = self.bandwidth_utilization.get(link, 0)
+        
+        # TCP Congestion Control
+        if congestion > self.protocol_configs[Protocol.TCP]['congestion_threshold']:
+            # Reduce window size
+            packet.protocol_state['window_size'] //= 2
+            packet.protocol_state['window_size'] = max(
+                self.protocol_configs[Protocol.TCP]['min_window_size'],
+                packet.protocol_state['window_size']
+            )
+        else:
+            # Increase window size (additive increase)
+            packet.protocol_state['window_size'] = min(
+                packet.protocol_state['window_size'] + 1024,
+                self.protocol_configs[Protocol.TCP]['max_window_size']
+            )
+        
+        # Handle retransmissions
+        if packet.dropped and packet.protocol_state['retransmission_count'] < packet.protocol_config[Protocol.TCP]['max_retransmissions']:
+            packet.protocol_state['retransmission_count'] += 1
+            packet.dropped = False
+            return True
+        
+        return not packet.dropped
+
+    def _handle_udp_behavior(self, packet):
+        """Simulate UDP protocol behavior"""
+        # UDP is unreliable - no retransmission
+        if packet.size > packet.protocol_config[Protocol.UDP]['max_datagram_size']:
+            packet.dropped = True
+            return False
+        
+        # Higher tolerance for packet loss
+        if packet.dropped and random.random() < self.protocol_configs[Protocol.UDP]['max_packet_loss']:
+            return False
+        
+        return True
+
+    def _handle_http_behavior(self, packet):
+        """Simulate HTTP protocol behavior"""
+        # HTTP requires TCP
+        if not packet.protocol_state['connection_established']:
+            # Simulate TCP handshake
+            if random.random() < 0.95:  # 95% success rate for connection establishment
+                packet.protocol_state['connection_established'] = True
+            else:
+                return False
+        
+        # Handle HTTP-specific timeouts
+        if packet.latency > self.protocol_configs[Protocol.HTTP]['request_timeout']:
+            packet.dropped = True
+            return False
+        
+        return True
+
+    def get_state(self):
+        """Return a copy of the current environment state"""
+        return {
+            'packets': copy.deepcopy(self.packets),
+            'delivered_packets': copy.deepcopy(self.delivered_packets),
+            'dropped_packets': copy.deepcopy(self.dropped_packets),
+            'bandwidth_utilization': copy.deepcopy(self.bandwidth_utilization),
+            'latency': copy.deepcopy(self.latency),
+            'packet_loss': copy.deepcopy(self.packet_loss),
+            'throughput': copy.deepcopy(self.throughput),
+            'anomaly_active': self.anomaly_active,
+            'current_anomaly': copy.deepcopy(self.current_anomaly),
+            'packet_counter': self.packet_counter
+        }
+
+    def restore_state(self, state):
+        """Restore environment to a previous state"""
+        self.packets = state['packets']
+        self.delivered_packets = state['delivered_packets']
+        self.dropped_packets = state['dropped_packets']
+        self.bandwidth_utilization = state['bandwidth_utilization']
+        self.latency = state['latency']
+        self.packet_loss = state['packet_loss']
+        self.throughput = state['throughput']
+        self.anomaly_active = state['anomaly_active']
+        self.current_anomaly = state['current_anomaly']
+        self.packet_counter = state['packet_counter']
+
+    def save_state(self):
+        """Return a copy of the complete environment state"""
+        return {
+            'packets': copy.deepcopy(self.packets),
+            'delivered_packets': copy.deepcopy(self.delivered_packets),
+            'dropped_packets': copy.deepcopy(self.dropped_packets),
+            'bandwidth_utilization': copy.deepcopy(self.bandwidth_utilization),
+            'latency': copy.deepcopy(self.latency),
+            'packet_loss': copy.deepcopy(self.packet_loss),
+            'throughput': copy.deepcopy(self.throughput),
+            'anomaly_active': self.anomaly_active,
+            'current_anomaly': copy.deepcopy(self.current_anomaly),
+            'packet_counter': self.packet_counter
+        }

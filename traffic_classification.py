@@ -12,7 +12,7 @@ class TrafficClassifier:
             'database', 'email', 'hard_to_classify'
         ]
         
-        self.edge_traffic_history = defaultdict(lambda: defaultdict(int))
+        self.edge_traffic_history = defaultdict(lambda: defaultdict(lambda: {'count': 0, 'confidence': 0.0}))
         self.trained = False
         
         # Try to load pre-trained model
@@ -130,27 +130,45 @@ class TrafficClassifier:
         joblib.dump(self.classifier, 'traffic_model.joblib')
 
     def classify_packet(self, packet):
-        """Classify a single packet"""
+        """Classify a single packet and return type and confidence"""
         if not self.trained:
             self.train()
             
         features = self._extract_features(packet)
-        return self.classifier.predict(features)[0]
+        traffic_type = self.classifier.predict(features)[0]
+        
+        # Get prediction probabilities
+        probabilities = self.classifier.predict_proba(features)[0]
+        confidence = max(probabilities)
+        
+        return traffic_type, confidence
 
     def update_edge_traffic(self, edge, packet):
-        """Update traffic statistics for an edge"""
-        traffic_type = self.classify_packet(packet)
-        self.edge_traffic_history[edge][traffic_type] += 1
+        """Update traffic statistics for an edge with confidence levels"""
+        traffic_type, confidence = self.classify_packet(packet)
+        
+        # Update count and running average of confidence
+        current = self.edge_traffic_history[edge][traffic_type]
+        current['count'] += 1
+        current['confidence'] = (
+            (current['confidence'] * (current['count'] - 1) + confidence) / 
+            current['count']
+        )
 
     def get_edge_traffic_stats(self, edge):
-        """Get traffic statistics for an edge"""
-        total = sum(self.edge_traffic_history[edge].values())
+        """Get traffic statistics for an edge including confidence levels"""
+        total = sum(data['count'] for data in 
+                   [stats for stats in self.edge_traffic_history[edge].values()])
+        
         if total == 0:
             return {}
             
         return {
-            traffic_type: count / total 
-            for traffic_type, count in self.edge_traffic_history[edge].items()
+            traffic_type: {
+                'percentage': stats['count'] / total,
+                'confidence': stats['confidence']
+            }
+            for traffic_type, stats in self.edge_traffic_history[edge].items()
         }
 
     def reset_stats(self):

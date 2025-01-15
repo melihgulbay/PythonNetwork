@@ -10,6 +10,8 @@ import torch.multiprocessing as mp
 from torch.distributions import Normal
 import threading
 import torch.nn.functional as F
+import platform
+from gpu_utils import get_device_info
 
 class PPONetwork(nn.Module):
     def __init__(self, input_dim, output_dim, hidden_dim=512):
@@ -27,7 +29,6 @@ class PPONetwork(nn.Module):
             nn.LayerNorm(hidden_dim // 2),
             nn.ReLU(),
             nn.Linear(hidden_dim // 2, output_dim),
-            nn.Softmax(dim=-1)
         )
         
         # Critic network with batch normalization and larger architecture
@@ -48,7 +49,19 @@ class PPONetwork(nn.Module):
         # Ensure state is 2D for LayerNorm
         if state.dim() == 1:
             state = state.unsqueeze(0)
-        return self.actor(state), self.critic(state)
+            
+        # Get raw logits from actor
+        logits = self.actor(state)
+        
+        # Apply softmax with numerical stability
+        logits = logits - logits.max(dim=-1, keepdim=True)[0]  # Subtract max for numerical stability
+        exp_logits = torch.exp(logits)
+        probs = exp_logits / (exp_logits.sum(dim=-1, keepdim=True) + 1e-10)
+        
+        # Ensure no NaN values
+        probs = torch.where(torch.isnan(probs), torch.ones_like(probs) / probs.size(-1), probs)
+        
+        return probs, self.critic(state)
 
 class PPOAgent:
     def __init__(self, env, learning_rate=3e-4, gamma=0.99, epsilon=0.2, 
@@ -63,7 +76,9 @@ class PPOAgent:
         # Initialize networks with modified learning rate
         self.input_dim = env.observation_space.shape[0]
         self.output_dim = env.action_space.n
-        self.network = PPONetwork(self.input_dim, self.output_dim)
+        gpu_info = get_device_info()
+        self.device = gpu_info['device']  # Use detected device
+        self.network = PPONetwork(self.input_dim, self.output_dim).to(self.device)
         
         # Use separate optimizers with different learning rates
         self.actor_optimizer = optim.Adam(self.network.actor.parameters(), lr=learning_rate)
@@ -74,7 +89,6 @@ class PPOAgent:
         
         # Setup logging and device
         self.logger = logging.getLogger(__name__)
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.network.to(self.device)
         
         # Increase entropy coefficient for better exploration
@@ -85,21 +99,42 @@ class PPOAgent:
         self.replay_buffer = []
         
     def select_action(self, state):
-        """Select action using current policy"""
+        """Select action using current policy with added safety checks"""
         state = torch.FloatTensor(state).to(self.device)
         action_probs, value = self.network(state)
         
-        # Create distribution and sample action
-        dist = Categorical(action_probs)
-        action = dist.sample()
+        # Additional safety checks
+        if torch.isnan(action_probs).any() or torch.isinf(action_probs).any():
+            # If we still get NaN/Inf, fall back to uniform distribution
+            action_probs = torch.ones_like(action_probs) / action_probs.size(-1)
         
-        # Store trajectory information
-        self.states.append(state)
-        self.actions.append(action)
-        self.values.append(value)
-        self.log_probs.append(dist.log_prob(action))
+        # Ensure probabilities sum to 1
+        action_probs = F.normalize(action_probs, p=1, dim=-1)
         
-        return action.item(), dist.log_prob(action).item()
+        try:
+            dist = Categorical(action_probs)
+            action = dist.sample()
+            log_prob = dist.log_prob(action)
+            
+            # Store trajectory information
+            self.states.append(state)
+            self.actions.append(action)
+            self.values.append(value)
+            self.log_probs.append(log_prob)
+            
+            return action.item(), log_prob.item()
+        except ValueError as e:
+            # Fallback to random action if distribution creation fails
+            action = torch.randint(0, self.output_dim, (1,))[0]
+            log_prob = torch.tensor(0.0)  # Default log prob
+            
+            # Store trajectory information
+            self.states.append(state)
+            self.actions.append(action)
+            self.values.append(value)
+            self.log_probs.append(log_prob)
+            
+            return action.item(), log_prob.item()
     
     def store_transition(self, state, action, reward, next_state, done, log_prob):
         """Store transition in memory"""
@@ -113,7 +148,9 @@ class PPOAgent:
         gae = 0
         next_value = 0
         
-        values = torch.cat(self.values).detach()
+        # Move values to CPU for computation
+        values = [v.cpu() for v in self.values]
+        values = torch.cat(values).detach()
         
         for reward, value, done in zip(reversed(self.rewards), 
                                      reversed(values), 
@@ -128,7 +165,10 @@ class PPOAgent:
             advantages.insert(0, gae)
             next_value = value
         
-        return torch.FloatTensor(advantages).to(self.device)
+        # Create tensor on CPU first
+        advantages = torch.FloatTensor(advantages)
+        # Then move to the appropriate device
+        return advantages.to(self.device)
     
     def train(self):
         if len(self.states) < self.batch_size:
@@ -137,75 +177,81 @@ class PPOAgent:
         # Store experience in replay buffer
         for i in range(len(self.states)):
             self.replay_buffer.append({
-                'state': self.states[i],
-                'action': self.actions[i],
+                'state': self.states[i].cpu(),  # Move to CPU before storing
+                'action': self.actions[i].cpu(),
                 'reward': self.rewards[i],
-                'log_prob': self.log_probs[i],
-                'value': self.values[i],
+                'log_prob': self.log_probs[i].cpu(),
+                'value': self.values[i].cpu(),
                 'done': self.dones[i]
             })
         
-        # Keep only the most recent experiences if buffer is too large
+        # Keep only the most recent experiences
         if len(self.replay_buffer) > self.replay_buffer_size:
             self.replay_buffer = self.replay_buffer[-self.replay_buffer_size:]
         
-        # Sample batch size number of experiences
+        # Sample batch
         batch_size = min(self.batch_size, len(self.replay_buffer))
         batch_indices = np.random.choice(len(self.replay_buffer), batch_size, replace=False)
         
-        # Prepare batches
-        states = torch.stack([self.replay_buffer[i]['state'] for i in batch_indices]).detach()
-        actions = torch.stack([self.replay_buffer[i]['action'] for i in batch_indices]).detach()
-        old_log_probs = torch.stack([self.replay_buffer[i]['log_prob'] for i in batch_indices]).detach()
+        # Process each sample individually to avoid scatter operations
+        total_policy_loss = torch.tensor(0.0, device=self.device, requires_grad=True)
+        total_value_loss = torch.tensor(0.0, device=self.device, requires_grad=True)
+        total_entropy = torch.tensor(0.0, device=self.device)
         
-        # Compute advantages and returns
-        advantages = self.compute_advantages()
-        # Ensure advantages match batch size
-        advantages = advantages[-batch_size:] if len(advantages) >= batch_size else advantages
-        advantages = torch.FloatTensor(advantages).to(self.device)
-        
-        # Get current values for returns calculation
-        current_values = torch.cat([self.replay_buffer[i]['value'] for i in batch_indices]).detach()
-        # Ensure current_values is the right shape
-        current_values = current_values.view(-1)  # Flatten to 1D
-        
-        # Calculate returns
-        returns = advantages + current_values
-        
-        # Normalize advantages
-        advantages = (advantages - advantages.mean()) / (advantages.std() + 1e-8)
-        
-        # PPO update with mini-batches
-        for _ in range(self.epochs):
+        for idx in batch_indices:
+            # Get sample data
+            state = self.replay_buffer[idx]['state'].to(self.device)
+            action = self.replay_buffer[idx]['action'].to(self.device)
+            old_log_prob = self.replay_buffer[idx]['log_prob'].to(self.device)
+            old_value = self.replay_buffer[idx]['value'].to(self.device)
+            reward = self.replay_buffer[idx]['reward']
+            done = self.replay_buffer[idx]['done']
+            
             # Get current policy and value predictions
-            action_probs, values = self.network(states)
+            action_probs, value = self.network(state)
             dist = Categorical(action_probs)
-            curr_log_probs = dist.log_prob(actions)
-            entropy = dist.entropy().mean()
+            curr_log_prob = dist.log_prob(action)
+            entropy = dist.entropy()
             
-            # Ensure values is the right shape
-            values = values.squeeze()  # Remove extra dimensions
+            # Compute advantage for this sample
+            next_value = 0 if done else self.network(state)[1].detach()
+            advantage = reward + (1 - done) * self.gamma * next_value - old_value
             
-            # Compute policy ratio and surrogate loss
-            ratios = (curr_log_probs - old_log_probs).exp()
-            surr1 = ratios * advantages
-            surr2 = torch.clamp(ratios, 1-self.epsilon, 1+self.epsilon) * advantages
+            # Normalize advantage
+            advantage = (advantage - advantage.mean()) / (advantage.std() + 1e-8)
             
-            # Calculate losses with entropy bonus
-            policy_loss = -torch.min(surr1, surr2).mean() - self.entropy_coef * entropy
-            value_loss = nn.MSELoss()(values, returns)
+            # Compute policy ratio and losses
+            ratio = (curr_log_prob - old_log_prob).exp()
+            surr1 = ratio * advantage
+            surr2 = torch.clamp(ratio, 1 - self.epsilon, 1 + self.epsilon) * advantage
             
-            # Update actor
-            self.actor_optimizer.zero_grad()
-            policy_loss.backward(retain_graph=True)
-            nn.utils.clip_grad_norm_(self.network.actor.parameters(), 0.5)
-            self.actor_optimizer.step()
+            # Accumulate losses
+            policy_loss = -torch.min(surr1, surr2)
+            value_loss = F.mse_loss(value.squeeze(), reward + (1 - done) * self.gamma * next_value)
             
-            # Update critic
-            self.critic_optimizer.zero_grad()
-            value_loss.backward()
-            nn.utils.clip_grad_norm_(self.network.critic.parameters(), 0.5)
-            self.critic_optimizer.step()
+            total_policy_loss = total_policy_loss + policy_loss
+            total_value_loss = total_value_loss + value_loss
+            total_entropy = total_entropy + entropy
+        
+        # Calculate average losses
+        avg_policy_loss = total_policy_loss / batch_size
+        avg_value_loss = total_value_loss / batch_size
+        avg_entropy = total_entropy / batch_size
+        
+        # Final loss with entropy bonus
+        final_policy_loss = avg_policy_loss - self.entropy_coef * avg_entropy
+        
+        # Update actor
+        self.actor_optimizer.zero_grad()
+        final_policy_loss.backward(retain_graph=True)
+        nn.utils.clip_grad_norm_(self.network.actor.parameters(), 0.5)
+        self.actor_optimizer.step()
+        
+        # Update critic
+        self.critic_optimizer.zero_grad()
+        avg_value_loss.backward()
+        nn.utils.clip_grad_norm_(self.network.critic.parameters(), 0.5)
+        self.critic_optimizer.step()
         
         # Clear memory buffers
         self.reset_memory()
@@ -277,7 +323,8 @@ class DQNAgent:
         self.epsilon_end = epsilon_end
         self.epsilon_decay = epsilon_decay
         self.batch_size = batch_size
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        gpu_info = get_device_info()
+        self.device = gpu_info['device']  # Use detected device
         
         # Simplified network architecture
         self.policy_net = nn.Sequential(
@@ -379,10 +426,8 @@ class A3CNetwork(nn.Module):
         shared_features = self.shared(x)
         return self.actor(shared_features), self.critic(shared_features)
 
-class A3CWorker(mp.Process):
-    def __init__(self, global_network, optimizer, env, worker_id, 
-                 global_episode, global_step, lock, device):
-        super(A3CWorker, self).__init__()
+class A3CWorker:
+    def __init__(self, global_network, optimizer, env, worker_id, global_episode, global_step, lock, device):
         self.global_network = global_network
         self.optimizer = optimizer
         self.env = env
@@ -392,133 +437,77 @@ class A3CWorker(mp.Process):
         self.lock = lock
         self.device = device
         
-        # Initialize local network
-        self.local_network = nn.Sequential(
-            nn.Linear(env.observation_space.shape[0], 256),
-            nn.LayerNorm(256),
-            nn.ReLU(),
-            nn.Linear(256, 256),
-            nn.LayerNorm(256),
-            nn.ReLU(),
-            nn.Linear(256, env.action_space.n + 1)
-        ).to(device)
         
-        # Copy global parameters to local
+        self.local_network = A3CNetwork(
+            input_dim=env.observation_space.shape[0],
+            output_dim=env.action_space.n
+        ).to(self.device)
+        
         self.sync_with_global()
-        
+
     def sync_with_global(self):
+        """Synchronize local network with global network"""
         self.local_network.load_state_dict(self.global_network.state_dict())
-    
+
     def train(self):
+        """Training loop for the worker"""
         try:
-            while self.global_episode.value < 1000:  # Training episodes limit
+            while True:  # Continuous training loop
                 state = self.env.reset()
                 done = False
                 episode_reward = 0
                 
-                # Store episode history
-                states, actions, rewards = [], [], []
-                values = []
-                
                 while not done:
+                    # Get action probabilities and value
                     state_tensor = torch.FloatTensor(state).to(self.device)
-                    output = self.local_network(state_tensor)
-                    action_logits = output[:-1]
-                    value = output[-1]
+                    action_probs, value = self.local_network(state_tensor)
                     
-                    action_probs = F.softmax(action_logits, dim=0)
+                    # Sample action
                     dist = Categorical(action_probs)
                     action = dist.sample()
+                    log_prob = dist.log_prob(action)
                     
+                    # Take action in environment
                     next_state, reward, done, _ = self.env.step(action.item())
-                    
-                    states.append(state_tensor)
-                    actions.append(action)
-                    rewards.append(reward)
-                    values.append(value)
-                    
-                    state = next_state
                     episode_reward += reward
                     
+                    # Calculate advantage
+                    next_state_tensor = torch.FloatTensor(next_state).to(self.device)
+                    _, next_value = self.local_network(next_state_tensor)
+                    advantage = reward + (0.99 * next_value * (1 - done)) - value
+                    
+                    # Calculate losses
+                    actor_loss = -log_prob * advantage.detach()
+                    critic_loss = F.smooth_l1_loss(value, reward + (0.99 * next_value * (1 - done)).detach())
+                    total_loss = actor_loss + 0.5 * critic_loss
+                    
+                    # Update global network
                     with self.lock:
-                        self.global_step.value += 1
-                
-                # Process episode data and update global network
-                self.process_episode(states, actions, rewards, values)
-                
+                        self.optimizer.zero_grad()
+                        total_loss.backward()
+                        # Clip gradients to avoid exploding gradients
+                        torch.nn.utils.clip_grad_norm_(self.local_network.parameters(), max_norm=0.5)
+                        self.optimizer.step()
+                    
+                    # Sync with global network
+                    self.sync_with_global()
+                    state = next_state
+                    
         except Exception as e:
-            print(f"Worker {self.worker_id} failed: {str(e)}")
-
-    def process_episode(self, states, actions, rewards, values):
-        if len(states) == 0:
-            return
-
-        # Calculate returns and advantages
-        R = 0
-        returns = []
-        advantages = []
-        
-        for r, v in zip(reversed(rewards), reversed(values)):
-            R = r + 0.99 * R
-            advantage = R - v.item()
-            returns.insert(0, R)
-            advantages.insert(0, advantage)
-        
-        states = torch.stack(states)
-        actions = torch.stack(actions)
-        returns = torch.FloatTensor(returns).to(self.device)
-        advantages = torch.FloatTensor(advantages).to(self.device)
-        
-        # Calculate losses
-        outputs = self.local_network(states)
-        action_logits = outputs[:, :-1]
-        values_pred = outputs[:, -1]
-        
-        action_probs = F.softmax(action_logits, dim=1)
-        dist = Categorical(action_probs)
-        log_probs = dist.log_prob(actions)
-        entropy = dist.entropy().mean()
-        
-        actor_loss = -(log_probs * advantages.detach()).mean()
-        critic_loss = 0.5 * (returns - values_pred).pow(2).mean()
-        total_loss = actor_loss + critic_loss - 0.01 * entropy
-        
-        # Update global network
-        with self.lock:
-            self.optimizer.zero_grad()
-            total_loss.backward()
-            torch.nn.utils.clip_grad_norm_(self.local_network.parameters(), 40.0)
-            
-            for global_param, local_param in zip(
-                self.global_network.parameters(),
-                self.local_network.parameters()
-            ):
-                if global_param.grad is None:
-                    global_param.grad = local_param.grad
-                else:
-                    global_param.grad += local_param.grad
-            
-            self.optimizer.step()
-            self.global_episode.value += 1
-            
-        self.sync_with_global()
+            print(f"Worker {self.worker_id} encountered error: {str(e)}")
 
 class A3CAgent:
-    def __init__(self, env, num_workers=4, learning_rate=1e-4):
-        super(A3CAgent, self).__init__()
+    def __init__(self, env, learning_rate=3e-4, gamma=0.99, num_workers=4):
         self.env = env
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.gamma = gamma
+        self.global_episode = 0
+        self.global_step = 0
+        self.lock = threading.Lock()  # Use threading.Lock instead of mp.Lock
         
-        # Enhanced parameters
-        self.entropy_coef = 0.01
-        self.value_loss_coef = 0.5
-        self.max_grad_norm = 0.5
+        gpu_info = get_device_info()
+        self.device = gpu_info['device']  # Use detected device
         
-        # Initialize shared counters
-        self.global_episode = mp.Value('i', 0)
-        self.global_step = mp.Value('i', 0)
-        self.lock = mp.Lock()
-        
+        # Initialize global network without shared memory
         self.global_network = nn.Sequential(
             nn.Linear(env.observation_space.shape[0], 256),
             nn.LayerNorm(256),
@@ -529,27 +518,11 @@ class A3CAgent:
             nn.Linear(256, env.action_space.n + 1)  # Actions + Value
         ).to(self.device)
         
-        self.global_network.share_memory()
         self.optimizer = optim.Adam(self.global_network.parameters(), lr=learning_rate)
         
-        # Initialize workers
+        self.running = False
         self.workers = []
-        self.processes = []
-        for i in range(num_workers):
-            worker = A3CWorker(
-                global_network=self.global_network,
-                optimizer=self.optimizer,
-                env=env,
-                worker_id=i,
-                global_episode=self.global_episode,
-                global_step=self.global_step,
-                lock=self.lock,
-                device=self.device
-            )
-            self.workers.append(worker)
-            # Create process but don't start it yet
-            process = mp.Process(target=worker.train)
-            self.processes.append(process)
+        self.threads = []
 
     def select_action(self, state):
         with torch.no_grad():
@@ -564,50 +537,47 @@ class A3CAgent:
         pass  # A3C doesn't use a replay buffer
 
     def train(self):
-        """Start training processes if not already running"""
-        # Start processes if they're not running
-        for p in self.processes:
-            if not p.is_alive():
-                p.start()
+        """Start training threads if not already running"""
+        if not self.running:
+            self.running = True
+            # Start threads if they're not running
+            for i, worker in enumerate(self.workers):
+                if i >= len(self.threads) or not self.threads[i].is_alive():
+                    thread = threading.Thread(target=worker.train)
+                    thread.daemon = True
+                    self.threads.append(thread)
+                    thread.start()
 
     def reset_internal_state(self):
         """Reset internal state while preserving learned parameters"""
-        # Stop all processes
-        for p in self.processes:
-            if p.is_alive():
-                p.terminate()
-                p.join()
-        
-        # Create new processes
-        self.processes = []
+        self.running = False
+        # Create new threads
+        self.threads = []
+        # Sync workers with global network
         for worker in self.workers:
             worker.sync_with_global()
-            process = mp.Process(target=worker.train)
-            self.processes.append(process)
 
     def __del__(self):
         """Cleanup method"""
-        for p in self.processes:
-            if p.is_alive():
-                p.terminate()
-                p.join()
+        self.running = False
 
 class REINFORCEAgent:
     def __init__(self, env, learning_rate=3e-4, gamma=0.99):
         self.env = env
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        gpu_info = get_device_info()
+        self.device = gpu_info['device']  # Use detected device
         
-        # Simple policy network with proper initialization
+        # Simplified policy network architecture
         self.policy_net = nn.Sequential(
             nn.Linear(env.observation_space.shape[0], 128),
-            nn.ReLU(),
+            nn.LayerNorm(128),
             nn.Linear(128, 128),
-            nn.ReLU(),
+            nn.LayerNorm(128),
             nn.Linear(128, env.action_space.n),
             nn.Softmax(dim=-1)
         ).to(self.device)
         
-        # Initialize weights properly
+        # Initialize weights
         for layer in self.policy_net:
             if isinstance(layer, nn.Linear):
                 nn.init.xavier_uniform_(layer.weight)
@@ -616,26 +586,25 @@ class REINFORCEAgent:
         self.optimizer = optim.Adam(self.policy_net.parameters(), lr=learning_rate)
         self.gamma = gamma
         self.rewards = []
-        self.log_probs = []
+        self.states = []
+        self.actions = []
         self.eps = 1e-8
 
     def select_action(self, state):
         state = torch.FloatTensor(state).to(self.device)
-        
         if state.dim() == 1:
             state = state.unsqueeze(0)
         
-        # Enable gradients for action selection
-        probs = self.policy_net(state)
-        probs = F.softmax(probs, dim=-1)
-        probs = probs + self.eps
-        probs = probs / probs.sum()
-        
+        with torch.no_grad():
+            probs = self.policy_net(state)
+            
         try:
             dist = Categorical(probs)
             action = dist.sample()
-            # Store log probability with gradient tracking
-            self.log_probs.append(dist.log_prob(action))
+            
+            self.states.append(state)
+            self.actions.append(action)
+            
             return action.item()
         except ValueError as e:
             print(f"Warning: Invalid probability distribution. Using random action. Error: {e}")
@@ -645,44 +614,56 @@ class REINFORCEAgent:
         self.rewards.append(reward)
 
     def train(self):
-        if len(self.rewards) == 0:
+        if len(self.rewards) == 0 or len(self.states) == 0:
             return
 
-        # Calculate returns with gradient tracking
-        returns = []
+        # Calculate discounted rewards using numpy
+        discounted_rewards = []
         R = 0
         for r in self.rewards[::-1]:
             R = r + self.gamma * R
-            returns.insert(0, R)
+            discounted_rewards.insert(0, R)
         
-        returns = torch.FloatTensor(returns).to(self.device)
-        if len(returns) > 1:
-            returns = (returns - returns.mean()) / (returns.std() + self.eps)
-
-        # Ensure log_probs have gradients
-        policy_loss = []
-        for log_prob, R in zip(self.log_probs, returns):
-            if log_prob is not None and log_prob.requires_grad:  # Check if gradient tracking is enabled
-                policy_loss.append(-log_prob * R.detach())  # Detach returns to only update policy
+        # Convert to numpy array for normalization
+        discounted_rewards = np.array(discounted_rewards)
+        if len(discounted_rewards) > 1:
+            discounted_rewards = (discounted_rewards - discounted_rewards.mean()) / (discounted_rewards.std() + self.eps)
         
-        if not policy_loss:  # If no valid log probabilities, skip update
-            self.reset_internal_state()
-            return
-
-        policy_loss = torch.stack(policy_loss).sum()
-
-        # Update policy
-        self.optimizer.zero_grad()
-        policy_loss.backward()
-        torch.nn.utils.clip_grad_norm_(self.policy_net.parameters(), max_norm=1.0)
-        self.optimizer.step()
-
+        # Initialize total loss as a scalar tensor on CPU
+        total_loss = torch.tensor(0.0, device=self.device, requires_grad=True)
+        
+        # Process each state-action pair individually
+        for i in range(len(self.states)):
+            state = self.states[i]
+            action = self.actions[i]
+            reward = torch.tensor(discounted_rewards[i], device=self.device)
+            
+            # Forward pass for single state
+            probs = self.policy_net(state)
+            dist = Categorical(probs)
+            log_prob = dist.log_prob(action)
+            
+            # Add to total loss using basic arithmetic
+            loss = -log_prob * reward
+            total_loss = total_loss + loss
+        
+        # Calculate average loss
+        if len(self.states) > 0:
+            policy_loss = total_loss / len(self.states)
+            
+            # Update policy
+            self.optimizer.zero_grad()
+            policy_loss.backward()
+            torch.nn.utils.clip_grad_norm_(self.policy_net.parameters(), max_norm=1.0)
+            self.optimizer.step()
+        
         self.reset_internal_state()
 
     def reset_internal_state(self):
         """Reset internal state while preserving learned parameters"""
         self.rewards = []
-        self.log_probs = []
+        self.states = []
+        self.actions = []
 
 class HybridAgent:
     def __init__(self, env):
